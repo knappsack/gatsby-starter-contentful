@@ -12,6 +12,19 @@ export type TopicProps = {
   icon: string
 }
 
+export type ContentfulTopicSectionVariant =
+  | 'block'
+  | 'card'
+  | 'divider'
+  | 'featured'
+  | 'gallery'
+  | 'headline'
+  | 'hero'
+  | 'image'
+  | 'quote'
+  | 'showcase'
+  | 'video'
+
 export type ContentfulTopicSectionProps = {
   section: SectionProps
 }
@@ -20,7 +33,8 @@ export const ContentfulTopicSection = ({
   section,
 }: ContentfulTopicSectionProps) => {
   const { topics } = section
-  const topicOptions = getTopicOptions(section.topicOptions)
+  const topicOptions = section.topicOptions
+  const options = getTopicOptions(topicOptions)
   return (
     <>
       {topics.map((topic: TopicProps) => {
@@ -29,12 +43,12 @@ export const ContentfulTopicSection = ({
           heading,
           abstract: { abstract },
         } = topic
-        
+
         return (
           <div key={topic.id}>
-            {icon && topicOptions.icon && <svg>{icon}</svg>}
-            {heading && topicOptions.heading && <h2>{heading}</h2>}
-            {abstract && topicOptions.abstract && <p>{abstract}</p>}
+            {icon && options.icon && <div>{icon}</div>}
+            {heading && options.heading && <h2>{heading}</h2>}
+            {abstract && options.abstract && <p>{abstract}</p>}
           </div>
         )
       })}
