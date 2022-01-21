@@ -44,7 +44,11 @@ const ContentfulPage = (props: ContentfulPageProps) => {
       {page.sections
         ? page.sections.map((section: SectionProps, index: number) => {
             return (
-              <AnalyzeUserBehavior key={index} variation={section.variation}>
+              <AnalyzeUserBehavior
+                key={index}
+                variation={section.variation}
+                eventId={section.eventId}
+              >
                 {getSection(section)}
               </AnalyzeUserBehavior>
             )
@@ -70,7 +74,18 @@ export const query = graphql`
       sections {
         ... on ContentfulTopicSection {
           __typename
+          eventId
           id
+          topicOptions
+          topics {
+            __typename
+            id
+            heading
+            abstract {
+              abstract
+            }
+            icon
+          }
           variation
         }
         ... on ContentfulTextSection {

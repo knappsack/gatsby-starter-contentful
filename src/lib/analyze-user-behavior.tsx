@@ -3,12 +3,12 @@ import { GetPropTypesOf } from './get-prop-types-of'
 import { isBrowser } from './is-browser'
 
 /**
- * To send Google Analytics Events on a web page where 
- * the global site tag has been added, use the gtag.js 
+ * To send Google Analytics Events on a web page where
+ * the global site tag has been added, use the gtag.js
  * event command with the following syntax:
- * 
+ *
  * @url https://developers.google.com/analytics/devguides/collection/gtagjs/events
- * 
+ *
  * gtag('event', <action>, {
  *   'event_category': <category>,
  *   'event_label': <label>,
@@ -18,19 +18,20 @@ import { isBrowser } from './is-browser'
 
 declare global {
   interface Window {
-    gtag: (
-      event: string,
-      action: string,
-      value: Record<string, string>
-    ) => void
+    gtag: (event: string, action: string, value: { event_id: string }) => void
   }
 }
 
-type ScrollSpyProps = GetPropTypesOf['section'] & {
+type AnalyzeUserBehaviorProps = GetPropTypesOf['section'] & {
+  eventId: string
   variation: string
 }
 
-export const AnalyzeUserBehavior = ({ variation, children }: ScrollSpyProps) => {
+export const AnalyzeUserBehavior = ({
+  eventId,
+  variation,
+  children,
+}: AnalyzeUserBehaviorProps) => {
   const sectionRef = useRef(null)
   const inViewport = useRef(false)
 
@@ -54,14 +55,16 @@ export const AnalyzeUserBehavior = ({ variation, children }: ScrollSpyProps) => 
     if (outViewport != inViewport.current) {
       const eventId =
         inViewport.current &&
-        sectionRef.current.dataset.analyticsSection + `-in-viewport`
+        `${sectionRef.current.dataset.analyticsSection}-in-viewport`
 
       /**
        * Send the event to Google Analytics
        * @url https://developers.google.com/tag-platform/gtagjs/routing
        */
       if (isBrowser && window.gtag) {
-        window.gtag('event', 'page_section', { event_id: eventId })
+        window.gtag('event', 'page_section', {
+          event_id: eventId,
+        })
       }
     }
   }
@@ -78,7 +81,7 @@ export const AnalyzeUserBehavior = ({ variation, children }: ScrollSpyProps) => 
   }, [])
 
   return (
-    <section data-analytics-section={variation} ref={sectionRef}>
+    <section data-analytics-section={eventId || variation} ref={sectionRef}>
       {children}
     </section>
   )
