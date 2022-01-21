@@ -1,4 +1,5 @@
 import React from 'react'
+import { TopicOptions } from '../lib/get-topic-options'
 import { ContentfulNavigationSection } from './contentful-navigation-section'
 import { ContentfulRichTech } from './contentful-rich-text'
 import { ContentfulTopicSection, TopicProps } from './contentful-topic-section'
@@ -10,6 +11,7 @@ export type SectionProps = {
   text: {
     raw: any
   }
+  topicOptions: TopicOptions[]
   topics: TopicProps[]
   variation: string
 }
