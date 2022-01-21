@@ -1,57 +1,33 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { graphql, PageProps } from 'gatsby'
-import { ContentfulRichTech } from '../components/contentful-rich-text'
 import { Seo } from '../components/seo'
+import { getSection, SectionProps } from '../components/section'
+import { AnalyzeUserBehavior } from '../lib/analyze-user-behavior'
 
-const Section = (props: Record<string, unknown>) => {
-  const { variation } = props
-  return (
-    <section data-analytics-region={variation}>
-      {variation}
-    </section>
-  )
+type ContentfulPage = {
+  __typename: string
+  slug: string
+  title: string
+  seoTitle: string
+  seoDescription: string
+  seoKeywords: string | string[]
+  sections: Record<string, any>
 }
 
-const getSection = (section: Record<string, any>) => {
-  switch (section.__typename) {
-    case `ContentfulNavigationSection`:
-      return <Section {...section} />
-
-    case `ContentfulTopicSection`:
-      return <Section {...section} />
-
-    case `ContentfulTextSection`:
-      const { text, variation } = section
-      return <ContentfulRichTech richText={text} variation={variation} />
-
-    case `ContentfulExerciseSection`:
-      return <Section {...section} />
-
-    default:
-      return null
-  }
+type ContentfulGlobals = {
+  __typename: string
+  siteAuthor: string
+  siteDescription: string
+  siteHeading: string
+  siteKeywords: string | string[]
 }
 
 type ContentfulQueryProps = {
-  contentfulPage: {
-    __typename: string
-    slug: string
-    title: string
-    seoTitle: string
-    seoDescription: string
-    seoKeywords: string | string[]
-    sections: Record<string, any>
-  },
-  contentfulGlobals: {
-    __typename: string
-    siteAuthor: string
-    siteDescription: string
-    siteHeading: string
-    siteKeywords: string | string[]
-  }
+  contentfulPage: ContentfulPage
+  contentfulGlobals: ContentfulGlobals
 }
 
-type LocaleLookUpInfo = { translationStrings: string }
+type LocaleLookUpInfo = { node_locale: string }
 type ContentfulPageProps = PageProps<ContentfulQueryProps, LocaleLookUpInfo>
 
 const ContentfulPage = (props: ContentfulPageProps) => {
@@ -66,11 +42,11 @@ const ContentfulPage = (props: ContentfulPageProps) => {
         customUrl={page.slug || undefined}
       />
       {page.sections
-        ? page.sections.map((section: Record<string, any>, index: number) => {
+        ? page.sections.map((section: SectionProps, index: number) => {
             return (
-              <Fragment key={index + section.__typename}>
+              <AnalyzeUserBehavior key={index} variation={section.variation}>
                 {getSection(section)}
-              </Fragment>
+              </AnalyzeUserBehavior>
             )
           })
         : null}

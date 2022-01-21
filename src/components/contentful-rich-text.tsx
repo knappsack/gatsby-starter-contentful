@@ -39,7 +39,10 @@ type CommonNode = Node & {
   content: Text | Block | Inline
 }
 type NodeRenderer = {
-  (node: Block | Inline | CommonNode, children: React.ReactNode | any): React.ReactNode
+  (
+    node: Block | Inline | CommonNode,
+    children: React.ReactNode | any
+  ): React.ReactNode
 }
 type RenderNode = {
   [k: string]: NodeRenderer
@@ -146,13 +149,8 @@ const options: Options = {
 
 type ContentfulRichTechProps = {
   richText: any
-  variation: string
 }
 
-export const ContentfulRichTech = ({ richText, variation }: ContentfulRichTechProps) => {
-  return (
-    <section data-analytics-region={variation}>
-      {renderRichText(richText, options)}
-    </section>
-  )
+export const ContentfulRichTech = ({ richText }: ContentfulRichTechProps) => {
+  return <>{renderRichText(richText, options)}</>
 }
