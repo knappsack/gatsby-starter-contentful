@@ -1,33 +1,29 @@
 import React from 'react'
+import { ContentfulNavigationSection } from './contentful-navigation-section'
 import { ContentfulRichTech } from './contentful-rich-text'
+import { ContentfulTopicSection, TopicProps } from './contentful-topic-section'
 
 export type SectionProps = {
   __typename: string
-  text: any
+  eventId: string
+  id: string
+  text: {
+    raw: any
+  }
+  topics: TopicProps[]
   variation: string
-}
-
-export type ContentfulSectionProps = {
-  section: SectionProps
-}
-
-export const ContentfulSection = ({ section }: ContentfulSectionProps) => {
-  return <>{section.variation}</>
 }
 
 export const getSection = (section: SectionProps) => {
   switch (section.__typename) {
     case `ContentfulNavigationSection`:
-      return <ContentfulSection section={section} />
+      return <ContentfulNavigationSection section={section} />
 
     case `ContentfulTopicSection`:
-      return <ContentfulSection section={section} />
+      return <ContentfulTopicSection section={section} />
 
     case `ContentfulTextSection`:
       return <ContentfulRichTech richText={section.text} />
-
-    case `ContentfulExerciseSection`:
-      return <ContentfulSection section={section} />
 
     default:
       return null
