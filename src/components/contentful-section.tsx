@@ -1,31 +1,37 @@
 import React from 'react'
-import { TopicOptions } from '../lib/get-topic-options'
 import { ContentfulNavigationSection } from './contentful-navigation-section'
 import { ContentfulRichTech } from './contentful-rich-text'
 import { ContentfulTopicSection, TopicProps, ContentfulTopicSectionVariant } from './contentful-topic-section'
 
-export type SectionProps = {
+export type ContentfulSection = {
+  sys?: {
+    id: string
+  }
   __typename: string
   eventId: string
-  id: string
-  text: {
-    raw: any
+
+  abstract: boolean
+  icon: boolean
+  heading: boolean
+  action: string
+
+  topicsCollection: {
+    items: TopicProps[]
   }
-  topicOptions: TopicOptions[]
-  topics: TopicProps[]
-  variation: ContentfulTopicSectionVariant
+  variant: ContentfulTopicSectionVariant
+  theme: string
 }
 
-export const getSection = (section: SectionProps) => {
+export const getSection = (section: ContentfulSection) => {
   switch (section.__typename) {
-    case `ContentfulNavigationSection`:
+    case `Contentful_NavigationSection`:
       return <ContentfulNavigationSection section={section} />
 
-    case `ContentfulTopicSection`:
+    case `Contentful_TopicSection`:
       return <ContentfulTopicSection section={section} />
 
-    case `ContentfulTextSection`:
-      return <ContentfulRichTech richText={section.text} />
+    case `Contentful_TextSection`:
+      return <ContentfulRichTech richText={section} />
 
     default:
       return null

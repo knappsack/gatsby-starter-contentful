@@ -42,10 +42,14 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-source-contentful',
+      resolve: `gatsby-source-graphql`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+        typeName: `Contentful`,
+        fieldName: `contentful`,
+        url: process.env.CONTENTFUL_GRAPHQL_ENDPOINT,
+        headers: {
+          Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`,
+        },
       },
     },
   ],

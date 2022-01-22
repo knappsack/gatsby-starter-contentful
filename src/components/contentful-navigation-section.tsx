@@ -1,11 +1,11 @@
 import React from 'react'
-import { SectionProps } from './section'
+import { ContentfulSection } from './contentful-section'
 
 export type ContentfulNavigationSectionProps = {
-  section: SectionProps
+  section: ContentfulSection
 }
 
 export const ContentfulNavigationSection = ({ section }: ContentfulNavigationSectionProps) => {
   console.log(section)
-  return <>{section.variation}</>
+  return <>{section.variant}</>
 }

@@ -1,14 +1,14 @@
 import React from 'react'
 import { getTopicOptions } from '../lib/get-topic-options'
-import { SectionProps } from './section'
+import { ContentfulSection } from './contentful-section'
 
 export type TopicProps = {
   __typename: string
-  id: string
-  heading: string
-  abstract: {
-    abstract: string
+  sys: { 
+    id: string
   }
+  heading: string
+  abstract: string
   icon: string
 }
 
@@ -26,29 +26,32 @@ export type ContentfulTopicSectionVariant =
   | 'video'
 
 export type ContentfulTopicSectionProps = {
-  section: SectionProps
+  section: ContentfulSection
 }
 
 export const ContentfulTopicSection = ({
   section,
 }: ContentfulTopicSectionProps) => {
-  const { topics } = section
-  const topicOptions = section.topicOptions
-  const options = getTopicOptions(topicOptions)
+  const { topicsCollection: { items } } = section
+  // const topicOptions = section.topicOptions
+  // const options = getTopicOptions(topicOptions)
   return (
     <>
-      {topics.map((topic: TopicProps) => {
+      {items.map((topic: TopicProps, index: number) => {
         const {
           icon,
           heading,
-          abstract: { abstract },
+          abstract,
+          sys: {
+            id
+          }
         } = topic
 
         return (
-          <div key={topic.id}>
-            {icon && options.icon && <div>{icon}</div>}
-            {heading && options.heading && <h2>{heading}</h2>}
-            {abstract && options.abstract && <p>{abstract}</p>}
+          <div key={id + index}>
+            {icon && <div>{icon}</div>}
+            {heading && <h2>{heading}</h2>}
+            {abstract && <p>{abstract}</p>}
           </div>
         )
       })}
