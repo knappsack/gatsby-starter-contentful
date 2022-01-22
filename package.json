@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/gatsby-inc/gatsby-demo-contentful#readme",
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.11.1",
     "@contentful/rich-text-types": "^15.11.1",
     "autoprefixer": "^10.4.2",
     "gatsby": "^4.5.4",

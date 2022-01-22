@@ -9,7 +9,7 @@ import {
   Node,
   Text,
 } from '@contentful/rich-text-types'
-import { renderRichText } from 'gatsby-source-contentful/rich-text'
+import { documentToReactComponents, Options } from '@contentful/rich-text-react-renderer'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const createJumpLink = (children: {}) => {
@@ -50,12 +50,13 @@ type RenderNode = {
 type RenderMark = {
   [k: string]: (text: React.ReactNode) => React.ReactNode
 }
-type Options = {
+
+type OptionsProps = {
   renderNode: RenderNode
   renderMark: RenderMark
 }
 
-const options: Options = {
+const options: OptionsProps = {
   renderMark: {
     [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
     [MARKS.ITALIC]: (text) => <i className="font-italic">{text}</i>,
@@ -152,5 +153,5 @@ type ContentfulRichTechProps = {
 }
 
 export const ContentfulRichTech = ({ richText }: ContentfulRichTechProps) => {
-  return <>{renderRichText(richText, options)}</>
+  return <>{documentToReactComponents(richText, options)}</>
 }
