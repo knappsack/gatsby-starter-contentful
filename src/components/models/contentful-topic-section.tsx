@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import { ContentfulTopic } from './topic-fragment'
+import { ContentfulTopic } from './contentful-topic'
 
 export type TopicSectionVariant =
   | 'block'

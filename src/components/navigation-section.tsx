@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContentfulTopicSection } from './models/topic-section-fragment'
+import { ContentfulTopicSection } from './models/contentful-topic-section'
 
 export type NavigationSectionProps = {
   model: ContentfulTopicSection

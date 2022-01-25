@@ -1,8 +1,6 @@
 import React from 'react'
-import { ContentfulAction } from './models/action-fragment'
-import { ContentfulAsset } from './models/asset-fragment'
-import { ContentfulTopic } from './models/topic-fragment'
-import { ContentfulTopicSection } from './models/topic-section-fragment'
+import { ContentfulTopic } from './models/contentful-topic'
+import { ContentfulTopicSection } from './models/contentful-topic-section'
 import { Topic } from './topic'
 
 export type TopicSectionProps = {

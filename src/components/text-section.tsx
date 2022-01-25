@@ -9,12 +9,9 @@ import {
   Node,
   Text,
 } from '@contentful/rich-text-types'
-import {
-  documentToReactComponents,
-  Options,
-} from '@contentful/rich-text-react-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { ContentfulTextSection } from './models/text-section-fragment'
+import { ContentfulTextSection } from './models/contentful-text-section'
 
 const createJumpLink = (children: {}) => {
   const slug = children[0].key

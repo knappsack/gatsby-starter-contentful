@@ -3,8 +3,8 @@ import { AnalyzeUserBehavior } from '../lib/analyze-user-behavior'
 import { NavigationSection } from './navigation-section'
 import { TextSection } from './text-section'
 import { TopicSection } from './topic-section'
-import { ContentfulTextSection } from './models/text-section-fragment'
-import { ContentfulTopicSection } from './models/topic-section-fragment'
+import { ContentfulTextSection } from './models/contentful-text-section'
+import { ContentfulTopicSection } from './models/contentful-topic-section'
 
 export type ContentfulSection = ContentfulTopicSection | ContentfulTextSection
 

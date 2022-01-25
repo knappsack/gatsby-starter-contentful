@@ -2,8 +2,8 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 import { Seo } from './seo'
 import { Section } from './section'
-import { ContentfulPage } from './models/page-fragment'
-import { ContentfulGlobals } from './models/globals-fragment'
+import { ContentfulPage } from './models/contentful-page'
+import { ContentfulGlobals } from './models/contentful-globals'
 
 type PageQuery = {
   contentful: {
