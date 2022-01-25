@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Action } from './action'
+import { Heading } from './elements/heading'
+import { Media } from './media'
 import { ContentfulAction } from './models/contentful-action'
 import { ContentfulAsset } from './models/contentful-asset'
 import { ContentfulTopic } from './models/contentful-topic'
@@ -23,34 +25,26 @@ export const Topic = ({ model, options }: TopicProps) => {
   return (
     <div className="text-center p-5">
       {options.icon && icon && <div>{icon}</div>}
-      {options.heading && heading && (
-        <h2 className="text-2xl font-bold">{heading}</h2>
-      )}
+      {options.heading && heading && <Heading>{heading}</Heading>}
       {options.abstract && abstract && <p>{abstract}</p>}
       {options.media &&
         mediaCollection &&
-        mediaCollection.items.map((media: ContentfulAsset, index: number) => {
+        mediaCollection.items.map((model: ContentfulAsset, index: number) => {
           const {
             sys: { id },
-            url,
-          } = media
+          } = model
 
-          return <img key={id + index} src={url + `?q=10&fit=pad&bg=rgb:222222&fm=webp`} />
+          return <Media key={id + index} model={model} />
         })}
       {options.action &&
         actionsCollection &&
         actionsCollection.items.map(
-          (action: ContentfulAction, index: number) => {
+          (model: ContentfulAction, index: number) => {
             const {
               sys: { id },
-              page: { slug },
-            } = action
+            } = model
 
-            return (
-              <Link key={id + index} to={slug} className='w-full m-3 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10'>
-                {action.heading}
-              </Link>
-            )
+            return <Action key={id + index} model={model} />
           }
         )}
     </div>

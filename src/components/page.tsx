@@ -21,11 +21,13 @@ const Page = ({
   return (
     <>
       <Seo
-        customTitle={page.seoTitle || globals.siteTitle || ''}
-        customDescription={page.seoDescription || globals.siteDescription || ''}
-        customKeywords={page.seoKeywords || globals.siteKeywords || []}
-        customUrl={page.slug || ''}
-        customImage={page.seoImage.url || globals.siteImage.url || ''}
+        customTitle={page.seoTitle || globals.siteTitle || null}
+        customDescription={
+          page.seoDescription || globals.siteDescription || null
+        }
+        customKeywords={page.seoKeywords || globals.siteKeywords || null}
+        customUrl={page.slug || null}
+        customImage={page.seoImage.url || globals.siteImage.url || null}
       />
       <Section model={model} />
       <pre className="bg-gray-100 h-96 overflow-auto">
@@ -44,7 +46,7 @@ type PageContext = {
 export const query = graphql`
   query ($pageId: String!, $globalsId: String!) {
     contentful {
-      page(id: $pageId) {
+      page(id: $pageId, locale: "en-US") {
         __typename
         sys {
           id
