@@ -33,7 +33,7 @@ const Header = () => {
           >
             <li>
               <Link
-                to={`/elleboog`}
+                to={`/second-page`}
                 className="p-2 hover:underline"
                 activeClassName="underline text-brand-default cursor-auto"
               >

@@ -9,8 +9,12 @@ import {
   Node,
   Text,
 } from '@contentful/rich-text-types'
-import { documentToReactComponents, Options } from '@contentful/rich-text-react-renderer'
+import {
+  documentToReactComponents,
+  Options,
+} from '@contentful/rich-text-react-renderer'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { ContentfulTextSection } from './models/text-section-fragment'
 
 const createJumpLink = (children: {}) => {
   const slug = children[0].key
@@ -148,10 +152,14 @@ const options: OptionsProps = {
   },
 }
 
-type ContentfulRichTechProps = {
-  richText: any
+type TextSectionProps = {
+  model: ContentfulTextSection
 }
 
-export const ContentfulRichTech = ({ richText }: ContentfulRichTechProps) => {
-  return <>{documentToReactComponents(richText, options)}</>
+export const TextSection = ({
+  model: {
+    text: { json },
+  },
+}: TextSectionProps) => {
+  return <>{documentToReactComponents(json, options)}</>
 }

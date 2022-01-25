@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby'
 
 export type ContentfulAsset = {
+  __typename: string
   sys: {
     id: string
   }
@@ -14,8 +15,9 @@ export type ContentfulAsset = {
   width: number
 }
 
-export const assetFragment = graphql`
-  fragment Asset on Contentful_Asset {
+export const asset = graphql`
+  fragment asset on Contentful_Asset {
+    __typename
     sys {
       id
     }

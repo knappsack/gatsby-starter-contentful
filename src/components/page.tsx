@@ -1,0 +1,90 @@
+import React from 'react'
+import { graphql, PageProps } from 'gatsby'
+import { Seo } from './seo'
+import { Section } from './section'
+import { ContentfulPage } from './models/page-fragment'
+import { ContentfulGlobals } from './models/globals-fragment'
+
+type PageQuery = {
+  contentful: {
+    page: ContentfulPage
+    globals: ContentfulGlobals
+  }
+}
+
+const Page = ({
+  data: {
+    contentful: { page, globals },
+  },
+}: PageProps<PageQuery, PageContext>) => {
+  const model = page.sectionsCollection?.items
+  return (
+    <>
+      <Seo
+        customTitle={page.seoTitle || globals.siteTitle}
+        customDescription={page.seoDescription || globals.siteDescription}
+        customKeywords={page.seoKeywords || globals.siteKeywords}
+        customUrl={page.slug || undefined}
+      />
+      <Section model={model} />
+      <pre className="bg-gray-100 h-96 overflow-auto">
+        {JSON.stringify(page, null, 2)}
+      </pre>
+    </>
+  )
+}
+export default Page
+
+type PageContext = {
+  pageId: string
+  globalsId: string
+}
+
+export const query = graphql`
+  query ($pageId: String!, $globalsId: String!) {
+    contentful {
+      page(id: $pageId) {
+        __typename
+        sys {
+          id
+        }
+        entryTitle
+        slug
+        theme
+        seoTitle
+        seoDescription
+        modelVersion
+        seoKeywords
+        seoImage {
+          ...asset
+        }
+        sectionsCollection(limit: 10) {
+          items {
+            ...textSection
+            ...topicSection
+          }
+        }
+      }
+      globals(id: $globalsId) {
+        siteAuthor
+        siteDescription
+        siteKeywords
+        siteTitle
+        skipToContentHeading
+        siteImage {
+          width
+          url
+          title
+          size
+          sys {
+            id
+          }
+          height
+          fileName
+          description
+          contentType
+        }
+      }
+    }
+  }
+`

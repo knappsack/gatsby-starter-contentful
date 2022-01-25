@@ -1,12 +1,15 @@
 import { graphql } from 'gatsby'
 import { ContentfulAsset } from './asset-fragment'
+import { ContentfulTextSection } from './text-section-fragment'
+import { ContentfulTopicSection } from './topic-section-fragment'
 
 export type ContentfulPage = {
+  __typename: string
   sys: {
     id: string
   }
   sectionsCollection: {
-    items: any
+    items: ContentfulTopicSection[] | ContentfulTextSection[]
   }
   slug: string
   theme: string
@@ -16,23 +19,20 @@ export type ContentfulPage = {
   seoImage: ContentfulAsset
 }
 
-export const pageFragment = graphql`
-  fragment Page on Contentful_Page {
+export const page = graphql`
+  fragment page on Contentful_Page {
+    __typename
     sys {
       id
     }
+    sections {
+      ...textSection
+      ...topicSection
+    }
     slug
     theme
-    sectionsCollection {
-      items {
-        ...Section
-      }
-    }
     seoKeywords
     seoTitle
     seoDescription
-    seoImage {
-      ...Asset
-    }
   }
 `

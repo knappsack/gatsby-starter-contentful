@@ -23,7 +23,7 @@ declare global {
 }
 
 type AnalyzeUserBehaviorProps = GetPropTypesOf['section'] & {
-  eventId: string
+  eventId?: string
   variation: string
 }
 

@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-demo-contentful",
+  "name": "gatsby-contentful-starter",
   "version": "1.0.0",
-  "description": "Gatsby + Contentful demo",
+  "description": "Gatsby Contentful Starter by Knappsack",
   "main": "index.js",
   "scripts": {
     "develop": "gatsby develop",
@@ -14,24 +14,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsby-inc/gatsby-demo-contentful.git"
+    "url": "git+https://github.com/knappsack/gatsby-contentful-starter.git"
   },
   "keywords": [
+    "knappsack",
     "gatsby",
-    "gatsbyjs",
     "contentful"
   ],
-  "author": "Paul Scanlon <paul.scanlon@gatsbyjs.com>",
-  "license": "ISC",
+  "author": "Thijs Krooswijk <t.krooswijk@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gatsby-inc/gatsby-demo-contentful/issues"
+    "url": "https://github.com/knappsack/gatsby-contentful-starter/issues"
   },
-  "homepage": "https://github.com/gatsby-inc/gatsby-demo-contentful#readme",
+  "homepage": "https://github.com/knappsack/gatsby-contentful-starter#readme",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.11.1",
     "@contentful/rich-text-types": "^15.11.1",
     "autoprefixer": "^10.4.2",
-    "gatsby": "^4.5.4",
+    "gatsby": "^4.5.5",
     "gatsby-plugin-image": "^2.5.2",
     "gatsby-plugin-manifest": "^4.5.2",
     "gatsby-plugin-postcss": "^5.5.0",
@@ -44,7 +44,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "tailwindcss": "^3.0.15"
+    "tailwindcss": "^3.0.16"
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.5",
