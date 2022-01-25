@@ -21,7 +21,7 @@ export const Section = ({ model }: SectionProps) => {
             return (
               <AnalyzeUserBehavior
                 key={index}
-                variation={variant}
+                variant={variant}
                 eventId={eventId}
               >
                 {getSection(section)}

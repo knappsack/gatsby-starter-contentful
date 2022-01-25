@@ -24,12 +24,12 @@ declare global {
 
 type AnalyzeUserBehaviorProps = GetPropTypesOf['section'] & {
   eventId?: string
-  variation: string
+  variant: string
 }
 
 export const AnalyzeUserBehavior = ({
   eventId,
-  variation,
+  variant,
   children,
 }: AnalyzeUserBehaviorProps) => {
   const sectionRef = useRef(null)
@@ -80,8 +80,10 @@ export const AnalyzeUserBehavior = ({
     }
   }, [])
 
+  const analyticsSection =  variant.toLocaleLowerCase() + (eventId && `:${eventId.toLocaleLowerCase()}`)
+  
   return (
-    <section data-analytics-section={eventId || variation} ref={sectionRef}>
+    <section data-analytics-section={analyticsSection} ref={sectionRef}>
       {children}
     </section>
   )
