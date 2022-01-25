@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
-import { ContentfulAsset } from './asset-fragment'
-import { ContentfulTextSection } from './text-section-fragment'
-import { ContentfulTopicSection } from './topic-section-fragment'
+import { ContentfulAsset } from './contentful-asset'
+import { ContentfulTextSection } from './contentful-text-section'
+import { ContentfulTopicSection } from './contentful-topic-section'
 
 export type ContentfulPage = {
   __typename: string
