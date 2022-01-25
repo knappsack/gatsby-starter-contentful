@@ -35,7 +35,7 @@ export const Topic = ({ model, options }: TopicProps) => {
             url,
           } = media
 
-          return <img key={id + index} src={url + `?q=10`} />
+          return <img key={id + index} src={url + `?q=10&fit=pad&bg=rgb:222222&fm=webp`} />
         })}
       {options.action &&
         actionsCollection &&
