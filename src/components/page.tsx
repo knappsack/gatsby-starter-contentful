@@ -21,10 +21,11 @@ const Page = ({
   return (
     <>
       <Seo
-        customTitle={page.seoTitle || globals.siteTitle}
-        customDescription={page.seoDescription || globals.siteDescription}
-        customKeywords={page.seoKeywords || globals.siteKeywords}
-        customUrl={page.slug || undefined}
+        customTitle={page.seoTitle || globals.siteTitle || ''}
+        customDescription={page.seoDescription || globals.siteDescription || ''}
+        customKeywords={page.seoKeywords || globals.siteKeywords || []}
+        customUrl={page.slug || ''}
+        customImage={page.seoImage.url || globals.siteImage.url || ''}
       />
       <Section model={model} />
       <pre className="bg-gray-100 h-96 overflow-auto">
@@ -72,17 +73,7 @@ export const query = graphql`
         siteTitle
         skipToContentHeading
         siteImage {
-          width
-          url
-          title
-          size
-          sys {
-            id
-          }
-          height
-          fileName
-          description
-          contentType
+          ...asset
         }
       }
     }

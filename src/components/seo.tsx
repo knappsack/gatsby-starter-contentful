@@ -3,16 +3,16 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
 type SeoProps = {
-    /** A custom HTML title that overwrites the default title */
-    customTitle?: string
-    /** A custom page, global or meta description that overwrites the default description */
-    customDescription?: string,
-    /** A custom page, global or meta keywords that overwrites the default keywords */
-    customKeywords?: string | string[]
-    /** A custom page, global or meta url that overwrites the default url */
-    customUrl?: string
-    /** A custom open graph image that overwrites the default image */
-    customImage?: any
+  /** A custom HTML title that overwrites the default title */
+  customTitle?: string
+  /** A custom page, global or meta description that overwrites the default description */
+  customDescription?: string
+  /** A custom page, global or meta keywords that overwrites the default keywords */
+  customKeywords?: string | string[]
+  /** A custom page, global or meta url that overwrites the default url */
+  customUrl?: string
+  /** A custom open graph image that overwrites the default image */
+  customImage?: string
 }
 
 export const Seo = ({
@@ -45,12 +45,7 @@ export const Seo = ({
   const seoDescription = customDescription || description
   const seoKeywords = customKeywords || keywords
   const seoUrl = customUrl ? `${url}${customUrl}` : url
-  const seoImage = customImage
-    ? `https://${customImage.gatsbyImageData.images.fallback.src.replace(
-        /\/\//g,
-        ''
-      )}`
-    : `${url}/${image}`
+  const seoImage = customImage ? `${customImage}?w=1600&h=840&q=80` : `${url}/${image}`
 
   return (
     <Helmet>
