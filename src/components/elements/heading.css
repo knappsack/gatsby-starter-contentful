@@ -1,0 +1,34 @@
+/* Only possible because PostCSS preset env */
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+@custom-media --viewport-medium (width <= 50rem);
+
+:--heading {
+  /* YAY! We can create Custom selectors. */
+  color: var(--text-color);
+}
+
+/* 
+ * Apply CSS rules to a classes AND
+ * targeting the CSS Attribute selectors
+ * will isolate the styling within a Component.
+ *
+ * For styling isolation do not target HTML elements!
+ */
+
+.heading {
+  display: flex;
+
+  &[data-variant='block'] {
+    font-size: 42px;
+  }
+
+  &[data-variant='hero'] {
+    font-size: 32px;
+  }
+}
+
+@media (--viewport-medium) {
+  .heading {
+    color: var(--link-color);
+  }
+}
