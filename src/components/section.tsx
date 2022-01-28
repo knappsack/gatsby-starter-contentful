@@ -1,5 +1,4 @@
-import React from 'react'
-import { AnalyzeUserBehavior } from '../lib/analyze-user-behavior'
+import React, { Fragment } from 'react'
 import { NavigationSection } from './navigation-section'
 import { TextSection } from './text-section'
 import { TopicSection } from './topic-section'
@@ -14,22 +13,13 @@ export type SectionProps = {
 
 export const Section = ({ model }: SectionProps) => {
   return (
-    <>
+    <main role="main">
       {model
         ? model.map((section: ContentfulSection, index: number) => {
-            const { variant, eventId } = section
-            return (
-              <AnalyzeUserBehavior
-                key={index}
-                variant={variant}
-                eventId={eventId}
-              >
-                {getSection(section)}
-              </AnalyzeUserBehavior>
-            )
+            return <Fragment key={index}>{getSection(section)}</Fragment>
           })
         : null}
-    </>
+    </main>
   )
 }
 
