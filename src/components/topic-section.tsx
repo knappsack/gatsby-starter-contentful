@@ -1,4 +1,5 @@
 import React from 'react'
+import { Analytics } from './analytics'
 import { ContentfulTopic } from './models/contentful-topic'
 import { ContentfulTopicSection } from './models/contentful-topic-section'
 import { Topic } from './topic'
@@ -31,13 +32,20 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
   }
 
   return (
-    <>
+    <Analytics variant={variant} eventId={eventId} analyze='region'>
       {topicsCollection.items.map((model: ContentfulTopic, index: number) => {
         const {
           sys: { id },
         } = model
-        return <Topic key={id + index} model={model} options={options} />
+        return (
+          <Topic
+            key={id + index}
+            model={model}
+            options={options}
+            variant={variant}
+          />
+        )
       })}
-    </>
+    </Analytics>
   )
 }
