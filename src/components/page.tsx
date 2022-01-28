@@ -15,7 +15,7 @@ type PageQuery = {
 const Page = ({
   data: {
     contentful: { page, globals },
-  },
+  }
 }: PageProps<PageQuery, PageContext>) => {
   const model = page.sectionsCollection?.items
   return (
@@ -30,9 +30,6 @@ const Page = ({
         customImage={page.seoImage.url || globals.siteImage.url || null}
       />
       <Section model={model} />
-      <pre className="bg-gray-100 h-96 overflow-auto">
-        {JSON.stringify(page, null, 2)}
-      </pre>
     </>
   )
 }
