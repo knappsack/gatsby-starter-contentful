@@ -25,10 +25,11 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
     heading,
     icon,
     mediaCollection,
+    theme,
   } = model
 
   return (
-    <Analytics variant={variant} eventId={id} analyze="unit">
+    <Analytics variant={variant} eventId={id} theme={theme} analyze="unit">
       <div>
         {options.media &&
           mediaCollection &&

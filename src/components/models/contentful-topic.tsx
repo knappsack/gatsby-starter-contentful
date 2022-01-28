@@ -16,6 +16,7 @@ export type ContentfulTopic = {
   actionsCollection: {
     items: ContentfulAction[]
   }
+  theme: string
 }
 
 export const topic = graphql`
@@ -37,5 +38,6 @@ export const topic = graphql`
         ...action
       }
     }
+    theme
   }
 `

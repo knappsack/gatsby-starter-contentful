@@ -50,7 +50,6 @@ export const query = graphql`
         }
         entryTitle
         slug
-        theme
         seoTitle
         seoDescription
         modelVersion

@@ -23,12 +23,10 @@ export const Analytics = ({
   variant,
   children,
 }: AnalyticsProps) => {
-
   const ref = useRef(null)
   const inViewport = useObserver(ref, '0px', 0.5)
-
+  
   if (inViewport) {
-
     const regionId = ref.current.dataset.analyticsRegion
     const unitId = ref.current.dataset.analyticsUnit
     const eventId = `${regionId ? regionId : unitId}`
@@ -53,18 +51,29 @@ export const Analytics = ({
     }
   }
 
-  const getAnalyticsId = `${analyze}:${eventId ? eventId : variant}`
+  const setAnalyticsId = `${analyze}:${eventId ? eventId : variant}`
+  const setTheme = `${analyze + (theme ? ` theme-${theme}` : ``)}`
 
   switch (analyze) {
     case `region`:
       return (
-        <section data-analytics-region={getAnalyticsId} ref={ref}>
+        <section
+          data-analytics-region={setAnalyticsId}
+          data-variant={variant}
+          className={setTheme}
+          ref={ref}
+        >
           {children}
         </section>
       )
     case `unit`:
       return (
-        <div data-analytics-unit={getAnalyticsId} ref={ref}>
+        <div
+          data-analytics-unit={setAnalyticsId}
+          data-variant={variant}
+          className={setTheme}
+          ref={ref}
+        >
           {children}
         </div>
       )

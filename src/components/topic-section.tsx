@@ -32,7 +32,7 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
   }
 
   return (
-    <Analytics variant={variant} eventId={eventId} analyze='region'>
+    <Analytics variant={variant} eventId={eventId} theme={theme} analyze='region'>
       {topicsCollection.items.map((model: ContentfulTopic, index: number) => {
         const {
           sys: { id },
