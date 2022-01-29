@@ -1,13 +1,7 @@
 import React, { useRef } from 'react'
 import { GetTypesOf } from '../lib/get-types-of'
-import { isBrowser } from '../lib/is-browser'
+import { useGtag } from '../lib/gtag'
 import { useObserver } from '../lib/use-observer'
-
-declare global {
-  interface Window {
-    gtag: (event: string, action: string, value: { event_id: string }) => void
-  }
-}
 
 type AnalyticsProps = GetTypesOf['div'] & {
   eventId?: string
@@ -23,44 +17,38 @@ export const Analytics = ({
   variant,
   children,
 }: AnalyticsProps) => {
-  const ref = useRef(null)
-  const inViewport = useObserver(ref, '0px', 0.5)
+  const ref = useRef<HTMLDivElement>(null)
   
-  if (inViewport) {
-    const regionId = ref.current.dataset.analyticsRegion
-    const unitId = ref.current.dataset.analyticsUnit
-    const eventId = `${regionId ? regionId : unitId}`
+  const entry = useObserver(ref, {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.75,
+  })
 
-    if (isBrowser && window.gtag) {
-      /**
-       * To send Google Analytics Events on a web page where
-       * the global site tag has been added, use the gtag.js
-       * event command with the following syntax:
-       *
-       * @url https://developers.google.com/analytics/devguides/collection/gtagjs/events
-       *
-       * gtag('event', <action>, {
-       *   'event_category': <category>,
-       *   'event_label': <label>,
-       *   'value': <value>
-       * });
-       */
-      window.gtag('event', 'page_section', {
-        event_id: eventId,
-      })
-    }
+  if (!!entry?.isIntersecting) {
+    useGtag('event', 'viewing', {
+      event_id:
+        ref.current.dataset.analyticsRegion ||
+        ref.current.dataset.analyticsUnit,
+    })
+  }
+
+  const handleMouseEnter = () => {
+    useGtag('event', 'engagement', {
+      event_id: ref.current.dataset.analyticsUnit,
+    })
   }
 
   const setAnalyticsId = `${analyze}:${eventId ? eventId : variant}`
-  const setTheme = `${analyze + (theme ? ` theme-${theme}` : ``)}`
 
   switch (analyze) {
     case `region`:
       return (
         <section
+          className={analyze}
           data-analytics-region={setAnalyticsId}
+          data-theme={theme}
           data-variant={variant}
-          className={setTheme}
           ref={ref}
         >
           {children}
@@ -69,15 +57,17 @@ export const Analytics = ({
     case `unit`:
       return (
         <div
+          className={analyze}
           data-analytics-unit={setAnalyticsId}
+          data-theme={theme}
           data-variant={variant}
-          className={setTheme}
+          onMouseEnter={handleMouseEnter}
           ref={ref}
         >
           {children}
         </div>
       )
     default:
-      return <div ref={ref}>{children}</div>
+      return <div>{children}</div>
   }
 }
