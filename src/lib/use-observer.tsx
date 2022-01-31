@@ -29,46 +29,9 @@ export const useObserver = (
 
     observer.observe(node)
 
-    return () => observer.observe(node)
+    return () => observer.unobserve(node)
 
   }, [elementRef])
 
   return entry
 }
-
-// import { useState, useEffect } from 'react'
-
-// type ObserverProps = {
-//   (root?: any, rootMargin?: string, threshold?: number | number[])
-// }
-
-// export const useObserver: ObserverProps = (root, rootMargin, threshold) => {
-
-//   const [isVisible, setIsVisible] = useState(false)
-//   const target = root.current
-
-//   const options = {
-//     root: target,
-//     rootMargin,
-//     threshold,
-//   }
-
-//   useEffect(() => {
-
-//     console.log(target)
-
-//     const observer = new IntersectionObserver(([entry]) => {
-//       console.log(entry)
-//       setIsVisible(entry.isIntersecting)
-//     }, options)
-
-//     if (target) observer.observe(target)
-
-//     return () => {
-//       observer.disconnect()
-//     }
-
-//   }, [target])
-
-//   return isVisible
-// }
