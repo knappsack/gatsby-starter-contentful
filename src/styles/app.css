@@ -1,0 +1,146 @@
+/* Only possible because PostCSS preset env */
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+@custom-media --viewport-small (width < 734px);
+@custom-media --viewport-medium (width < 1068px);
+
+:--heading {
+  /* YAY! We can create Custom selectors. */
+  color: var(--text-color);
+}
+
+.region {
+  background-color: var(--section-color);
+
+  &[data-variant='block'] .layout {
+    /* grid-template-columns: 1fr; */
+  }
+
+  & .layout {
+    max-width: 1380px;
+    /* grid */
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    margin: auto;
+    padding: 24px;
+
+    @media (--viewport-small) {
+      gap: 24px 0;
+      grid-template-columns: 1fr;
+      max-width: 380px;
+    }
+  }
+}
+
+.unit {
+  background-color: var(--card-color);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+
+  & .media {
+    & picture {
+      padding-top: 56.25%;
+      position: relative;
+      display: block;
+      overflow: hidden;
+
+      & img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  & .content {
+    padding: 20px;
+    flex: 1;
+
+    & .icon {
+      display: flex;
+      margin: auto;
+    }
+
+    & .heading {
+      margin-top: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    & p {
+      font-family: var(--text-font);
+      color: var(--text-color);
+      margin-top: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    & .actions {
+      margin: -4px;
+      margin-top: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      & a {
+        display: inline-flex;
+        font-family: var(--text-font);
+        color: var(--link-color);
+        margin: 4px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &:first-child {
+          display: inline-flex;
+          font-family: var(--text-font);
+          color: white;
+          background-color: var(--link-color);
+          padding: 8px 16px;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}
+
+/* 
+ * Apply CSS rules to a classes AND
+ * targeting the CSS Attribute selectors
+ * will isolate the styling within a Component.
+ *
+ * For styling isolation do not target HTML elements!
+ */
+
+.heading {
+  font-family: var(--text-font);
+  display: inline-block;
+
+  &[data-variant='block'] {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  &[data-variant='hero'] {
+    font-size: 32px;
+  }
+}

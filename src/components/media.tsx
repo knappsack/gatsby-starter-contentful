@@ -20,9 +20,12 @@ export const Media = ({ model }: MediaProps) => {
   } = model
 
   return (
-    <img
-      alt={description || title}
-      src={url + `?q=10&fit=pad&bg=rgb:222222&fm=webp`}
-    />
+    <picture>
+      <img
+        title={title}
+        alt={description}
+        src={url + `?q=90&w=800&h=420&fit=fill&f=center&fm=webp`}
+      />
+    </picture>
   )
 }
