@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby Contentful Starter
+  Gatsby Starter Contentful
 </h1>
 
 <h3 align="center">
@@ -22,7 +22,7 @@
 
 ## 👀 Live preview
 
-[https://github.com/knappsack/gatsby-contentful-starter](https://github.com/knappsack/gatsby-contentful-starter)
+[https://github.com/knappsack/gatsby-starter-contentful](https://github.com/knappsack/gatsby-starter-contentful)
 
 ## 🚀 Quick start
 
@@ -31,7 +31,7 @@
     Use your terminal to clone this repository.
 
     ```shell
-    git clone https://github.com/knappsack/gatsby-contentful-starter.git
+    git clone https://github.com/knappsack/gatsby-starter-contentful.git
     ```
 
 2.  **Install dependencies.**
@@ -39,7 +39,7 @@
     Navigate into your new site’s directory and install the dependencies.
 
     ```shell
-    cd gatsby-contentful-starter
+    cd gatsby-starter-contentful
     npm install
     ```
 
@@ -57,13 +57,13 @@
 
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
 
-    Open the `gatsby-contentful-demo` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+    Open the `gatsby-starter-contentful` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
 ## 🚀 Quick start (Gatsby Cloud)
 
 Deploy this demo with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/knappsack/gatsby-contentful-starter)
+[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/knappsack/gatsby-starter-contentful)
 
 ## 🧐 What's inside?
 
@@ -77,14 +77,13 @@ A quick look at the top-level files and directories you'll see in this Gatsby de
     ├── .prettierignore
     ├── gatsby-browser.js
     ├── gatsby-config.js
-    ├── gatsby-node.js // noop
+    ├── gatsby-node.js
     ├── gatsby-ssr.js
     ├── LICENSE
     ├── package-lock.json
     ├── package.json
     ├── postcss.config.js
-    ├── README.md
-    └── tailwind.config.js
+    └── README.md
 
 1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
 
@@ -110,11 +109,9 @@ A quick look at the top-level files and directories you'll see in this Gatsby de
 
 12. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
-13. **`postcss.config.js`**: A JavaScript [PostCSS](https://postcss.org/ config file for [TailwindCSS](https://tailwindcss.com/).
+13. **`postcss.config.js`**: A JavaScript [PostCSS](https://postcss.org/ config file.
 
 14. **`README.md`**: A text file containing useful reference information about your project.
-
-15. **`tailwind.config.js`**: A JavaScript config file for [TailwindCSS](https://tailwindcss.com/).
 
 ## 🎓 Learning Gatsby
 

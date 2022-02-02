@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-contentful-starter",
+  "name": "gatsby-starter-contentful",
   "version": "1.0.0",
-  "description": "Gatsby Contentful Starter by Knappsack",
+  "description": "Gatsby Starter Contentful by Knappsack",
   "main": "index.js",
   "scripts": {
     "develop": "gatsby develop",
@@ -24,23 +24,23 @@
   "author": "Thijs Krooswijk <t.krooswijk@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/knappsack/gatsby-contentful-starter/issues"
+    "url": "https://github.com/knappsack/gatsby-starter-contentful/issues"
   },
-  "homepage": "https://github.com/knappsack/gatsby-contentful-starter#readme",
+  "homepage": "https://github.com/knappsack/gatsby-starter-contentful#readme",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.11.1",
     "@contentful/rich-text-types": "^15.11.1",
-    "gatsby": "^4.5.5",
-    "gatsby-plugin-image": "^2.5.2",
-    "gatsby-plugin-manifest": "^4.5.2",
-    "gatsby-plugin-postcss": "^5.5.0",
-    "gatsby-plugin-react-helmet": "^5.5.0",
-    "gatsby-plugin-sharp": "^4.5.2",
-    "gatsby-source-filesystem": "^4.5.2",
-    "gatsby-source-graphql": "^4.5.2",
-    "gatsby-transformer-sharp": "^4.5.0",
-    "postcss": "^8.4.5",
-    "postcss-preset-env": "^7.2.3",
+    "gatsby": "^4.6.1",
+    "gatsby-plugin-image": "^2.6.0",
+    "gatsby-plugin-manifest": "^4.6.0",
+    "gatsby-plugin-postcss": "^5.6.0",
+    "gatsby-plugin-react-helmet": "^5.6.0",
+    "gatsby-plugin-sharp": "^4.6.0",
+    "gatsby-source-filesystem": "^4.6.0",
+    "gatsby-source-graphql": "^4.6.0",
+    "gatsby-transformer-sharp": "^4.6.0",
+    "postcss": "^8.4.6",
+    "postcss-preset-env": "^7.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0"
