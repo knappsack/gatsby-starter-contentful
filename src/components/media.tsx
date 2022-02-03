@@ -20,7 +20,7 @@ export const Media = ({ model }: MediaProps) => {
   } = model
 
   return (
-    <picture>
+    <picture data-style='picture'>
       <img
         title={title}
         alt={description}

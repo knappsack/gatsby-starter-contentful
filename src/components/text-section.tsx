@@ -15,6 +15,7 @@ import {
 } from './models/contentful-text-section'
 import { Analytics } from './analytics'
 import { createJumpLink } from '../lib/create-jump-link'
+import { Layout } from './layout'
 
 type CommonNode = Node & {
   content: Text | Block | Inline
@@ -51,15 +52,15 @@ const options: OptionsProps = (links) => {
 
   return {
     renderMark: {
-      [MARKS.BOLD]: (text) => <b data-tag="bold">{text}</b>,
-      [MARKS.ITALIC]: (text) => <i data-tag="italic">{text}</i>,
-      [MARKS.UNDERLINE]: (text) => <u data-tag="underline">{text}</u>,
-      [MARKS.CODE]: (text) => <code data-tag="code">{text}</code>,
+      [MARKS.BOLD]: (text) => <b data-style="bold">{text}</b>,
+      [MARKS.ITALIC]: (text) => <i data-style="italic">{text}</i>,
+      [MARKS.UNDERLINE]: (text) => <u data-style="underline">{text}</u>,
+      [MARKS.CODE]: (text) => <code data-style="code">{text}</code>,
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
         return (
-          <a data-tag="a" href={node.data.uri} target="_blank" rel="noreferrer">
+          <a data-style="a" href={node.data.uri} target="_blank" rel="noreferrer">
             {children}
           </a>
         )
@@ -67,44 +68,44 @@ const options: OptionsProps = (links) => {
       [INLINES.ENTRY_HYPERLINK]: (node, children) => {
         const entry = contentfulEntryMap.get(node.data.target.sys.id)
         return (
-          <a data-tag="a" href={entry.slug}>
+          <a data-style="a" href={entry.slug}>
             {children}
           </a>
         )
       },
-      [BLOCKS.HEADING_1]: (node, children) => <h1 data-tag="h1">{children}</h1>,
+      [BLOCKS.HEADING_1]: (node, children) => <h1 data-style="h1">{children}</h1>,
       [BLOCKS.HEADING_2]: (node, children) => {
-        return <h2 data-tag="h2">{createJumpLink({ children })}</h2>
+        return <h2 data-style="h2">{createJumpLink({ children })}</h2>
       },
       [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 data-tag="h3">{createJumpLink({ children })}</h3>
+        <h3 data-style="h3">{createJumpLink({ children })}</h3>
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 data-tag="h4">{createJumpLink({ children })}</h4>
+        <h4 data-style="h4">{createJumpLink({ children })}</h4>
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <h5 data-tag="h5">{createJumpLink({ children })}</h5>
+        <h5 data-style="h5">{createJumpLink({ children })}</h5>
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <h6 data-tag="h6">{createJumpLink({ children })}</h6>
+        <h6 data-style="h6">{createJumpLink({ children })}</h6>
       ),
-      [BLOCKS.OL_LIST]: (node, children) => <ol data-tag="ol">{children}</ol>,
-      [BLOCKS.UL_LIST]: (node, children) => <ul data-tag="ul">{children}</ul>,
-      [BLOCKS.LIST_ITEM]: (node, children) => <li data-tag="li">{children}</li>,
+      [BLOCKS.OL_LIST]: (node, children) => <ol data-style="ol">{children}</ol>,
+      [BLOCKS.UL_LIST]: (node, children) => <ul data-style="ul">{children}</ul>,
+      [BLOCKS.LIST_ITEM]: (node, children) => <li data-style="li">{children}</li>,
       [BLOCKS.PARAGRAPH]: (node, children) => {
         if (node.content[0].value === '') {
           return <br />
         } else {
-          return <p data-tag="p">{children}</p>
+          return <p data-style="p">{children}</p>
         }
       },
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote data-tag="blockquote">{children}</blockquote>
+        <blockquote data-style="blockquote">{children}</blockquote>
       ),
-      [BLOCKS.HR]: () => <hr data-tag="hr" />,
+      [BLOCKS.HR]: () => <hr data-style="hr" />,
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = contentfulAssetMap.get(node.data.target.sys.id)
-        return <img data-tag="img" src={asset.url} alt={asset.description} />
+        return <img data-style="img" src={asset.url} alt={asset.description} />
       },
     },
   }
@@ -129,9 +130,9 @@ export const TextSection = ({ model }: TextSectionProps) => {
       theme={theme}
       analyze="region"
     >
-      <div data-tag="layout">
+      <Layout variant={variant} theme={theme}>
         {documentToReactComponents(json, options(links))}
-      </div>
+      </Layout>
     </Analytics>
   )
 }

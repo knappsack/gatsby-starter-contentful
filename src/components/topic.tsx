@@ -29,7 +29,7 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
     mediaCollection,
     theme,
   } = model
-  
+
   return (
     <Analytics
       variant={variant}
@@ -37,7 +37,7 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
       theme={theme}
       analyze="unit"
     >
-      <div className="media" style={{ order: options.reversed ? 1 : 0}}>
+      <div data-style="media" style={{ order: options.reversed ? 1 : 0 }}>
         {options.media &&
           mediaCollection &&
           mediaCollection.items.map((model: ContentfulAsset, index: number) => {
@@ -48,25 +48,27 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
             return <Media key={id + index} model={model} />
           })}
       </div>
-      <div className="content">
+      <div data-style="content">
         {options.icon && icon && <Icon icon={icon} />}
         {options.heading && heading && (
           <Heading variant={variant}>{heading}</Heading>
         )}
-        {options.abstract && abstract && <p>{abstract}</p>}
-        <div className='actions'>
-        {options.action &&
-          actionsCollection &&
-          actionsCollection.items.map(
-            (model: ContentfulAction, index: number) => {
-              const {
-                sys: { id },
-              } = model
+        {options.abstract && abstract && (
+          <p data-style="abstract">{abstract}</p>
+        )}
+        <div data-style="actions">
+          {options.action &&
+            actionsCollection &&
+            actionsCollection.items.map(
+              (model: ContentfulAction, index: number) => {
+                const {
+                  sys: { id },
+                } = model
 
-              return <Action key={id + index} model={model} />
-            }
-          )}
-          </div>
+                return <Action key={id + index} model={model} />
+              }
+            )}
+        </div>
       </div>
     </Analytics>
   )

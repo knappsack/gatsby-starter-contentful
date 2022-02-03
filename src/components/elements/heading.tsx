@@ -31,7 +31,7 @@ export type HeadingProps = GetTypesOf['h3'] & {
  */
 export const Heading = ({ variant, children, ...props }: HeadingProps) => {
   return (
-    <AnyElement is="h3" data-tag="heading" data-variant={variant} {...props}>
+    <AnyElement is="h3" data-style="heading" data-variant={variant} {...props}>
       {children}
     </AnyElement>
   )

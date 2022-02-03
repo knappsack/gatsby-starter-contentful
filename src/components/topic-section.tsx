@@ -1,5 +1,6 @@
 import React from 'react'
 import { Analytics } from './analytics'
+import { Layout } from './layout'
 import { ContentfulTopic } from './models/contentful-topic'
 import { ContentfulTopicSection } from './models/contentful-topic-section'
 import { Topic } from './topic'
@@ -38,7 +39,7 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
       theme={theme}
       analyze="region"
     >
-      <div data-tag="layout">
+      <Layout variant={variant} theme={theme}>
         {topicsCollection.items.map((model: ContentfulTopic, index: number) => {
           const {
             sys: { id },
@@ -52,7 +53,7 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
             />
           )
         })}
-      </div>
+      </Layout>
     </Analytics>
   )
 }

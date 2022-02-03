@@ -34,6 +34,7 @@ export const Action = ({ model }: ActionProps) => {
 
   return (
     <Link
+      data-style="action"
       aria-label={description}
       data-analytics-id={setAnalyticsId}
       onClick={handleOnClick}

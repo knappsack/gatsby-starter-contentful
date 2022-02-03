@@ -45,7 +45,7 @@ export const Analytics = ({
     case `region`:
       return (
         <section
-          data-tag={analyze}
+          data-style={analyze}
           data-analytics-region={setAnalyticsId}
           data-theme={theme}
           data-variant={variant.toLocaleLowerCase()}
@@ -57,7 +57,7 @@ export const Analytics = ({
     case `unit`:
       return (
         <div
-          data-tag={analyze}
+          data-style={analyze}
           data-analytics-unit={setAnalyticsId}
           data-theme={theme}
           data-variant={variant.toLocaleLowerCase()}
