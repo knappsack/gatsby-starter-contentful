@@ -1,17 +1,16 @@
 import React from 'react'
 import slugify from '@sindresorhus/slugify'
-import { Action } from './action'
 import { Analytics } from './analytics'
+import { Action } from './elements/action'
 import { Heading } from './elements/heading'
+import { Icon } from './elements/icon'
 import { Media } from './media'
 import { ContentfulAction } from './models/contentful-action'
 import { ContentfulAsset } from './models/contentful-asset'
 import { ContentfulTopic } from './models/contentful-topic'
 import {
-  TopicSectionOptions,
-  TopicSectionVariant,
+  TopicSectionOptions, TopicSectionVariant
 } from './models/contentful-topic-section'
-import { Icon } from './elements/icon'
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -30,14 +29,16 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
     theme,
   } = model
 
+  const topicOptions = options.reversed ? 'reversed' : undefined
+
   return (
     <Analytics
-      variant={variant}
+      analyze="unit"
       eventId={slugify(heading)}
       theme={theme}
-      analyze="unit"
+      variant={variant}
     >
-      <div data-style="media" style={{ order: options.reversed ? 1 : 0 }}>
+      <div data-style="media" data-options={topicOptions}>
         {options.media &&
           mediaCollection &&
           mediaCollection.items.map((model: ContentfulAsset, index: number) => {
