@@ -11,27 +11,27 @@ export type HeadingProps = GetTypesOf['h3'] & {
   variant: TopicSectionVariant
 }
 
-/** 
+/**
  * By default the Heading component will render as `h3`,
- * but can be overridden with the `is` property. 
- * 
+ * but can be overridden with the `is` property.
+ *
  * Property `is` will accept all JSX Intrinsic Elements.
- * 
+ *
  * @example // How to render Heading component as e.g <div> instead
- * 
+ *
  * './app.tsx'
  * -----------
  * const option = false
  * const element = option ? 'h1' : 'div'
  * const App = () => <Heading is={element} {...props} />
- * 
+ *
  * './heading.tsx'
  * ---------------
  * const Heading = () => <AnyElement is='h3' {...props} />
  */
 export const Heading = ({ variant, children, ...props }: HeadingProps) => {
   return (
-    <AnyElement is="h3" className='heading' data-variant={variant} {...props}>
+    <AnyElement is="h3" data-tag="heading" data-variant={variant} {...props}>
       {children}
     </AnyElement>
   )

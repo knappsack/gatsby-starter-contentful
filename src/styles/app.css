@@ -1,38 +1,87 @@
 /* Only possible because PostCSS preset env */
-@custom-selector :--heading h1, h2, h3, h4, h5, h6;
 @custom-media --viewport-small (width < 734px);
 @custom-media --viewport-medium (width < 1068px);
+@custom-selector :--heading
+  [data-tag='h1'],
+  [data-tag='h2'],
+  [data-tag='h3'],
+  [data-tag='h4'],
+  [data-tag='h5'],
+  [data-tag='h6'];
+
+/* Heading styles */
 
 :--heading {
   /* YAY! We can create Custom selectors. */
+  font-family: var(--text-font);
+  font-weight: bold;
   color: var(--text-color);
 }
 
-.region {
-  background-color: var(--section-color);
-
-  &[data-variant='block'] .layout {
-    /* grid-template-columns: 1fr; */
-  }
-
-  & .layout {
-    max-width: 1380px;
-    /* grid */
-    display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    margin: auto;
-    padding: 24px;
-
-    @media (--viewport-small) {
-      gap: 24px 0;
-      grid-template-columns: 1fr;
-      max-width: 380px;
-    }
-  }
+[data-tag='h1'] {
+  font-size: calc(var(--modular-scale) * 3 * var(--base-font-size));
 }
 
-.unit {
+[data-tag='h2'] {
+  font-size: calc(var(--modular-scale) * 2 * var(--base-font-size));
+}
+
+[data-tag='h3'] {
+  font-size: calc(var(--modular-scale) * 1 * var(--base-font-size));
+}
+
+[data-tag='bold'] {
+  font-family: var(--text-font);
+  font-weight: 700;
+}
+
+[data-tag='italic'] {
+  font-family: var(--text-font);
+  font-style: italic;
+}
+
+[data-tag='underline'] {
+  font-family: var(--text-font);
+  text-decoration: underline;
+}
+
+[data-tag='ol'] {
+  list-style-type: decimal;
+  margin-left: 24px;
+}
+
+[data-tag='ul'] {
+  list-style-type: disc;
+  margin-left: 24px;
+}
+
+[data-tag='li'] {
+  font-family: var(--text-font);
+}
+
+/* 
+ * @url https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#css_access
+ * Use data attribute as content: content: attr(data-columns)
+ * Or create conditional styling: [data-columns='3']
+ */
+
+[data-tag='a'] {
+  font-family: var(--text-font);
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+[data-tag='code'] {
+  font-family: Conoslas, Menlo, monospace;
+}
+
+/* Layout styles */
+
+[data-tag='region'] {
+  background-color: var(--section-color);
+}
+
+[data-tag='unit'] {
   background-color: var(--card-color);
   border-radius: 18px;
   display: flex;
@@ -42,7 +91,27 @@
   overflow: hidden;
   text-align: center;
   width: 100%;
+}
 
+[data-tag='layout'] {
+  max-width: 1380px;
+  display: grid;
+  margin: auto;
+  padding: 24px;
+}
+
+[data-variant='block'] [data-tag='layout'] {
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+
+  @media (--viewport-small) {
+    gap: 24px 0;
+    grid-template-columns: 1fr;
+    max-width: 380px;
+  }
+}
+
+[data-tag='unit'] {
   & .media {
     & picture {
       padding-top: 56.25%;
@@ -71,14 +140,6 @@
     & .icon {
       display: flex;
       margin: auto;
-    }
-
-    & .heading {
-      margin-top: 16px;
-
-      &:first-child {
-        margin-top: 0;
-      }
     }
 
     & p {
@@ -130,17 +191,16 @@
  * For styling isolation do not target HTML elements!
  */
 
-.heading {
+[data-tag='heading'] {
   font-family: var(--text-font);
-  display: inline-block;
+  margin-top: 16px;
 
-  &[data-variant='block'] {
-    font-size: 24px;
-    line-height: 1;
-    font-weight: 700;
+  &:first-child {
+    margin-top: 0;
   }
 
-  &[data-variant='hero'] {
-    font-size: 32px;
+  &[data-variant='block'] {
+    font-size: calc(var(--modular-scale) * 1.25 * var(--base-font-size));
+    font-weight: 700;
   }
 }

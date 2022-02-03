@@ -38,7 +38,7 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
       theme={theme}
       analyze="region"
     >
-      <div className="layout">
+      <div data-tag="layout">
         {topicsCollection.items.map((model: ContentfulTopic, index: number) => {
           const {
             sys: { id },

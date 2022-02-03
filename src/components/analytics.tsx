@@ -18,7 +18,7 @@ export const Analytics = ({
   children,
 }: AnalyticsProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  
+
   const entry = useObserver(ref, {
     root: null,
     rootMargin: '0px',
@@ -45,10 +45,10 @@ export const Analytics = ({
     case `region`:
       return (
         <section
-          className={analyze}
+          data-tag={analyze}
           data-analytics-region={setAnalyticsId}
           data-theme={theme}
-          data-variant={variant}
+          data-variant={variant.toLocaleLowerCase()}
           ref={ref}
         >
           {children}
@@ -57,10 +57,10 @@ export const Analytics = ({
     case `unit`:
       return (
         <div
-          className={analyze}
+          data-tag={analyze}
           data-analytics-unit={setAnalyticsId}
           data-theme={theme}
-          data-variant={variant}
+          data-variant={variant.toLocaleLowerCase()}
           onMouseEnter={handleMouseEnter}
           ref={ref}
         >
