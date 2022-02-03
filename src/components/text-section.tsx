@@ -1,5 +1,4 @@
 import React from 'react'
-import slugify from '@sindresorhus/slugify'
 import {
   Block,
   BLOCKS,
@@ -10,20 +9,12 @@ import {
   Text,
 } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { ContentfulTextSection } from './models/contentful-text-section'
-
-const createJumpLink = (children: {}) => {
-  const slug = children[0].key
-    ? children[0]?.props?.children.toString()
-    : children[0].toString()
-
-  return (
-    <a href={`#${slugify(slug)}`} className="">
-      {children}
-    </a>
-  )
-}
+import {
+  ContentfulLinks,
+  ContentfulTextSection,
+} from './models/contentful-text-section'
+import { Analytics } from './analytics'
+import { createJumpLink } from '../lib/create-jump-link'
 
 type CommonNode = Node & {
   content: Text | Block | Inline
@@ -41,85 +32,106 @@ type RenderMark = {
   [k: string]: (text: React.ReactNode) => React.ReactNode
 }
 
-type OptionsProps = {
+type OptionsProps = (links: ContentfulLinks) => {
   renderNode: RenderNode
   renderMark: RenderMark
 }
 
-const options: OptionsProps = {
-  renderMark: {
-    [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
-    [MARKS.ITALIC]: (text) => <i className="font-italic">{text}</i>,
-    [MARKS.UNDERLINE]: (text) => <u className="underline">{text}</u>,
-    [MARKS.CODE]: (text) => <code className="code font-mono">{text}</code>,
-  },
-  renderNode: {
-    [INLINES.HYPERLINK]: (node, children) => (
-      <a
-        href={node.data.uri}
-        target="_blank"
-        rel="noreferrer"
-        className=""
-      >
-        {children}
-      </a>
-    ),
-    [BLOCKS.HEADING_1]: (node, children) => <h2 className="">{children}</h2>,
-    [BLOCKS.HEADING_2]: (node, children) => {
-      return <h2 className="">{createJumpLink(children)}</h2>
-    },
-    [BLOCKS.HEADING_3]: (node, children) => (
-      <h3 className="">{createJumpLink(children)}</h3>
-    ),
-    [BLOCKS.HEADING_4]: (node, children) => (
-      <h4 className="">{createJumpLink(children)}</h4>
-    ),
-    [BLOCKS.HEADING_5]: (node, children) => (
-      <h5 className="">{createJumpLink(children)}</h5>
-    ),
-    [BLOCKS.HEADING_6]: (node, children) => (
-      <h6 className="">{createJumpLink(children)}</h6>
-    ),
+const options: OptionsProps = (links) => {
+  // Create map of Assets
+  const contentfulAssetMap = new Map()
+  for (const asset of links.assets.block) {
+    contentfulAssetMap.set(asset.sys.id, asset)
+  }
+  // Create map of Hyperlinks
+  const contentfulEntryMap = new Map()
+  for (const entry of links.entries.hyperlink) {
+    contentfulEntryMap.set(entry.sys.id, entry)
+  }
 
-    [BLOCKS.OL_LIST]: (node, children) => <ol className="">{children}</ol>,
-    [BLOCKS.UL_LIST]: (node, children) => <ul className="">{children}</ul>,
-
-    [BLOCKS.LIST_ITEM]: (node, children) => <li className="">{children}</li>,
-    [BLOCKS.PARAGRAPH]: (node, children) => {
-      if (node.content[0].value === '') {
-        return <br />
-      } else {
-        return <p className="">{children}</p>
-      }
+  return {
+    renderMark: {
+      [MARKS.BOLD]: (text) => <b data-tag="bold">{text}</b>,
+      [MARKS.ITALIC]: (text) => <i data-tag="italic">{text}</i>,
+      [MARKS.UNDERLINE]: (text) => <u data-tag="underline">{text}</u>,
+      [MARKS.CODE]: (text) => <code data-tag="code">{text}</code>,
     },
-    [BLOCKS.QUOTE]: (node, children) => (
-      <blockquote className="">
-        <>"{children.content[0].content[0].value}"</>
-      </blockquote>
-    ),
-    [BLOCKS.HR]: () => <hr className="" />,
-    [BLOCKS.EMBEDDED_ASSET]: (node) => {
-      const { gatsbyImageData, description } = node.data.target
-
-      return (
-        <GatsbyImage
-          image={getImage(gatsbyImageData)}
-          alt={description}
-          className=""
-        />
-      )
+    renderNode: {
+      [INLINES.HYPERLINK]: (node, children) => {
+        return (
+          <a data-tag="a" href={node.data.uri} target="_blank" rel="noreferrer">
+            {children}
+          </a>
+        )
+      },
+      [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+        const entry = contentfulEntryMap.get(node.data.target.sys.id)
+        return (
+          <a data-tag="a" href={entry.slug}>
+            {children}
+          </a>
+        )
+      },
+      [BLOCKS.HEADING_1]: (node, children) => <h1 data-tag="h1">{children}</h1>,
+      [BLOCKS.HEADING_2]: (node, children) => {
+        return <h2 data-tag="h2">{createJumpLink({ children })}</h2>
+      },
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h3 data-tag="h3">{createJumpLink({ children })}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (node, children) => (
+        <h4 data-tag="h4">{createJumpLink({ children })}</h4>
+      ),
+      [BLOCKS.HEADING_5]: (node, children) => (
+        <h5 data-tag="h5">{createJumpLink({ children })}</h5>
+      ),
+      [BLOCKS.HEADING_6]: (node, children) => (
+        <h6 data-tag="h6">{createJumpLink({ children })}</h6>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => <ol data-tag="ol">{children}</ol>,
+      [BLOCKS.UL_LIST]: (node, children) => <ul data-tag="ul">{children}</ul>,
+      [BLOCKS.LIST_ITEM]: (node, children) => <li data-tag="li">{children}</li>,
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        if (node.content[0].value === '') {
+          return <br />
+        } else {
+          return <p data-tag="p">{children}</p>
+        }
+      },
+      [BLOCKS.QUOTE]: (node, children) => (
+        <blockquote data-tag="blockquote">{children}</blockquote>
+      ),
+      [BLOCKS.HR]: () => <hr data-tag="hr" />,
+      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+        const asset = contentfulAssetMap.get(node.data.target.sys.id)
+        return <img data-tag="img" src={asset.url} alt={asset.description} />
+      },
     },
-  },
+  }
 }
 
 type TextSectionProps = {
   model: ContentfulTextSection
 }
 
-export const TextSection = ({
-  model: {
-    text: { json },
-  },
-}: TextSectionProps) => {
-  return <>{documentToReactComponents(json, options)}</>
+export const TextSection = ({ model }: TextSectionProps) => {
+  const {
+    text: { json, links },
+    variant,
+    eventId,
+    theme,
+  } = model
+
+  return (
+    <Analytics
+      variant={variant}
+      eventId={eventId}
+      theme={theme}
+      analyze="region"
+    >
+      <div data-tag="layout">
+        {documentToReactComponents(json, options(links))}
+      </div>
+    </Analytics>
+  )
 }
