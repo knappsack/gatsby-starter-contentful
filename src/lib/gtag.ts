@@ -1,4 +1,3 @@
-import React from 'react'
 import { isBrowser } from './is-browser'
 
 type GtagProps = {
