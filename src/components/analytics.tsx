@@ -22,9 +22,9 @@ export const Analytics = ({
   const entry = useObserver(ref, {
     root: null,
     rootMargin: '0px',
-    threshold: 0.75,
+    threshold: 0.1,
   })
-
+  
   if (!!entry?.isIntersecting) {
     useGtag('event', 'viewing', {
       event_id:
@@ -45,10 +45,10 @@ export const Analytics = ({
     case `region`:
       return (
         <section
-          data-style={area}
           data-analytics-region={setAnalyticsId}
+          data-style={area}
           data-theme={theme}
-          data-variant={variant.toLocaleLowerCase()}
+          data-variant={variant}
           ref={ref}
         >
           {children}
@@ -57,10 +57,10 @@ export const Analytics = ({
     case `unit`:
       return (
         <div
-          data-style={area}
           data-analytics-unit={setAnalyticsId}
+          data-style={area}
           data-theme={theme}
-          data-variant={variant.toLocaleLowerCase()}
+          data-variant={variant}
           onMouseEnter={handleMouseEnter}
           ref={ref}
         >

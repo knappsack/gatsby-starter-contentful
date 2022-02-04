@@ -1,14 +1,12 @@
 import { RefObject, useEffect, useState } from 'react'
 
-type ObserverProps = {
-  root: any
-  rootMargin: string
-  threshold: number | number[]
+type ObserverProps = IntersectionObserverInit & {
+  triggerOnce?: boolean
 }
 
 export const useObserver = (
   elementRef: RefObject<Element>,
-  { root, rootMargin, threshold }: ObserverProps
+  { root, rootMargin, threshold, triggerOnce = true }: ObserverProps
 ) => {
   
   const [entry, setEntry] = useState<IntersectionObserverEntry>(null)
@@ -24,7 +22,16 @@ export const useObserver = (
 
     if (!hasIOSupport || !node) return
 
-    const options = { threshold, root, rootMargin }
+    const options = {
+      threshold,
+      root,
+      rootMargin,
+      /**
+       * IntersectionObserver V2
+       * @url https://caniuse.com/intersectionobserver-v2
+       */ trackVisibility: true,
+      delay: 100,
+    }
     const observer = new IntersectionObserver(updateEntry, options)
 
     observer.observe(node)
