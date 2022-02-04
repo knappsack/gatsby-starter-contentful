@@ -2,7 +2,17 @@
 @custom-media --viewport-small (width < 734px);
 @custom-media --viewport-medium (width < 1068px);
 
-/* Heading styles */
+/* 
+ * @url https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#css_access
+ * 
+ * Use data attribute as content: 
+ * content: attr(data-columns)
+ * 
+ * Or change styles according the data: 
+ * [data-columns='3']
+ */
+
+/* Base */
 
 @custom-selector :--heading
   [data-style='h1'],
@@ -22,14 +32,6 @@
     margin-top: 0;
   }
 }
-
-/* h1 { font-size: 36px; }
-h2 { font-size: 31.3398px; }
-h3 { font-size: 27.2829px; }
-h4 { font-size: 23.7511px; }
-h5 { font-size: 20.6766px; }
-p { font-size: 18px; }
-footer { font-size: 15.6699px; } */
 
 [data-style='h1'] {
   font-size: calc(var(--modular-scale) * 1.5 * var(--base-font-size));
@@ -118,7 +120,7 @@ footer { font-size: 15.6699px; } */
   }
 
   & > * {
-    font-size: calc( var(--text-font-size) * 1.5 );
+    font-size: calc(var(--text-font-size) * 1.5);
     font-style: italic;
   }
 }
@@ -126,12 +128,6 @@ footer { font-size: 15.6699px; } */
 [data-style='img'] {
   margin-top: 12px;
 }
-
-/* 
- * @url https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#css_access
- * Use data attribute as content: content: attr(data-columns)
- * Or create conditional styling: [data-columns='3']
- */
 
 [data-style='a'] {
   font-family: var(--text-font);
@@ -146,23 +142,7 @@ footer { font-size: 15.6699px; } */
   padding: 4px;
 }
 
-[data-style='region'] {
-  background-color: var(--region-bg-color);
-}
-
-[data-style='unit'] {
-  background-color: var(--unit-bg-color);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: auto;
-  overflow: hidden;
-  text-align: center;
-  width: 100%;
-}
-
-/* Layout styles */
+/* Layout */
 
 [data-style='grid-template'] {
   display: grid;
@@ -199,24 +179,61 @@ footer { font-size: 15.6699px; } */
   }
 }
 
-[data-style='picture'] {
-  padding-top: 56.25%;
-  position: relative;
-  display: block;
-  overflow: hidden;
+/* Models */
+
+[data-style='region'] {
+  /* Dark theme css variables */
+  &[data-theme='dark'] {}
+
+  background-color: var(--region-bg-color);
 }
 
-[data-style='image'],
-[data-style='video'] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  object-fit: cover;
+[data-style='unit'] {
+  background-color: var(--unit-bg-color);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  margin: auto;
+  overflow: hidden;
+  text-align: center;
   width: 100%;
+}
+
+[data-style='video'] {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+[data-style='picture'] {
+  display: flex;
+
+  @supports not (aspect-ratio: 16 / 9) {
+    padding-top: 56.25%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+}
+
+[data-style='image'] {
+  object-fit: cover;
+
+  @supports (aspect-ratio: 16 / 9) {
+    aspect-ratio: 16 / 9;
+  }
+
+  @supports not (aspect-ratio: 16 / 9) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 [data-style='content'] {
