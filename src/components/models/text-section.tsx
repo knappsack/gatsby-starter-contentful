@@ -1,4 +1,5 @@
 import React from 'react'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import {
   Block,
   BLOCKS,
@@ -8,14 +9,13 @@ import {
   Node,
   Text,
 } from '@contentful/rich-text-types'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { createJumpLink } from '../../lib/create-jump-link'
+import { Analytics } from '../analytics'
 import {
   ContentfulLinks,
   ContentfulTextSection,
-} from './models/contentful-text-section'
-import { Analytics } from './analytics'
-import { createJumpLink } from '../lib/create-jump-link'
-import { Layout } from './layout'
+} from '../contentful/contentful-text-section'
+import { GridTemplate } from '../layout/grid-template'
 
 type CommonNode = Node & {
   content: Text | Block | Inline
@@ -60,7 +60,12 @@ const options: OptionsProps = (links) => {
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
         return (
-          <a data-style="a" href={node.data.uri} target="_blank" rel="noreferrer">
+          <a
+            data-style="a"
+            href={node.data.uri}
+            target="_blank"
+            rel="noreferrer"
+          >
             {children}
           </a>
         )
@@ -73,7 +78,9 @@ const options: OptionsProps = (links) => {
           </a>
         )
       },
-      [BLOCKS.HEADING_1]: (node, children) => <h1 data-style="h1">{children}</h1>,
+      [BLOCKS.HEADING_1]: (node, children) => (
+        <h1 data-style="h1">{children}</h1>
+      ),
       [BLOCKS.HEADING_2]: (node, children) => {
         return <h2 data-style="h2">{createJumpLink({ children })}</h2>
       },
@@ -91,7 +98,9 @@ const options: OptionsProps = (links) => {
       ),
       [BLOCKS.OL_LIST]: (node, children) => <ol data-style="ol">{children}</ol>,
       [BLOCKS.UL_LIST]: (node, children) => <ul data-style="ul">{children}</ul>,
-      [BLOCKS.LIST_ITEM]: (node, children) => <li data-style="li">{children}</li>,
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li data-style="li">{children}</li>
+      ),
       [BLOCKS.PARAGRAPH]: (node, children) => {
         if (node.content[0].value === '') {
           return <br />
@@ -125,14 +134,14 @@ export const TextSection = ({ model }: TextSectionProps) => {
 
   return (
     <Analytics
-      variant={variant}
+      area="region"
       eventId={eventId}
       theme={theme}
-      analyze="region"
+      variant={variant}
     >
-      <Layout variant={variant} theme={theme}>
+      <GridTemplate variant={variant} theme={theme}>
         {documentToReactComponents(json, options(links))}
-      </Layout>
+      </GridTemplate>
     </Analytics>
   )
 }

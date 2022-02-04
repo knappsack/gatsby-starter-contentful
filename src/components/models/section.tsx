@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import { NavigationSection } from './navigation-section'
 import { TextSection } from './text-section'
 import { TopicSection } from './topic-section'
-import { ContentfulTextSection } from './models/contentful-text-section'
-import { ContentfulTopicSection } from './models/contentful-topic-section'
+import { ContentfulTextSection } from '../contentful/contentful-text-section'
+import { ContentfulTopicSection } from '../contentful/contentful-topic-section'
 
 export type ContentfulSection = ContentfulTopicSection | ContentfulTextSection
 

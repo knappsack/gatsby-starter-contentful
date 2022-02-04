@@ -1,8 +1,8 @@
 import React from 'react'
-import { Analytics } from './analytics'
-import { Layout } from './layout'
-import { ContentfulTopic } from './models/contentful-topic'
-import { ContentfulTopicSection } from './models/contentful-topic-section'
+import { Analytics } from '../analytics'
+import { ContentfulTopic } from '../contentful/contentful-topic'
+import { ContentfulTopicSection } from '../contentful/contentful-topic-section'
+import { GridTemplate } from '../layout/grid-template'
 import { Topic } from './topic'
 
 export type TopicSectionProps = {
@@ -34,16 +34,17 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
 
   return (
     <Analytics
-      variant={variant}
+      area="region"
       eventId={eventId}
       theme={theme}
-      analyze="region"
+      variant={variant}
     >
-      <Layout variant={variant} theme={theme}>
+      <GridTemplate variant={variant} theme={theme}>
         {topicsCollection.items.map((model: ContentfulTopic, index: number) => {
           const {
             sys: { id },
           } = model
+
           return (
             <Topic
               key={id + index}
@@ -53,7 +54,7 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
             />
           )
         })}
-      </Layout>
+      </GridTemplate>
     </Analytics>
   )
 }

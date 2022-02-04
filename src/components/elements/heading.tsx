@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetTypesOf } from '../../lib/get-types-of'
 import { AnyElement } from '../../lib/react-create-any-element'
-import { TopicSectionVariant } from '../models/contentful-topic-section'
+import { TopicSectionVariant } from '../contentful/contentful-topic-section'
 
 /**
  * GetTypesOf makes sure you only inherit Types of `h3`.

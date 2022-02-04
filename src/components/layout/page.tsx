@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
-import { Seo } from './seo'
-import { Section } from './section'
-import { ContentfulPage } from './models/contentful-page'
-import { ContentfulGlobals } from './models/contentful-globals'
+import { Seo } from '../seo'
+import { Section } from '../models/section'
+import { ContentfulPage } from '../contentful/contentful-page'
+import { ContentfulGlobals } from '../contentful/contentful-globals'
 
 type PageQuery = {
   contentful: {

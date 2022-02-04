@@ -4,14 +4,14 @@ import { useGtag } from '../lib/gtag'
 import { useObserver } from '../lib/use-observer'
 
 type AnalyticsProps = GetTypesOf['div'] & {
+  area: 'region' | 'unit'
   eventId?: string
   theme?: string
   variant: string
-  analyze: 'region' | 'unit'
 }
 
 export const Analytics = ({
-  analyze,
+  area,
   eventId,
   theme,
   variant,
@@ -39,13 +39,13 @@ export const Analytics = ({
     })
   }
 
-  const setAnalyticsId = `${analyze}:${eventId ? eventId : variant}`
+  const setAnalyticsId = `${area}:${eventId ? eventId : variant}`
 
-  switch (analyze) {
+  switch (area) {
     case `region`:
       return (
         <section
-          data-style={analyze}
+          data-style={area}
           data-analytics-region={setAnalyticsId}
           data-theme={theme}
           data-variant={variant.toLocaleLowerCase()}
@@ -57,7 +57,7 @@ export const Analytics = ({
     case `unit`:
       return (
         <div
-          data-style={analyze}
+          data-style={area}
           data-analytics-unit={setAnalyticsId}
           data-theme={theme}
           data-variant={variant.toLocaleLowerCase()}

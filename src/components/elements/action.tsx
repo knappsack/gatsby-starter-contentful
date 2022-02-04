@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Link } from 'gatsby'
-import { ContentfulAction } from '../models/contentful-action'
+import { ContentfulAction } from '../contentful/contentful-action'
 import { useGtag } from '../../lib/gtag'
 
 export type ActionProps = {
