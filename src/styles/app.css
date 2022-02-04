@@ -1,6 +1,9 @@
 /* Only possible because PostCSS preset env */
 @custom-media --viewport-small (width < 734px);
 @custom-media --viewport-medium (width < 1068px);
+
+/* Heading styles */
+
 @custom-selector :--heading
   [data-style='h1'],
   [data-style='h2'],
@@ -9,10 +12,7 @@
   [data-style='h5'],
   [data-style='h6'];
 
-/* Heading styles */
-
 :--heading {
-  /* YAY! We can create Custom selectors. */
   margin-top: 20px;
   font-family: var(--text-font);
   font-weight: bold;
@@ -52,6 +52,10 @@ footer { font-size: 15.6699px; } */
   font-size: var(--base-font-size);
 }
 
+[data-style='small'] {
+  font-size: calc(var(--modular-scale) * 0.8 * var(--base-font-size));
+}
+
 [data-style='bold'] {
   font-family: var(--text-font);
   font-weight: 700;
@@ -70,11 +74,21 @@ footer { font-size: 15.6699px; } */
 [data-style='ol'] {
   list-style-type: decimal;
   margin-left: 24px;
+  margin-top: 12px;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 [data-style='ul'] {
   list-style-type: disc;
   margin-left: 24px;
+  margin-top: 12px;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 [data-style='li'] {
@@ -86,6 +100,27 @@ footer { font-size: 15.6699px; } */
   font-family: var(--text-font);
   line-height: var(--text-line-height);
   margin-top: 12px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+[data-style='blockquote'] {
+  font-family: var(--text-font);
+  line-height: var(--text-line-height);
+  border-left: 4px solid silver;
+  padding-left: 24px;
+  margin-top: 12px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  & > * {
+    font-size: calc( var(--text-font-size) * 1.5 );
+    font-style: italic;
+  }
 }
 
 [data-style='img'] {
@@ -108,9 +143,8 @@ footer { font-size: 15.6699px; } */
   font-family: Conoslas, Menlo, monospace;
   font-size: 0.85em;
   background-color: silver;
+  padding: 4px;
 }
-
-/* Layout styles */
 
 [data-style='region'] {
   background-color: var(--region-bg-color);
@@ -128,7 +162,9 @@ footer { font-size: 15.6699px; } */
   width: 100%;
 }
 
-[data-style='layout'] {
+/* Layout styles */
+
+[data-style='grid-template'] {
   display: grid;
   margin: auto;
   padding: 24px;
@@ -145,6 +181,19 @@ footer { font-size: 15.6699px; } */
     }
   }
 
+  &[data-variant='card'],
+  &[data-variant='divider'],
+  &[data-variant='featured'],
+  &[data-variant='gallery'],
+  &[data-variant='headline'],
+  &[data-variant='hero'],
+  &[data-variant='image'],
+  &[data-variant='quote'],
+  &[data-variant='showcase'],
+  &[data-variant='video'] {
+    max-width: 1380px;
+  }
+
   &[data-variant='text'] {
     max-width: 680px;
   }
@@ -155,18 +204,19 @@ footer { font-size: 15.6699px; } */
   position: relative;
   display: block;
   overflow: hidden;
+}
 
-  & img {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+[data-style='image'],
+[data-style='video'] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 [data-style='content'] {
