@@ -8,7 +8,10 @@ export type MediaProps = {
 }
 
 export const Media = ({ model }: MediaProps) => {
-  const { mediaCollection } = model
+  const {
+    mediaCollection,
+    mediaCollection: { items },
+  } = model
 
   return (
     <div data-style="media">
@@ -17,7 +20,9 @@ export const Media = ({ model }: MediaProps) => {
           sys: { id },
         } = asset
 
-        return  <Fragment key={id + index}>{getAsset(asset)}</Fragment>
+        return (
+          <Fragment key={id + index}>{getAsset(asset, items)}</Fragment>
+        )
       })}
     </div>
   )

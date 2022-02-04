@@ -28,7 +28,7 @@ export const topic = graphql`
     abstract
     icon
     heading
-    mediaCollection(limit: 1) {
+    mediaCollection(limit: 2) {
       items {
         ...asset
       }
