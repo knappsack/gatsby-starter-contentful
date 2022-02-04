@@ -5,7 +5,7 @@ import { TopicSection } from './topic-section'
 import { ContentfulTextSection } from '../contentful/contentful-text-section'
 import { ContentfulTopicSection } from '../contentful/contentful-topic-section'
 
-export type ContentfulSection = ContentfulTopicSection | ContentfulTextSection
+type ContentfulSection = ContentfulTopicSection | ContentfulTextSection
 
 export type SectionProps = {
   model: ContentfulSection[]

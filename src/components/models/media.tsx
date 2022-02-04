@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { ContentfulAsset } from '../contentful/contentful-asset'
 import { ContentfulTopic } from '../contentful/contentful-topic'
-import { Asset } from './asset'
+import { getAsset } from './asset'
 
 export type MediaProps = {
   model: ContentfulTopic
@@ -12,12 +12,12 @@ export const Media = ({ model }: MediaProps) => {
 
   return (
     <div data-style="media">
-      {mediaCollection.items.map((model: ContentfulAsset, index: number) => {
+      {mediaCollection.items.map((asset: ContentfulAsset, index: number) => {
         const {
           sys: { id },
-        } = model
+        } = asset
 
-        return <Asset key={id + index} model={model} />
+        return  <Fragment key={id + index}>{getAsset(asset)}</Fragment>
       })}
     </div>
   )
