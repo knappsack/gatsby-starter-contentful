@@ -41,7 +41,6 @@ exports.createPages = async ({ actions, graphql }) => {
         pageId: page.sys.id,
         globalsId: result.data.contentful.globalsCollection.items[0].sys.id,
       },
-      defer: true,
       // OR: 
       // The first 100 pages will receive defer: false, 
       // the other 900 pages receive defer: true.
