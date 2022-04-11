@@ -20,9 +20,7 @@ export const Media = ({ model }: MediaProps) => {
           sys: { id },
         } = asset
 
-        return (
-          <Fragment key={id + index}>{getAsset(asset, items)}</Fragment>
-        )
+        return <Fragment key={id + index}>{getAsset(asset, items)}</Fragment>
       })}
     </div>
   )

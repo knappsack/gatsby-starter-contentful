@@ -36,13 +36,11 @@ export const getTopicOptions = (array: TopicOptions[]) => {
     media: true,
     reversed: false,
   }
-  
-  Object.keys(topicOptionsList).forEach((key) => {
-    const getOption = topicOptions.includes(
-      topicOptionsList[key]
-    )
+
+  Object.keys(topicOptionsList).forEach(key => {
+    const getOption = topicOptions.includes(topicOptionsList[key])
     options[key] = !getOption
   })
-  
+
   return options
 }

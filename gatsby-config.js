@@ -4,8 +4,9 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
+    author: `@thijskrooswijk`,
     url: 'https://www.knappsack.org',
-    title: "Gatsby Contentful starter",
+    title: 'Gatsby Contentful starter',
     image: 'og-image.jpg',
     description:
       'Blazing fast modern site generator for React Go beyond static sites: build blogs, e-commerce sites, full-blown apps, and more with Gatsby',

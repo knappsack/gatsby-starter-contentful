@@ -33,12 +33,7 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
   }
 
   return (
-    <Analytics
-      area="region"
-      eventId={eventId}
-      theme={theme}
-      variant={variant}
-    >
+    <Analytics area="region" eventId={eventId} theme={theme} variant={variant}>
       <GridTemplate variant={variant} theme={theme}>
         {topicsCollection.items.map((model: ContentfulTopic, index: number) => {
           const {

@@ -24,7 +24,7 @@ export const Analytics = ({
     rootMargin: '0px',
     threshold: 0.1,
   })
-  
+
   if (!!entry?.isIntersecting) {
     useGtag('event', 'viewing', {
       event_id:

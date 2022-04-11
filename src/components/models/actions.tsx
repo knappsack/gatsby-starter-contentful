@@ -8,10 +8,8 @@ export type ActionsProps = {
 }
 
 export const Actions = ({ model }: ActionsProps) => {
-  const {
-    actionsCollection
-  } = model
-  
+  const { actionsCollection } = model
+
   return (
     <div data-style="actions">
       {actionsCollection.items.map((model: ContentfulAction, index: number) => {

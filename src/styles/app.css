@@ -183,21 +183,24 @@
 
 [data-style='region'] {
   /* Dark theme css variables */
-  &[data-theme='dark'] {}
+  &[data-theme='dark'] {
+  }
 
   background-color: var(--region-bg-color);
 }
 
 [data-style='unit'] {
   background-color: var(--unit-bg-color);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: auto;
-  overflow: hidden;
-  text-align: center;
-  width: 100%;
+
+  &[data-variant='block'] {
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+  }
 }
 
 [data-style='video'] {

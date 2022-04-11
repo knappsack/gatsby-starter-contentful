@@ -8,7 +8,6 @@ export const useObserver = (
   elementRef: RefObject<Element>,
   { root, rootMargin, threshold, triggerOnce = true }: ObserverProps
 ) => {
-  
   const [entry, setEntry] = useState<IntersectionObserverEntry>(null)
 
   const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
@@ -16,7 +15,6 @@ export const useObserver = (
   }
 
   useEffect(() => {
-
     const node = elementRef?.current
     const hasIOSupport = !!window.IntersectionObserver
 
@@ -37,7 +35,6 @@ export const useObserver = (
     observer.observe(node)
 
     return () => observer.unobserve(node)
-
   }, [elementRef])
 
   return entry

@@ -32,7 +32,7 @@ exports.createPages = async ({ actions, graphql }) => {
   }
 
   const pageTemplate = path.resolve(`./src/components/layout/page.tsx`)
-  result.data.contentful.pageCollection.items.forEach((page) => {
+  result.data.contentful.pageCollection.items.forEach(page => {
     const path = page.slug
     createPage({
       path,
@@ -41,8 +41,8 @@ exports.createPages = async ({ actions, graphql }) => {
         pageId: page.sys.id,
         globalsId: result.data.contentful.globalsCollection.items[0].sys.id,
       },
-      // OR: 
-      // The first 100 pages will receive defer: false, 
+      // OR:
+      // The first 100 pages will receive defer: false,
       // the other 900 pages receive defer: true.
       // defer: index + 1 > 100,
     })

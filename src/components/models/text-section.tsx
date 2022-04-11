@@ -38,7 +38,7 @@ type OptionsProps = (links: ContentfulLinks) => {
   renderMark: RenderMark
 }
 
-const options: OptionsProps = (links) => {
+const options: OptionsProps = links => {
   // Create map of Assets
   const contentfulAssetMap = new Map()
   for (const asset of links.assets.block) {
@@ -52,10 +52,10 @@ const options: OptionsProps = (links) => {
 
   return {
     renderMark: {
-      [MARKS.BOLD]: (text) => <b data-style="bold">{text}</b>,
-      [MARKS.ITALIC]: (text) => <i data-style="italic">{text}</i>,
-      [MARKS.UNDERLINE]: (text) => <u data-style="underline">{text}</u>,
-      [MARKS.CODE]: (text) => <code data-style="code">{text}</code>,
+      [MARKS.BOLD]: text => <b data-style="bold">{text}</b>,
+      [MARKS.ITALIC]: text => <i data-style="italic">{text}</i>,
+      [MARKS.UNDERLINE]: text => <u data-style="underline">{text}</u>,
+      [MARKS.CODE]: text => <code data-style="code">{text}</code>,
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
@@ -112,7 +112,7 @@ const options: OptionsProps = (links) => {
         <blockquote data-style="blockquote">{children}</blockquote>
       ),
       [BLOCKS.HR]: () => <hr data-style="hr" />,
-      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      [BLOCKS.EMBEDDED_ASSET]: node => {
         const asset = contentfulAssetMap.get(node.data.target.sys.id)
         return <img data-style="img" src={asset.url} alt={asset.description} />
       },
@@ -133,12 +133,7 @@ export const TextSection = ({ model }: TextSectionProps) => {
   } = model
 
   return (
-    <Analytics
-      area="region"
-      eventId={eventId}
-      theme={theme}
-      variant={variant}
-    >
+    <Analytics area="region" eventId={eventId} theme={theme} variant={variant}>
       <GridTemplate variant={variant} theme={theme}>
         {documentToReactComponents(json, options(links))}
       </GridTemplate>

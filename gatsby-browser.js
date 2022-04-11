@@ -1,8 +1,8 @@
 import React from 'react'
 import RootElement from './src/components/root-element'
 
-/** 
- * The New CSS Reset made by Elad Shechter 
+/**
+ * The New CSS Reset made by Elad Shechter
  * @url https://github.com/elad2412/the-new-css-reset
  */
 import './src/styles/the-new-css-reset.css'

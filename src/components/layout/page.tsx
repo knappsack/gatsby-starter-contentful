@@ -15,7 +15,7 @@ type PageQuery = {
 const Page = ({
   data: {
     contentful: { page, globals },
-  }
+  },
 }: PageProps<PageQuery, PageContext>) => {
   const model = page.sectionsCollection?.items
   return (

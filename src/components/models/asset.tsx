@@ -23,7 +23,7 @@ export const getAsset: AssetProps = (asset, items) => {
     let poster: string = undefined
 
     if (items.length > 1) {
-      const getPoster = items.filter((item) =>
+      const getPoster = items.filter(item =>
         item.contentType.includes('image/')
       )
       poster = `${getPoster[0].url}?q=90&w=800&h=420&fit=fill&f=center`

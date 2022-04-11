@@ -6,9 +6,19 @@ type GridTemplateProps = GetTypesOf['div'] & {
   theme: string
 }
 
-export const GridTemplate = ({ children, variant, theme, ...props }: GridTemplateProps) => {
+export const GridTemplate = ({
+  children,
+  variant,
+  theme,
+  ...props
+}: GridTemplateProps) => {
   return (
-    <div data-style="grid-template" data-variant={variant} data-theme={theme} {...props}>
+    <div
+      data-style="grid-template"
+      data-variant={variant}
+      data-theme={theme}
+      {...props}
+    >
       {children}
     </div>
   )

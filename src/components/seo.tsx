@@ -45,7 +45,9 @@ export const Seo = ({
   const seoDescription = customDescription || description
   const seoKeywords = customKeywords || keywords
   const seoUrl = customUrl ? `${url}${customUrl}` : url
-  const seoImage = customImage ? `${customImage}?w=1600&h=840&q=80` : `${url}/${image}`
+  const seoImage = customImage
+    ? `${customImage}?w=1600&h=840&q=80`
+    : `${url}/${image}`
 
   return (
     <Helmet>
@@ -72,6 +74,7 @@ export const Seo = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
+      {/* <meta name="twitter:creator" content={site.siteMetadata?.author} /> */}
       <meta name="twitter:url" content={seoUrl} />
       <meta name="twitter:title" content={seoTitle} />
       <meta name="twitter:description" content={seoDescription} />
