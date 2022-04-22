@@ -13,7 +13,7 @@ export type ContentfulPage = {
   }
   slug: string
   theme: string
-  seoKeywords: string
+  seoKeywords: string[]
   seoTitle: string
   seoDescription: string
   seoImage: ContentfulAsset

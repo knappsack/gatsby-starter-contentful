@@ -2,57 +2,63 @@ import * as React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-type SeoProps = {
-  /** A custom HTML title that overwrites the default title */
-  customTitle?: string
-  /** A custom page, global or meta description that overwrites the default description */
-  customDescription?: string
-  /** A custom page, global or meta keywords that overwrites the default keywords */
-  customKeywords?: string | string[]
-  /** A custom page, global or meta url that overwrites the default url */
-  customUrl?: string
-  /** A custom open graph image that overwrites the default image */
-  customImage?: string
+type SeoProps = Partial<{
+  author: string
+  description: string
+  image: string
+  keywords: string[]
+  language: string
+  title: string
+  url: string
+}>
+
+type StaticQuery = {
+  site: {
+    siteMetadata: SeoProps
+  }
 }
 
 export const Seo = ({
-  customTitle,
-  customDescription,
-  customKeywords,
-  customUrl,
-  customImage,
+  author,
+  description,
+  image,
+  keywords,
+  language,
+  title,
+  url,
 }: SeoProps) => {
   const {
-    site: {
-      siteMetadata: { url, title, image, description, language, keywords },
-    },
-  } = useStaticQuery(graphql`
+    site: { siteMetadata },
+  } = useStaticQuery<StaticQuery>(graphql`
     {
       site {
         siteMetadata {
-          url
-          title
-          image
+          author
           description
-          language
+          image
           keywords
+          language
+          title
+          url
         }
       }
     }
   `)
 
-  const seoTitle = customTitle || title
-  const seoDescription = customDescription || description
-  const seoKeywords = customKeywords || keywords
-  const seoUrl = customUrl ? `${url}${customUrl}` : url
-  const seoImage = customImage
-    ? `${customImage}?w=1600&h=840&q=80`
-    : `${url}/${image}`
+  const seoAuthor = author || siteMetadata.author
+  const seoDescription = description || siteMetadata.description
+  const seoKeywords = keywords || siteMetadata.keywords
+  const seoLanguage = language || siteMetadata.language
+  const seoTitle = title || siteMetadata.title
+  const seoUrl = url ? `${siteMetadata.url}${url}` : siteMetadata.url
+  const seoImage = image
+    ? `${image}?w=1600&h=840&q=80`
+    : `${siteMetadata.url}/${image}`
 
   return (
     <Helmet>
       {/* Default / HTML */}
-      <html lang={language} />
+      <html lang={seoLanguage} />
       <title>{seoTitle}</title>
       <link rel="canonical" href={seoUrl} />
 
@@ -74,7 +80,7 @@ export const Seo = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      {/* <meta name="twitter:creator" content={site.siteMetadata?.author} /> */}
+      <meta name="twitter:creator" content={seoAuthor} />
       <meta name="twitter:url" content={seoUrl} />
       <meta name="twitter:title" content={seoTitle} />
       <meta name="twitter:description" content={seoDescription} />

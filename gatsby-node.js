@@ -31,7 +31,7 @@ exports.createPages = async ({ actions, graphql }) => {
     return
   }
 
-  const pageTemplate = path.resolve(`./src/components/layout/page.tsx`)
+  const pageTemplate = path.resolve(`./src/templates/page.tsx`)
   result.data.contentful.pageCollection.items.forEach(page => {
     const path = page.slug
     createPage({

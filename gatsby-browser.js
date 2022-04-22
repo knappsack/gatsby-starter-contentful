@@ -1,5 +1,5 @@
 import * as React from 'react'
-import RootElement from './src/components/root-element'
+import RootElement from './src/components/layout/root-element'
 
 /**
  * The New CSS Reset made by Elad Shechter

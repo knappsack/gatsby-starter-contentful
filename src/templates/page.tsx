@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { graphql, PageProps } from 'gatsby'
-import { Seo } from '../seo'
-import { Section } from '../models/section'
-import { ContentfulPage } from '../contentful/contentful-page'
-import { ContentfulGlobals } from '../contentful/contentful-globals'
+import { Seo } from '../components/layout/seo'
+import { Section } from '../components/models/section'
+import { ContentfulPage } from '../components/contentful/contentful-page'
+import { ContentfulGlobals } from '../components/contentful/contentful-globals'
 
 type PageQuery = {
   contentful: {
@@ -21,13 +21,13 @@ const Page = ({
   return (
     <>
       <Seo
-        customTitle={page.seoTitle || globals.siteTitle || null}
-        customDescription={
-          page.seoDescription || globals.siteDescription || null
+        description={
+          page.seoDescription || globals.siteDescription || undefined
         }
-        customKeywords={page.seoKeywords || globals.siteKeywords || null}
-        customUrl={page.slug || null}
-        customImage={page.seoImage.url || globals.siteImage.url || null}
+        image={page.seoImage.url || globals.siteImage.url || undefined}
+        keywords={page.seoKeywords || globals.siteKeywords || undefined}
+        title={page.seoTitle || globals.siteTitle || undefined}
+        url={page.slug || undefined}
       />
       <Section model={model} />
     </>
