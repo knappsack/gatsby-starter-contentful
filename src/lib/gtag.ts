@@ -1,9 +1,9 @@
-import { isBrowser } from './is-browser'
+import { isBrowser } from "./is-browser"
 
 type GtagProps = {
   (
-    event: 'event',
-    action: 'viewing' | 'engagement' | 'click',
+    event: "event",
+    action: "viewing" | "engagement" | "click",
     value: {
       event_id?: string
       event_category?: string

@@ -1,6 +1,6 @@
-import { graphql } from 'gatsby'
-import { ContentfulAction } from './contentful-action'
-import { ContentfulAsset } from './contentful-asset'
+import { graphql } from "gatsby"
+import { ContentfulAction } from "./contentful-action"
+import { ContentfulAsset } from "./contentful-asset"
 
 export type ContentfulTopic = {
   __typename: string

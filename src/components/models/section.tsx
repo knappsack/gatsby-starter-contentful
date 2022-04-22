@@ -1,9 +1,11 @@
-import * as React from 'react'
-import { NavigationSection } from './navigation-section'
-import { TextSection } from './text-section'
-import { TopicSection } from './topic-section'
-import { ContentfulTextSection } from '../contentful/contentful-text-section'
-import { ContentfulTopicSection } from '../contentful/contentful-topic-section'
+import * as React from "react"
+
+import { NavigationSection } from "./navigation-section"
+import { TextSection } from "./text-section"
+import { TopicSection } from "./topic-section"
+import { ContentfulTextSection } from "../contentful/contentful-text-section"
+import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
+import { uuid } from "../../lib/create-uuid"
 
 type ContentfulSection = ContentfulTopicSection | ContentfulTextSection
 
@@ -14,11 +16,14 @@ export type SectionProps = {
 export const Section = ({ model }: SectionProps) => {
   return (
     <main role="main">
-      {model
-        ? model.map((section: ContentfulSection, index: number) => {
-            return <React.Fragment key={index}>{getSection(section)}</React.Fragment>
-          })
-        : null}
+      {model?.map((section: ContentfulSection) => {
+        return (
+          <React.Fragment key={uuid()}>
+            {uuid()}
+            {getSection(section)}
+          </React.Fragment>
+        )
+      })}
     </main>
   )
 }

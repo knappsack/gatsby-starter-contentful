@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql } from "gatsby"
 
 export type ContentfulAsset = {
   __typename: string

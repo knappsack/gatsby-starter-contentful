@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import * as React from "react"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import {
   Block,
   BLOCKS,
@@ -8,14 +8,14 @@ import {
   MARKS,
   Node,
   Text,
-} from '@contentful/rich-text-types'
-import { createJumpLink } from '../../lib/create-jump-link'
-import { Analytics } from '../analytics'
+} from "@contentful/rich-text-types"
+import { createJumpLink } from "../../lib/create-jump-link"
+import { Analytics } from "../analytics"
 import {
   ContentfulLinks,
   ContentfulTextSection,
-} from '../contentful/contentful-text-section'
-import { GridTemplate } from '../layout/grid-template'
+} from "../contentful/contentful-text-section"
+import { GridTemplate } from "../layout/grid-template"
 
 type CommonNode = Node & {
   content: Text | Block | Inline
@@ -102,7 +102,7 @@ const options: OptionsProps = links => {
         <li data-style="li">{children}</li>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => {
-        if (node.content[0].value === '') {
+        if (node.content[0].value === "") {
           return <br />
         } else {
           return <p data-style="p">{children}</p>

@@ -1,7 +1,7 @@
-import { graphql } from 'gatsby'
-import { ContentfulAsset } from './contentful-asset'
-import { ContentfulTextSection } from './contentful-text-section'
-import { ContentfulTopicSection } from './contentful-topic-section'
+import { graphql } from "gatsby"
+import { ContentfulAsset } from "./contentful-asset"
+import { ContentfulTextSection } from "./contentful-text-section"
+import { ContentfulTopicSection } from "./contentful-topic-section"
 
 export type ContentfulPage = {
   __typename: string
@@ -9,7 +9,7 @@ export type ContentfulPage = {
     id: string
   }
   sectionsCollection: {
-    items: ContentfulTopicSection[] | ContentfulTextSection[]
+    items: Partial<ContentfulTopicSection[] | ContentfulTextSection[]>
   }
   slug: string
   theme: string

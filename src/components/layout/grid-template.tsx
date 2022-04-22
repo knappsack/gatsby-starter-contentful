@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { GetTypesOf } from '../../lib/get-types-of'
+import * as React from "react"
+import { GetTypesOf } from "../../lib/get-types-of"
 
-type GridTemplateProps = GetTypesOf['div'] & {
+type GridTemplateProps = GetTypesOf["div"] & {
   variant: string
   theme: string
 }

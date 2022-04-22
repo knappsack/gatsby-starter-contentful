@@ -1,6 +1,6 @@
-import * as React from 'react'
-import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import * as React from "react"
+import Helmet from "react-helmet"
+import { useStaticQuery, graphql } from "gatsby"
 
 type SeoProps = Partial<{
   author: string
@@ -68,7 +68,7 @@ export const Seo = ({
       <meta name="image" content={seoImage} />
       <meta
         name="keywords"
-        content={seoKeywords ? seoKeywords.join(', ') : null}
+        content={seoKeywords ? seoKeywords.join(", ") : null}
       />
 
       {/* Open Graph / Facebook  */}

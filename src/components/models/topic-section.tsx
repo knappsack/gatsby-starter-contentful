@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { Analytics } from '../analytics'
-import { ContentfulTopic } from '../contentful/contentful-topic'
-import { ContentfulTopicSection } from '../contentful/contentful-topic-section'
-import { GridTemplate } from '../layout/grid-template'
-import { Topic } from './topic'
+import * as React from "react"
+import { Analytics } from "../analytics"
+import { ContentfulTopic } from "../contentful/contentful-topic"
+import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
+import { GridTemplate } from "../layout/grid-template"
+import { Topic } from "./topic"
 
 export type TopicSectionProps = {
   model: ContentfulTopicSection

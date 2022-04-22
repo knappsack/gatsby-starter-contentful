@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 type AnyElementProps = {
   is: keyof JSX.IntrinsicElements
@@ -9,7 +9,7 @@ export const AnyElement: React.FC<AnyElementProps> = ({
   children,
   ...props
 }) => {
-  const type = props.is || 'div'
+  const type = props.is || "div"
   const attributes = Object.assign({}, props)
   delete attributes.is
   /**

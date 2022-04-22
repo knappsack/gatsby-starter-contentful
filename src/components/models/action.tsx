@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
-import { ContentfulAction } from '../contentful/contentful-action'
-import { useGtag } from '../../lib/gtag'
+import * as React from "react"
+import { Link } from "gatsby"
+import { ContentfulAction } from "../contentful/contentful-action"
+import { useGtag } from "../../lib/gtag"
 
 export type ActionProps = {
   model: ContentfulAction
@@ -29,7 +29,7 @@ export const Action = ({ model }: ActionProps) => {
     .substring(1)}`
 
   const handleOnClick = () => {
-    useGtag('event', 'click', { event_id: ref.current.dataset.analyticsId })
+    useGtag("event", "click", { event_id: ref.current.dataset.analyticsId })
   }
 
   return (

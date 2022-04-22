@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { GetTypesOf } from '../lib/get-types-of'
-import { useGtag } from '../lib/gtag'
-import { useObserver } from '../lib/use-observer'
+import * as React from "react"
+import { GetTypesOf } from "../lib/get-types-of"
+import { useGtag } from "../lib/gtag"
+import { useObserver } from "../lib/use-observer"
 
-type AnalyticsProps = GetTypesOf['div'] & {
-  area: 'region' | 'unit'
+type AnalyticsProps = GetTypesOf["div"] & {
+  area: "region" | "unit"
   eventId?: string
   theme?: string
   variant: string
@@ -21,12 +21,12 @@ export const Analytics = ({
 
   const entry = useObserver(ref, {
     root: null,
-    rootMargin: '0px',
+    rootMargin: "0px",
     threshold: 0.1,
   })
 
   if (!!entry?.isIntersecting) {
-    useGtag('event', 'viewing', {
+    useGtag("event", "viewing", {
       event_id:
         ref.current.dataset.analyticsRegion ||
         ref.current.dataset.analyticsUnit,
@@ -34,7 +34,7 @@ export const Analytics = ({
   }
 
   const handleMouseEnter = () => {
-    useGtag('event', 'engagement', {
+    useGtag("event", "engagement", {
       event_id: ref.current.dataset.analyticsUnit,
     })
   }

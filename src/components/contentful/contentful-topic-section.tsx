@@ -1,18 +1,18 @@
-import { graphql } from 'gatsby'
-import { ContentfulTopic } from './contentful-topic'
+import { graphql } from "gatsby"
+import { ContentfulTopic } from "./contentful-topic"
 
 export type TopicSectionVariant =
-  | 'block'
-  | 'card'
-  | 'divider'
-  | 'featured'
-  | 'gallery'
-  | 'headline'
-  | 'hero'
-  | 'image'
-  | 'quote'
-  | 'showcase'
-  | 'video'
+  | "block"
+  | "card"
+  | "divider"
+  | "featured"
+  | "gallery"
+  | "headline"
+  | "hero"
+  | "image"
+  | "quote"
+  | "showcase"
+  | "video"
 
 export type TopicSectionOptions = {
   abstract: boolean

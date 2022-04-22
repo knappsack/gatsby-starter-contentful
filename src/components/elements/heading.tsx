@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { GetTypesOf } from '../../lib/get-types-of'
-import { AnyElement } from '../../lib/react-create-any-element'
-import { TopicSectionVariant } from '../contentful/contentful-topic-section'
+import * as React from "react"
+import { GetTypesOf } from "../../lib/get-types-of"
+import { AnyElement } from "../../lib/react-create-any-element"
+import { TopicSectionVariant } from "../contentful/contentful-topic-section"
 
 /**
  * GetTypesOf makes sure you only inherit Types of `h3`.
  * Note: <h1> – <h6> heading elements sharing the same types.
  */
-export type HeadingProps = GetTypesOf['h3'] & {
+export type HeadingProps = GetTypesOf["h3"] & {
   variant: TopicSectionVariant
 }
 

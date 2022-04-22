@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { ContentfulAsset } from '../contentful/contentful-asset'
+import * as React from "react"
+import { ContentfulAsset } from "../contentful/contentful-asset"
 
 type AssetProps = {
   (asset: ContentfulAsset, items: ContentfulAsset[]): React.ReactNode
@@ -19,12 +19,12 @@ export const getAsset: AssetProps = (asset, items) => {
     width,
   } = asset
 
-  if (contentType.includes('video/')) {
+  if (contentType.includes("video/")) {
     let poster: string = undefined
 
     if (items.length > 1) {
       const getPoster = items.filter(item =>
-        item.contentType.includes('image/')
+        item.contentType.includes("image/")
       )
       poster = `${getPoster[0].url}?q=90&w=800&h=420&fit=fill&f=center`
     }
@@ -37,7 +37,7 @@ export const getAsset: AssetProps = (asset, items) => {
     )
   }
 
-  if (contentType.includes('image/') && items.length === 1) {
+  if (contentType.includes("image/") && items.length === 1) {
     return (
       <picture data-style="picture">
         <img

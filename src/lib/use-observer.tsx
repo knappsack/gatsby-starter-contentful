@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 type ObserverProps = IntersectionObserverInit & {
   triggerOnce?: boolean
@@ -6,7 +6,7 @@ type ObserverProps = IntersectionObserverInit & {
 
 export const useObserver = (
   elementRef: React.RefObject<Element>,
-  { root, rootMargin, threshold, triggerOnce = true }: ObserverProps
+  { root, rootMargin, threshold, triggerOnce = false }: ObserverProps
 ) => {
   const [entry, setEntry] = React.useState<IntersectionObserverEntry>(null)
 
@@ -18,7 +18,7 @@ export const useObserver = (
     const node = elementRef?.current
     const hasIOSupport = !!window.IntersectionObserver
 
-    if (!hasIOSupport || !node) return
+    if (!hasIOSupport || !node || triggerOnce) return
 
     const options = {
       threshold,
@@ -33,6 +33,8 @@ export const useObserver = (
     const observer = new IntersectionObserver(updateEntry, options)
 
     observer.observe(node)
+
+    triggerOnce = !triggerOnce
 
     return () => observer.unobserve(node)
   }, [elementRef])

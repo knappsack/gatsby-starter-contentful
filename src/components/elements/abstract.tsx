@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { GetTypesOf } from '../../lib/get-types-of'
-import { AnyElement } from '../../lib/react-create-any-element'
-import { TopicSectionVariant } from '../contentful/contentful-topic-section'
+import * as React from "react"
+import { GetTypesOf } from "../../lib/get-types-of"
+import { AnyElement } from "../../lib/react-create-any-element"
+import { TopicSectionVariant } from "../contentful/contentful-topic-section"
 
-export type HeadingProps = GetTypesOf['p'] & {
+export type HeadingProps = GetTypesOf["p"] & {
   variant: TopicSectionVariant
 }
 

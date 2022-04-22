@@ -1,7 +1,7 @@
-import { graphql } from 'gatsby'
-import { ContentfulAsset } from './contentful-asset'
+import { graphql } from "gatsby"
+import { ContentfulAsset } from "./contentful-asset"
 
-export type TextSectionVariant = 'text'
+export type TextSectionVariant = "text"
 
 export type ContentfulLinks = {
   assets: {

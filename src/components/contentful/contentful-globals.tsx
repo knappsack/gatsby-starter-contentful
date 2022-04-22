@@ -1,5 +1,5 @@
-import { graphql } from 'gatsby'
-import { ContentfulAsset } from './contentful-asset'
+import { graphql } from "gatsby"
+import { ContentfulAsset } from "./contentful-asset"
 
 export type ContentfulGlobals = {
   __typename: string

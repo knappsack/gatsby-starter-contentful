@@ -1,8 +1,9 @@
-import * as React from 'react'
-import slugify from '@sindresorhus/slugify'
-import { GetTypesOf } from './get-types-of'
+import * as React from "react"
 
-type CreateJumpLinkProps = GetTypesOf['a']
+import slugify from "@sindresorhus/slugify"
+import { GetTypesOf } from "./get-types-of"
+
+type CreateJumpLinkProps = GetTypesOf["a"]
 
 export const createJumpLink = ({ children }: CreateJumpLinkProps) => {
   const slug = children[0].key
