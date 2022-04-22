@@ -1,4 +1,5 @@
 import * as React from "react"
+import { uuid } from "../../lib/create-uuid"
 import { ContentfulAsset } from "../contentful/contentful-asset"
 import { ContentfulTopic } from "../contentful/contentful-topic"
 import { getAsset } from "./asset"
@@ -9,19 +10,18 @@ export type MediaProps = {
 
 export const Media = ({ model }: MediaProps) => {
   const {
-    mediaCollection,
     mediaCollection: { items },
   } = model
 
   return (
     <div data-style="media">
-      {mediaCollection.items.map((asset: ContentfulAsset, index: number) => {
+      {items.map((asset: ContentfulAsset) => {
         const {
           sys: { id },
         } = asset
 
         return (
-          <React.Fragment key={id + index}>
+          <React.Fragment key={uuid(id)}>
             {getAsset(asset, items)}
           </React.Fragment>
         )

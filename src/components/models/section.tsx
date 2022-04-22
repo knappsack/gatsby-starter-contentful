@@ -18,10 +18,7 @@ export const Section = ({ model }: SectionProps) => {
     <main role="main">
       {model?.map((section: ContentfulSection) => {
         return (
-          <React.Fragment key={uuid()}>
-            {uuid()}
-            {getSection(section)}
-          </React.Fragment>
+          <React.Fragment key={uuid()}>{getSection(section)}</React.Fragment>
         )
       })}
     </main>

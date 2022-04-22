@@ -9,7 +9,7 @@ export type ContentfulPage = {
     id: string
   }
   sectionsCollection: {
-    items: Partial<ContentfulTopicSection[] | ContentfulTextSection[]>
+    items: ContentfulTopicSection[] | ContentfulTextSection[]
   }
   slug: string
   theme: string

@@ -1,4 +1,5 @@
 import * as React from "react"
+import { uuid } from "../../lib/create-uuid"
 import { ContentfulAction } from "../contentful/contentful-action"
 import { ContentfulTopic } from "../contentful/contentful-topic"
 import { Action } from "./action"
@@ -12,12 +13,12 @@ export const Actions = ({ model }: ActionsProps) => {
 
   return (
     <div data-style="actions">
-      {actionsCollection.items.map((model: ContentfulAction, index: number) => {
+      {actionsCollection.items.map((action: ContentfulAction) => {
         const {
           sys: { id },
         } = model
 
-        return <Action key={id + index} model={model} />
+        return <Action key={uuid(id)} model={action} />
       })}
     </div>
   )

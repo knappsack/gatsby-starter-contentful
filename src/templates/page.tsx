@@ -17,7 +17,8 @@ const Page = ({
     contentful: { page, globals },
   },
 }: PageProps<PageQuery, PageContext>) => {
-  const model = page.sectionsCollection?.items
+  const section = page.sectionsCollection?.items
+
   return (
     <>
       <Seo
@@ -29,7 +30,7 @@ const Page = ({
         title={page.seoTitle || globals.siteTitle || undefined}
         url={page.slug || undefined}
       />
-      <Section model={model} />
+      <Section model={section} />
     </>
   )
 }

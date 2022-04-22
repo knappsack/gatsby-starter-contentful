@@ -25,27 +25,31 @@ export const Analytics = ({
     threshold: 0.1,
   })
 
-  if (!!entry?.isIntersecting) {
+  if (!!entry?.isIntersecting && ref.current.dataset.v === undefined) {
+    ref.current.dataset.v = ""
+
     useGtag("event", "viewing", {
-      event_id:
-        ref.current.dataset.analyticsRegion ||
-        ref.current.dataset.analyticsUnit,
+      event_id: ref.current.dataset.analytics,
     })
   }
 
   const handleMouseEnter = () => {
-    useGtag("event", "engagement", {
-      event_id: ref.current.dataset.analyticsUnit,
-    })
+    if (ref.current.dataset.e === undefined) {
+      ref.current.dataset.e = ""
+
+      useGtag("event", "engagement", {
+        event_id: ref.current.dataset.analytics,
+      })
+    }
   }
 
-  const setAnalyticsId = `${area}:${eventId ? eventId : variant}`
+  const analyticsId = `${area}:${eventId ? eventId : variant}`
 
   switch (area) {
     case `region`:
       return (
         <section
-          data-analytics-region={setAnalyticsId}
+          data-analytics={analyticsId}
           data-style={area}
           data-theme={theme}
           data-variant={variant}
@@ -57,7 +61,7 @@ export const Analytics = ({
     case `unit`:
       return (
         <div
-          data-analytics-unit={setAnalyticsId}
+          data-analytics={analyticsId}
           data-style={area}
           data-theme={theme}
           data-variant={variant}
