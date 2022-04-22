@@ -17,7 +17,7 @@ export const Analytics = ({
   variant,
   children,
 }: AnalyticsProps) => {
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = React.useRef<{ engagement: boolean, viewing: boolean } & HTMLDivElement>(null)
 
   const entry = useObserver(ref, {
     root: null,
@@ -25,8 +25,8 @@ export const Analytics = ({
     threshold: 0.1,
   })
 
-  if (!!entry?.isIntersecting && ref.current.dataset.v === undefined) {
-    ref.current.dataset.v = ""
+  if (!!entry?.isIntersecting && ref.current.viewing === undefined) {
+    ref.current.viewing = true
 
     useGtag("event", "viewing", {
       event_id: ref.current.dataset.analytics,
@@ -34,8 +34,8 @@ export const Analytics = ({
   }
 
   const handleMouseEnter = () => {
-    if (ref.current.dataset.e === undefined) {
-      ref.current.dataset.e = ""
+    if (ref.current.engagement === undefined) {
+      ref.current.engagement = true
 
       useGtag("event", "engagement", {
         event_id: ref.current.dataset.analytics,
@@ -45,29 +45,20 @@ export const Analytics = ({
 
   const analyticsId = `${area}:${eventId ? eventId : variant}`
 
+  const analyticsAttr = {
+    "data-analytics": analyticsId,
+    "data-style": area,
+    "data-theme": theme,
+    "data-variant": variant,
+    ref: ref,
+  }
+
   switch (area) {
     case `region`:
-      return (
-        <section
-          data-analytics={analyticsId}
-          data-style={area}
-          data-theme={theme}
-          data-variant={variant}
-          ref={ref}
-        >
-          {children}
-        </section>
-      )
+      return <section {...analyticsAttr}>{children}</section>
     case `unit`:
       return (
-        <div
-          data-analytics={analyticsId}
-          data-style={area}
-          data-theme={theme}
-          data-variant={variant}
-          onMouseEnter={handleMouseEnter}
-          ref={ref}
-        >
+        <div {...analyticsAttr} onMouseEnter={handleMouseEnter}>
           {children}
         </div>
       )
