@@ -44,7 +44,7 @@ export const Analytics = ({
   const handleMouseEnter = () => {
     if (status.engagement) return
     setStatus({ ...status, engagement: true })
-    
+
     useGtag("event", "engagement", {
       event_id: ref.current.dataset.analytics,
     })
@@ -62,15 +62,15 @@ export const Analytics = ({
   }
 
   switch (area) {
-    case `region`:
+    case "region":
       return <section {...analyticsProps}>{children}</section>
-    case `unit`:
+    case "unit":
       return (
         <div {...analyticsProps} onMouseEnter={handleMouseEnter}>
           {children}
         </div>
       )
     default:
-      return <div>{children}</div>
+      return <>{children}</>
   }
 }
