@@ -5,7 +5,7 @@ import RootElement from './src/components/root-element'
  * The New CSS Reset made by Elad Shechter
  * @url https://github.com/elad2412/the-new-css-reset
  */
-import './src/styles/the-new-css-reset.css'
+import "the-new-css-reset/css/reset.css"
 import './src/styles/global-css-vars.css'
 import './src/styles/app.css'
 
