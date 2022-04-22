@@ -1,10 +1,8 @@
 import * as React from "react"
 
-type ObserverProps = IntersectionObserverInit
-
 export const useObserver = (
-  elementRef: React.RefObject<HTMLElement>,
-  { root, rootMargin, threshold }: ObserverProps
+  ref: React.RefObject<HTMLDivElement>,
+  { root, rootMargin, threshold }: IntersectionObserverInit
 ) => {
   const [entry, setEntry] = React.useState<IntersectionObserverEntry>(null)
 
@@ -13,7 +11,7 @@ export const useObserver = (
   }
 
   React.useEffect(() => {
-    const node = elementRef?.current
+    const node = ref?.current
 
     const hasIOSupport = !!window.IntersectionObserver
 
@@ -34,7 +32,7 @@ export const useObserver = (
     observer.observe(node)
 
     return () => observer.unobserve(node)
-  }, [elementRef])
+  }, [ref])
 
   return entry
 }
