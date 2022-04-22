@@ -1,42 +1,21 @@
 import * as React from "react"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+
 import {
-  Block,
-  BLOCKS,
-  Inline,
-  INLINES,
-  MARKS,
-  Node,
-  Text,
-} from "@contentful/rich-text-types"
-import { createJumpLink } from "../../lib/create-jump-link"
-import { Analytics } from "../analytics"
+  documentToReactComponents,
+  Options,
+} from "@contentful/rich-text-react-renderer"
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types"
+
 import {
   ContentfulLinks,
   ContentfulTextSection,
 } from "../contentful/contentful-text-section"
+
+import { Analytics } from "../analytics"
+import { createJumpLink } from "../../lib/create-jump-link"
 import { GridTemplate } from "../layout/grid-template"
 
-type CommonNode = Node & {
-  content: Text | Block | Inline
-}
-type NodeRenderer = {
-  (
-    node: Block | Inline | CommonNode,
-    children: React.ReactNode | any
-  ): React.ReactNode
-}
-type RenderNode = {
-  [k: string]: NodeRenderer
-}
-type RenderMark = {
-  [k: string]: (text: React.ReactNode) => React.ReactNode
-}
-
-type OptionsProps = (links: ContentfulLinks) => {
-  renderNode: RenderNode
-  renderMark: RenderMark
-}
+type OptionsProps = (links: ContentfulLinks) => Options
 
 const options: OptionsProps = links => {
   // Create map of Assets
@@ -102,8 +81,9 @@ const options: OptionsProps = links => {
         <li data-style="li">{children}</li>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => {
+        // @ts-ignore: value is not defined as type
         if (node.content[0].value === "") {
-          return <br />
+          return null
         } else {
           return <p data-style="p">{children}</p>
         }
@@ -114,7 +94,13 @@ const options: OptionsProps = links => {
       [BLOCKS.HR]: () => <hr data-style="hr" />,
       [BLOCKS.EMBEDDED_ASSET]: node => {
         const asset = contentfulAssetMap.get(node.data.target.sys.id)
-        return <img data-style="img" src={asset.url} alt={asset.description} />
+        return (
+          <img
+            data-style="img"
+            src={asset.url + `?q=90&w=1360`}
+            alt={asset.description}
+          />
+        )
       },
     },
   }
