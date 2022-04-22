@@ -1,6 +1,7 @@
 import * as React from "react"
 
 type AnyElementProps = {
+  children: React.ReactNode
   is: keyof JSX.IntrinsicElements
   className?: string
 }
