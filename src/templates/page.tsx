@@ -42,9 +42,9 @@ type PageContext = {
 }
 
 export const query = graphql`
-  query ($pageId: String!, $globalsId: String!) {
+  query ($pageId: String!, $globalsId: String!, $preview: Boolean) {
     contentful {
-      page(id: $pageId, locale: "en-US") {
+      page(id: $pageId, locale: "en-US", preview: $preview) {
         __typename
         sys {
           id
@@ -65,7 +65,7 @@ export const query = graphql`
           }
         }
       }
-      globals(id: $globalsId) {
+      globals(id: $globalsId, preview: $preview) {
         siteAuthor
         siteDescription
         siteKeywords
