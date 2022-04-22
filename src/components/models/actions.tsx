@@ -1,25 +1,21 @@
 import * as React from "react"
+
 import { uuid } from "../../lib/create-uuid"
 import { ContentfulAction } from "../contentful/contentful-action"
-import { ContentfulTopic } from "../contentful/contentful-topic"
-import { Action } from "./action"
+import { Action } from "../elements/action"
 
 export type ActionsProps = {
-  model: ContentfulTopic
+  model: ContentfulAction[]
 }
 
-export const Actions = ({ model }: ActionsProps) => {
-  const { actionsCollection } = model
+export const Actions = ({ model }: ActionsProps) => (
+  <div data-style="actions">
+    {model.map((action: ContentfulAction) => {
+      const {
+        sys: { id },
+      } = action
 
-  return (
-    <div data-style="actions">
-      {actionsCollection.items.map((action: ContentfulAction) => {
-        const {
-          sys: { id },
-        } = model
-
-        return <Action key={uuid(id)} model={action} />
-      })}
-    </div>
-  )
-}
+      return <Action key={uuid(id)} model={action} />
+    })}
+  </div>
+)

@@ -1,4 +1,5 @@
 import * as React from "react"
+
 import { GetTypesOf } from "../../lib/get-types-of"
 import { AnyElement } from "../../lib/react-create-any-element"
 import { TopicSectionVariant } from "../contentful/contentful-topic-section"

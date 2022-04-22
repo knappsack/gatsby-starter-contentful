@@ -11,7 +11,6 @@ import {
 } from "../contentful/contentful-topic-section"
 import { Abstract } from "../elements/abstract"
 import { Actions } from "../models/actions"
-import { uuid } from "../../lib/create-uuid"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -44,16 +43,16 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
       theme={theme}
       variant={variant}
     >
-      {options.media && mediaCollection && <Media model={model} />}
+      {options.media && mediaCollection && <Media model={model.mediaCollection.items} />}
       <div data-style="content">
-        {options.icon && icon && <Icon icon={icon} />}
+        {options.icon && icon && <Icon />}
         {options.heading && heading && (
           <Heading variant={variant}>{heading}</Heading>
         )}
         {options.abstract && abstract && (
           <Abstract variant={variant}>{abstract}</Abstract>
         )}
-        {options.action && actionsCollection && <Actions model={model} />}
+        {options.action && actionsCollection && <Actions model={model.actionsCollection.items} />}
       </div>
     </Analytics>
   )
