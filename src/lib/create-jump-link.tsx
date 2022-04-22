@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import slugify from '@sindresorhus/slugify'
 import { GetTypesOf } from './get-types-of'
 

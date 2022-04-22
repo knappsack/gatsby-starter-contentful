@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { ContentfulAction } from '../contentful/contentful-action'
 import { ContentfulTopic } from '../contentful/contentful-topic'
 import { Action } from './action'

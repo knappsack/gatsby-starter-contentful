@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { graphql, PageProps } from 'gatsby'
 import { Seo } from '../seo'
 import { Section } from '../models/section'

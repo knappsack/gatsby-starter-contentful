@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import * as React from 'react'
 import { Link } from 'gatsby'
 import { ContentfulAction } from '../contentful/contentful-action'
 import { useGtag } from '../../lib/gtag'
@@ -22,7 +22,7 @@ export const Action = ({ model }: ActionProps) => {
   } = model
 
   const path = slug || url
-  const ref = useRef<any>(null)
+  const ref = React.useRef<any>(null)
 
   const setAnalyticsId = `${eventId.toLocaleLowerCase()}:${slug
     .toLocaleLowerCase()

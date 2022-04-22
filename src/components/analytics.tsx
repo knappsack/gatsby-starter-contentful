@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import * as React from 'react'
 import { GetTypesOf } from '../lib/get-types-of'
 import { useGtag } from '../lib/gtag'
 import { useObserver } from '../lib/use-observer'
@@ -17,7 +17,7 @@ export const Analytics = ({
   variant,
   children,
 }: AnalyticsProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = React.useRef<HTMLDivElement>(null)
 
   const entry = useObserver(ref, {
     root: null,

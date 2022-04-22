@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { ContentfulTopicSection } from '../contentful/contentful-topic-section'
 
 export type NavigationSectionProps = {

@@ -1,20 +1,20 @@
-import { RefObject, useEffect, useState } from 'react'
+import * as React from 'react'
 
 type ObserverProps = IntersectionObserverInit & {
   triggerOnce?: boolean
 }
 
 export const useObserver = (
-  elementRef: RefObject<Element>,
+  elementRef: React.RefObject<Element>,
   { root, rootMargin, threshold, triggerOnce = true }: ObserverProps
 ) => {
-  const [entry, setEntry] = useState<IntersectionObserverEntry>(null)
+  const [entry, setEntry] = React.useState<IntersectionObserverEntry>(null)
 
   const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
     setEntry(entry)
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     const node = elementRef?.current
     const hasIOSupport = !!window.IntersectionObserver
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { ContentfulAsset } from '../contentful/contentful-asset'
 
 type AssetProps = {

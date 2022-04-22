@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import {
   Block,

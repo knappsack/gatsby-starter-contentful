@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import slugify from '@sindresorhus/slugify'
 import { Analytics } from '../analytics'
 import { Heading } from '../elements/heading'

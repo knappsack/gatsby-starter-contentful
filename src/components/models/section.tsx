@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import * as React from 'react'
 import { NavigationSection } from './navigation-section'
 import { TextSection } from './text-section'
 import { TopicSection } from './topic-section'
@@ -16,7 +16,7 @@ export const Section = ({ model }: SectionProps) => {
     <main role="main">
       {model
         ? model.map((section: ContentfulSection, index: number) => {
-            return <Fragment key={index}>{getSection(section)}</Fragment>
+            return <React.Fragment key={index}>{getSection(section)}</React.Fragment>
           })
         : null}
     </main>

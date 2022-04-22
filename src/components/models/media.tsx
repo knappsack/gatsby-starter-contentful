@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import * as React from 'react'
 import { ContentfulAsset } from '../contentful/contentful-asset'
 import { ContentfulTopic } from '../contentful/contentful-topic'
 import { getAsset } from './asset'
@@ -20,7 +20,7 @@ export const Media = ({ model }: MediaProps) => {
           sys: { id },
         } = asset
 
-        return <Fragment key={id + index}>{getAsset(asset, items)}</Fragment>
+        return <React.Fragment key={id + index}>{getAsset(asset, items)}</React.Fragment>
       })}
     </div>
   )
