@@ -23,10 +23,16 @@ export const Action = ({ model }: ActionProps) => {
     query,
   } = model
 
-  const ref = React.useRef<any>(null)
+  const ref = React.useRef(undefined)
 
   const path = page?.slug || url
-  const to = path + (query && `?` + query) + (anchor && `#` + anchor)
+  const queryString = query && `?` + query
+  const anchorHash = anchor && `#` + anchor
+
+  const to =
+    path +
+    (queryString ? queryString : '') +
+    (anchorHash ? anchorHash : '')
 
   const setAnalyticsId = `${eventId.toLocaleLowerCase()}:${slugify(heading)}`
 
