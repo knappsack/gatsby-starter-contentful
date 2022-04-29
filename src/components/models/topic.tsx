@@ -40,7 +40,7 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
         <Media model={model.mediaCollection.items} />
       )}
       <div data-style="content">
-        {options.icon && icon && <Icon />}
+        {options.icon && icon && <Icon name={icon} />}
         {options.heading && heading && (
           <Heading variant={variant}>{heading}</Heading>
         )}
