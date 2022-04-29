@@ -1,10 +1,10 @@
 import * as React from "react"
 
-type AnyElementProps = {
+type AnyElementProps = Partial<{
   children: React.ReactNode
   is: keyof JSX.IntrinsicElements
-  className?: string
-}
+  className: string
+}>
 
 export const AnyElement: React.FC<AnyElementProps> = ({
   children,
@@ -16,8 +16,8 @@ export const AnyElement: React.FC<AnyElementProps> = ({
   /**
    * Emotion CSS-in-JS helper
    * ------------------------
-   * Copy className to new element. This allows for creating
-   * components that inherit styling from the base component.
+   * Copy className to new element. This enables 
+   * inherit styles from the base component.
    */
   attributes.className = props.className
   return React.createElement(type, attributes, children)
