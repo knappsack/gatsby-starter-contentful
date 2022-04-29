@@ -16,7 +16,7 @@ export const AnyElement: React.FC<AnyElementProps> = ({
   /**
    * Emotion CSS-in-JS helper
    * ------------------------
-   * Copy className to new element. This enables 
+   * Copy className to new element. This enables
    * inherit styles from the base component.
    */
   attributes.className = props.className
