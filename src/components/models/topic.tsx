@@ -29,13 +29,6 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
     theme,
   } = model
 
-  const getOptions = [
-    options.abstract ? "abstract" : undefined,
-    options.action ? "action" : undefined,
-    options.media ? "media" : undefined,
-    options.reversed ? "reversed" : undefined,
-  ]
-
   return (
     <Analytics
       area="unit"
@@ -43,7 +36,9 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
       theme={theme}
       variant={variant}
     >
-      {options.media && mediaCollection && <Media model={model.mediaCollection.items} />}
+      {options.media && mediaCollection && (
+        <Media model={model.mediaCollection.items} />
+      )}
       <div data-style="content">
         {options.icon && icon && <Icon />}
         {options.heading && heading && (
@@ -52,7 +47,9 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
         {options.abstract && abstract && (
           <Abstract variant={variant}>{abstract}</Abstract>
         )}
-        {options.action && actionsCollection && <Actions model={model.actionsCollection.items} />}
+        {options.action && actionsCollection && (
+          <Actions model={model.actionsCollection.items} />
+        )}
       </div>
     </Analytics>
   )

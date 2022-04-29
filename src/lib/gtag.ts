@@ -10,7 +10,7 @@ type GtagProps = {
       event_label?: string
       value?: string
     }
-  )
+  ): void
 }
 
 declare global {

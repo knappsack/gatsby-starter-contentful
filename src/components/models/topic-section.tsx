@@ -1,4 +1,5 @@
 import * as React from "react"
+
 import { uuid } from "../../lib/create-uuid"
 import { Analytics } from "../analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"

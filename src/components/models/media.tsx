@@ -1,4 +1,5 @@
 import * as React from "react"
+
 import { uuid } from "../../lib/create-uuid"
 import { ContentfulAsset } from "../contentful/contentful-asset"
 import { getAsset } from "./asset"
@@ -15,7 +16,9 @@ export const Media = ({ model }: MediaProps) => (
       } = asset
 
       return (
-        <React.Fragment key={uuid(id)}>{getAsset(asset, model)}</React.Fragment>
+        <React.Fragment key={uuid(id)}>
+          {getAsset({ asset, model })}
+        </React.Fragment>
       )
     })}
   </div>

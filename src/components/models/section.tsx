@@ -9,7 +9,7 @@ import { uuid } from "../../lib/create-uuid"
 
 type ContentfulSection = ContentfulTopicSection | ContentfulTextSection
 
-export type SectionProps = {
+type SectionProps = {
   model: ContentfulSection[]
 }
 
@@ -18,14 +18,20 @@ export const Section = ({ model }: SectionProps) => {
     <main role="main">
       {model?.map((section: ContentfulSection) => {
         return (
-          <React.Fragment key={uuid()}>{getSection(section)}</React.Fragment>
+          <React.Fragment key={uuid()}>
+            {getSection({ section })}
+          </React.Fragment>
         )
       })}
     </main>
   )
 }
 
-const getSection = (section: ContentfulSection) => {
+type GetSectionProps = {
+  section: ContentfulSection
+}
+
+const getSection = ({ section }: GetSectionProps) => {
   switch (section.__typename) {
     case `Contentful_NavigationSection`:
       return <NavigationSection model={section as ContentfulTopicSection} />
