@@ -30,9 +30,7 @@ export const Action = ({ model }: ActionProps) => {
   const anchorHash = anchor && `#` + anchor
 
   const to =
-    path +
-    (queryString ? queryString : '') +
-    (anchorHash ? anchorHash : '')
+    path + (queryString ? queryString : "") + (anchorHash ? anchorHash : "")
 
   const setAnalyticsId = `${eventId.toLocaleLowerCase()}:${slugify(heading)}`
 

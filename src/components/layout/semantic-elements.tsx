@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { uuid } from "../../lib/create-uuid"
-import Legal from '../models/legal'
+import Legal from "../models/legal"
 
 const getSemanticTag = ({ section, count, index }) => {
   const {
@@ -31,7 +31,7 @@ const getSemanticTag = ({ section, count, index }) => {
   return "main"
 }
 
-const SemanticElements: React.FC<any> = (props) => {
+const SemanticElements: React.FC<any> = props => {
   const sections: Record<string, React.ReactNode[]> = {
     footer: [],
     header: [],
@@ -59,9 +59,7 @@ const SemanticElements: React.FC<any> = (props) => {
         </main>
       )}
       {sections.footer.length > 0 && (
-        <footer role="contentinfo">
-          {sections.footer}
-        </footer>
+        <footer role="contentinfo">{sections.footer}</footer>
       )}
     </React.Fragment>
   )

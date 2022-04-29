@@ -1,10 +1,7 @@
 import { graphql } from "gatsby"
-import { ContentfulNavigation } from './contentful-navigation'
+import { ContentfulNavigation } from "./contentful-navigation"
 
-export type NavigationSectionVariant =
-  | "header"
-  | "footer"
-  | "sitemap"
+export type NavigationSectionVariant = "header" | "footer" | "sitemap"
 
 export type ContentfulNavigationSection = {
   __typename: string

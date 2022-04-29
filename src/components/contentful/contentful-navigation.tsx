@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import { ContentfulAction } from './contentful-action'
+import { ContentfulAction } from "./contentful-action"
 
 export type ContentfulNavigation = {
   __typename: string

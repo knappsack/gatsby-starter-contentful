@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import SemanticElements from '../layout/semantic-elements'
+import SemanticElements from "../layout/semantic-elements"
 import { uuid } from "../../lib/create-uuid"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
 import { ContentfulTextSection } from "../contentful/contentful-text-section"
