@@ -22,7 +22,7 @@ module.exports = {
       options: {
         background_color: "#1d1d1f",
         display: "standalone",
-        icon: "static/images/favicon.png",
+        icon: "static/favicon.png",
         include_favicon: true,
         name: "Knappsack starter",
         short_name: "starter",
