@@ -1,10 +1,20 @@
 import * as React from "react"
-import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
+import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
 
 export type NavigationSectionProps = {
-  model: ContentfulTopicSection
+  model: ContentfulNavigationSection
 }
 
 export const NavigationSection = ({ model }: NavigationSectionProps) => {
-  return <>{model.variant}</>
+  const {
+    __typename,
+    sys: { id },
+    variant,
+  } = model
+  
+  return (
+    <div>
+      {__typename}:{variant}:{id}
+    </div>
+  )
 }

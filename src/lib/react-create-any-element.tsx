@@ -2,11 +2,11 @@ import * as React from "react"
 
 type AnyElementProps = Partial<{
   children: React.ReactNode
-  is: keyof JSX.IntrinsicElements
+  is: keyof JSX.IntrinsicElements | string
   className: string
 }>
 
-export const AnyElement: React.FC<AnyElementProps> = ({
+export const AnyElement: React.FC<AnyElementProps & any> = ({
   children,
   ...props
 }) => {

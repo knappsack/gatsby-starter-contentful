@@ -22,6 +22,9 @@ export const globals = graphql`
     }
     siteAuthor
     siteDescription
+    siteImage {
+      ...asset
+    }
     siteKeywords
     siteTitle
     skipToContentHeading

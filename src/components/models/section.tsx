@@ -1,13 +1,18 @@
 import * as React from "react"
 
+import SemanticElements from '../layout/semantic-elements'
+import { uuid } from "../../lib/create-uuid"
+import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
+import { ContentfulTextSection } from "../contentful/contentful-text-section"
+import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
 import { NavigationSection } from "./navigation-section"
 import { TextSection } from "./text-section"
 import { TopicSection } from "./topic-section"
-import { ContentfulTextSection } from "../contentful/contentful-text-section"
-import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
-import { uuid } from "../../lib/create-uuid"
 
-type ContentfulSection = ContentfulTopicSection | ContentfulTextSection
+type ContentfulSection =
+  | ContentfulNavigationSection
+  | ContentfulTextSection
+  | ContentfulTopicSection
 
 type SectionProps = {
   model: ContentfulSection[]
@@ -15,15 +20,15 @@ type SectionProps = {
 
 export const Section = ({ model }: SectionProps) => {
   return (
-    <main role="main">
+    <SemanticElements>
       {model?.map((section: ContentfulSection) => {
         return (
-          <React.Fragment key={uuid()}>
+          <React.Fragment key={uuid(section.sys.id)}>
             {getSection({ section })}
           </React.Fragment>
         )
       })}
-    </main>
+    </SemanticElements>
   )
 }
 
@@ -34,7 +39,9 @@ type GetSectionProps = {
 const getSection = ({ section }: GetSectionProps) => {
   switch (section.__typename) {
     case `Contentful_NavigationSection`:
-      return <NavigationSection model={section as ContentfulTopicSection} />
+      return (
+        <NavigationSection model={section as ContentfulNavigationSection} />
+      )
 
     case `Contentful_TopicSection`:
       return <TopicSection model={section as ContentfulTopicSection} />

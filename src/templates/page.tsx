@@ -45,35 +45,10 @@ export const query = graphql`
   query ($pageId: String!, $globalsId: String!, $preview: Boolean) {
     contentful {
       page(id: $pageId, locale: "en-US", preview: $preview) {
-        __typename
-        sys {
-          id
-        }
-        entryTitle
-        slug
-        seoTitle
-        seoDescription
-        modelVersion
-        seoKeywords
-        seoImage {
-          ...asset
-        }
-        sectionsCollection(limit: 10) {
-          items {
-            ...textSection
-            ...topicSection
-          }
-        }
+        ...page
       }
       globals(id: $globalsId, preview: $preview) {
-        siteAuthor
-        siteDescription
-        siteKeywords
-        siteTitle
-        skipToContentHeading
-        siteImage {
-          ...asset
-        }
+        ...globals
       }
     }
   }
