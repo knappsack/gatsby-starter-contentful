@@ -1,20 +1,24 @@
 import * as React from "react"
-import { GetTypesOf } from "../../lib/get-types-of"
+import { createUuid } from "../../lib/create-uuid"
+import { Analytics } from "../analytics"
+import { ContentfulNavigation } from "../contentful/contentful-navigation"
 
-import { Any } from "../../lib/create-any-element"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
-import Legal from "./legal"
+import { GridTemplate } from "../layout/grid-template"
+import LegalSection from "./legal-section"
+import Navigation from "./navigation"
 
 export type NavigationSectionProps = {
   model: ContentfulNavigationSection
 }
 
 export const NavigationSection = ({ model }: NavigationSectionProps) => {
-  const {
-    __typename,
-    sys: { id },
-    variant,
-  } = model
+  const { branding, eventId, heading, navigationsCollection, variant } = model
+
+  const options = {
+    heading,
+    branding,
+  }
 
   const props = {
     "aria-label":
@@ -28,12 +32,27 @@ export const NavigationSection = ({ model }: NavigationSectionProps) => {
   }
 
   if (variant.toLocaleLowerCase() === "footer") {
-    return <Legal model={model} />
+    return <LegalSection model={model} {...props} />
   }
 
   return (
-    <Any {...props}>
-      {__typename}:{variant}:{id}
-    </Any>
+    <Analytics area="nav" eventId={eventId} variant={variant}>
+      <GridTemplate variant={variant}>
+        {navigationsCollection.items.map((navigation: ContentfulNavigation) => {
+          const {
+            sys: { id },
+          } = model
+
+          return (
+            <Navigation
+              key={createUuid(id)}
+              model={navigation}
+              options={options}
+              variant={variant}
+            />
+          )
+        })}
+      </GridTemplate>
+    </Analytics>
   )
 }

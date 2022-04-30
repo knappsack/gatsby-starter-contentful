@@ -1,16 +1,19 @@
 import { graphql } from "gatsby"
 import { ContentfulNavigation } from "./contentful-navigation"
 
+export type NavigationSectionOptions = {
+  heading: boolean
+  branding: boolean
+}
+
 export type NavigationSectionVariant = "header" | "footer" | "sitemap"
 
-export type ContentfulNavigationSection = {
+export type ContentfulNavigationSection = NavigationSectionOptions & {
   __typename: string
   sys: {
     id: string
   }
-  branding: boolean
   eventId: string
-  heading: boolean
   variant: NavigationSectionVariant
   navigationsCollection: {
     items: ContentfulNavigation[]

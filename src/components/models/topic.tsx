@@ -48,7 +48,7 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
           <Abstract variant={variant}>{abstract}</Abstract>
         )}
         {options.action && actionsCollection && (
-          <Actions model={model.actionsCollection.items} />
+          <Actions model={model.actionsCollection.items} variant="button" />
         )}
       </div>
     </Analytics>

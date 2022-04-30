@@ -6,10 +6,11 @@ import { Action } from "../elements/action"
 
 export type ActionsProps = {
   model: ContentfulAction[]
+  variant?: "button"
 }
 
-export const Actions = ({ model }: ActionsProps) => (
-  <div data-style="actions">
+export const Actions = ({ model, variant }: ActionsProps) => (
+  <div data-style="actions" data-variant={variant}>
     {model.map((action: ContentfulAction) => {
       const {
         sys: { id },

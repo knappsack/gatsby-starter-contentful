@@ -3,7 +3,7 @@ import { GetTypesOf } from "../../lib/get-types-of"
 
 type GridTemplateProps = GetTypesOf["div"] & {
   variant: string
-  theme: string
+  theme?: string
 }
 
 export const GridTemplate = ({

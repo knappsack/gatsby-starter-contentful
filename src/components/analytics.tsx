@@ -5,7 +5,7 @@ import { useGtag } from "../lib/gtag"
 import { isBrowser } from "../lib/is-browser"
 
 type AnalyticsProps = GetTypesOf["div"] & {
-  area: "region" | "unit"
+  area: "region" | "unit" | "nav"
   eventId?: string
   theme?: string
   variant: string
@@ -79,6 +79,8 @@ export const Analytics = ({
   }
 
   switch (area) {
+    case "nav":
+      return <nav {...props}>{children}</nav>
     case "region":
       return <section {...props}>{children}</section>
     case "unit":
