@@ -1,7 +1,7 @@
 import * as React from "react"
 import { GetTypesOf } from "../../lib/get-types-of"
 
-import { AnyElement } from "../../lib/react-create-any-element"
+import { Any } from "../../lib/create-any-element"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
 import Legal from "./legal"
 
@@ -32,8 +32,8 @@ export const NavigationSection = ({ model }: NavigationSectionProps) => {
   }
 
   return (
-    <AnyElement {...props}>
+    <Any {...props}>
       {__typename}:{variant}:{id}
-    </AnyElement>
+    </Any>
   )
 }

@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { uuid } from "../../lib/create-uuid"
+import { createUuid } from "../../lib/create-uuid"
 import { ContentfulAction } from "../contentful/contentful-action"
 import { Action } from "../elements/action"
 
@@ -15,7 +15,7 @@ export const Actions = ({ model }: ActionsProps) => (
         sys: { id },
       } = action
 
-      return <Action key={uuid(id)} model={action} />
+      return <Action key={createUuid(id)} model={action} />
     })}
   </div>
 )

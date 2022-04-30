@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import SemanticElements from "../layout/semantic-elements"
-import { uuid } from "../../lib/create-uuid"
+import { createUuid } from "../../lib/create-uuid"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
 import { ContentfulTextSection } from "../contentful/contentful-text-section"
 import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
@@ -23,7 +23,7 @@ export const Section = ({ model }: SectionProps) => {
     <SemanticElements>
       {model?.map((section: ContentfulSection) => {
         return (
-          <React.Fragment key={uuid(section.sys.id)}>
+          <React.Fragment key={createUuid(section.sys.id)}>
             {getSection({ section })}
           </React.Fragment>
         )

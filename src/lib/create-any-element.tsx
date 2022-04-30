@@ -1,15 +1,11 @@
 import * as React from "react"
 
-type AnyElementProps = Partial<{
-  children: React.ReactNode
-  is: keyof JSX.IntrinsicElements | string
-  className: string
-}>
+type AnyProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLElement>,
+  HTMLElement
+>
 
-export const AnyElement: React.FC<AnyElementProps & any> = ({
-  children,
-  ...props
-}) => {
+export const Any: React.FC<AnyProps> = ({ children, ...props }) => {
   const type = props.is || "div"
   const attributes = Object.assign({}, props)
   delete attributes.is

@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { uuid } from "../../lib/create-uuid"
+import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"
 import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
@@ -44,7 +44,7 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
 
           return (
             <Topic
-              key={uuid(id)}
+              key={createUuid(id)}
               model={topic}
               options={options}
               variant={variant}

@@ -1,5 +1,5 @@
 import * as React from "react"
 
-export const uuid = (prefix = "uuid") => {
+export const createUuid = (prefix = "uuid") => {
   return prefix + React.useId()
 }

@@ -1,6 +1,7 @@
 import * as React from "react"
+
 import { GetTypesOf } from "../../lib/get-types-of"
-import { AnyElement } from "../../lib/react-create-any-element"
+import { Any } from "../../lib/create-any-element"
 import { TopicSectionVariant } from "../contentful/contentful-topic-section"
 
 /**
@@ -27,12 +28,12 @@ export type HeadingProps = GetTypesOf["h3"] & {
  *
  * './heading.tsx'
  * ---------------
- * const Heading = () => <AnyElement is='h3' {...props} />
+ * const Heading = () => <Any is='h3' {...props} />
  */
 export const Heading = ({ variant, children, ...props }: HeadingProps) => {
   return (
-    <AnyElement is="h3" data-style="heading" data-variant={variant} {...props}>
+    <Any is="h3" data-style="heading" data-variant={variant} {...props}>
       {children}
-    </AnyElement>
+    </Any>
   )
 }

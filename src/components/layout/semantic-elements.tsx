@@ -1,7 +1,6 @@
 import * as React from "react"
 
-import { uuid } from "../../lib/create-uuid"
-import Legal from "../models/legal"
+import { createUuid } from "../../lib/create-uuid"
 
 const getSemanticTag = ({ section, count, index }) => {
   const {
@@ -45,7 +44,9 @@ const SemanticElements: React.FC<any> = props => {
         count: React.Children.count(props.children) - 1,
         index,
       })
-    ].push(<React.Fragment key={uuid(`${index}`)}>{child}</React.Fragment>)
+    ].push(
+      <React.Fragment key={createUuid(`${index}`)}>{child}</React.Fragment>
+    )
   })
 
   return (
