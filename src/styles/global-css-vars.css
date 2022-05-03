@@ -12,11 +12,9 @@
   --text-font-weight: var(--base-font-weight);
   --text-font: var(--base-font-family);
   --text-line-height: var(--base-line-height);
-
+  --border-color: #d2d2d2;
   --link-color: #06c;
-  
   --region-bg-color: #f5f5f5;
-  
   --unit-bg-color: #fff;
 }
 

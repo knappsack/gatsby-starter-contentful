@@ -9,7 +9,7 @@ export const Link = ({ children, ...props }) => {
   if (internal) {
     return (
       <GatsbyLink to={to} {...props}>
-        {children}1
+        {children}
       </GatsbyLink>
     )
   }

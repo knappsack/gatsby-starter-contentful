@@ -147,11 +147,11 @@
 [data-style="grid-template"] {
   display: grid;
   gap: 24px;
-  margin: auto;
-  padding: 24px 0;
   max-width: 1380px;
 
   &[data-variant="block"] {
+    padding: 24px 0;
+    margin: auto;
     grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
 
     @media (--viewport-small) {
@@ -174,10 +174,14 @@
   }
 
   &[data-variant="text"] {
+    padding: 24px 0;
+    margin: auto;
     max-width: 680px;
   }
 
   &[data-variant="sitemap"] {
+    width: 100%;
+    padding: 0;
     grid-template-columns: repeat(4, 1fr);
 
     @media (--viewport-medium) {
@@ -191,6 +195,7 @@
 
   &[data-variant="footer"] {
     padding: 24px 0;
+    margin: auto;
     width: 100%;
 
     & [data-style="legal"] {
@@ -223,6 +228,33 @@
     margin: auto;
     overflow: hidden;
     text-align: center;
+  }
+}
+
+[data-style="container"] {
+  display: flex;
+  max-width: 1380px;
+  margin: auto;
+  padding: 24px 0;
+
+  @media (--viewport-medium) {
+    flex-direction: column;
+  }
+}
+
+[data-style="logo"] {
+  & > picture {
+    max-width: 54px;
+  }
+
+  &[data-variant="sitemap"] {
+    width: 100%;
+    max-width: calc(100% / 5);
+    height: 100%;
+
+    @media (--viewport-medium) {
+      margin-bottom: 24px;
+    }
   }
 }
 
@@ -351,7 +383,7 @@
 [data-style="copyright"] {
   font-family: var(--text-font);
   color: gray;
-  font-size: calc( var(--base-font-size) * .75);
+  font-size: calc(var(--base-font-size) * 0.75);
   line-height: var(--base-line-height);
 }
 
@@ -362,13 +394,15 @@
 }
 
 footer {
-  & [data-style="grid-template"][data-variant="footer"],
-  & [data-style="grid-template"][data-variant="sitemap"] {
-    border-top: 1px solid #d2d2d2;
+  & [data-style="container"],
+  & [data-style="grid-template"][data-variant="footer"] {
+    border-top: 1px solid var(--border-color);
   }
 
   & [data-style="navigation-heading"],
-  & [data-style="navigation-list"][data-variant="sitemap"] [data-style="action"] {
+  &
+    [data-style="navigation-list"][data-variant="sitemap"]
+    [data-style="action"] {
     font-size: calc(var(--base-font-size) * 0.89);
   }
 }
@@ -429,7 +463,7 @@ footer {
   transform: translateY(-100%);
   transition: transform 0.25s;
   z-index: 9001;
-  
+
   &:focus {
     transform: translateY(0%);
   }

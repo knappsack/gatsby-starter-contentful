@@ -7,17 +7,17 @@ import { ContentfulNavigationSection } from "../contentful/contentful-navigation
 import { GridTemplate } from "../layout/grid-template"
 import LegalSection from "./legal-section"
 import Navigation from "./navigation"
+import { Link } from "../elements/link"
 
 export type NavigationSectionProps = {
   model: ContentfulNavigationSection
 }
 
 export const NavigationSection = ({ model }: NavigationSectionProps) => {
-  const { branding, eventId, heading, navigationsCollection, variant } = model
+  const { eventId, heading, logo, navigationsCollection, variant } = model
 
   const options = {
     heading,
-    branding,
   }
 
   const props = {
@@ -37,22 +37,42 @@ export const NavigationSection = ({ model }: NavigationSectionProps) => {
 
   return (
     <Analytics area="nav" eventId={eventId} variant={variant}>
-      <GridTemplate variant={variant}>
-        {navigationsCollection.items.map((navigation: ContentfulNavigation) => {
-          const {
-            sys: { id },
-          } = model
+      <div data-style="container">
+        {logo && (
+          <Link
+            data-style="logo"
+            aria-label={logo.title}
+            data-variant={variant}
+            to="/"
+          >
+            <picture data-style="picture">
+              <img
+                alt={logo.description}
+                src={`${logo.url}?fm=webp`}
+                title={logo.title}
+              />
+            </picture>
+          </Link>
+        )}
+        <GridTemplate variant={variant}>
+          {navigationsCollection.items.map(
+            (navigation: ContentfulNavigation) => {
+              const {
+                sys: { id },
+              } = model
 
-          return (
-            <Navigation
-              key={createUuid(id)}
-              model={navigation}
-              options={options}
-              variant={variant}
-            />
-          )
-        })}
-      </GridTemplate>
+              return (
+                <Navigation
+                  key={createUuid(id)}
+                  model={navigation}
+                  options={options}
+                  variant={variant}
+                />
+              )
+            }
+          )}
+        </GridTemplate>
+      </div>
     </Analytics>
   )
 }
