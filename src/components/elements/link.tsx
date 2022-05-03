@@ -3,9 +3,7 @@ import * as React from "react"
 import { Link as GatsbyLink } from "gatsby"
 
 export const Link = ({ children, ...props }) => {
-  const {
-    to,
-  } = props
+  const { to } = props
 
   const internal = /^\/(?!\/)/.test(to)
   if (internal) {

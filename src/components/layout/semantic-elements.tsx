@@ -31,7 +31,7 @@ const getSemanticTag = ({ section, count, index }) => {
   return "main"
 }
 
-const SemanticElements: React.FC<any> = (props) => {
+const SemanticElements: React.FC<any> = props => {
   const sections: Record<string, React.ReactNode[]> = {
     footer: [],
     header: [],
@@ -54,7 +54,9 @@ const SemanticElements: React.FC<any> = (props) => {
     <React.Fragment>
       {sections.header.length > 0 && (
         <header role="banner">
-          <a data-skip-to-content="" href="#main">Skip to content</a>
+          <a data-skip-to-content="" href="#main">
+            Skip to content
+          </a>
           {sections.header}
         </header>
       )}
