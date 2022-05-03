@@ -1,10 +1,8 @@
 import * as React from "react"
 
-import { GatsbyLinkProps, Link as GatsbyLink } from "gatsby"
+import { Link as GatsbyLink } from "gatsby"
 
-export type LinkProps = GatsbyLinkProps<Record<string, unknown>>
-
-export const Link: React.FC<LinkProps> = ({ children, ...props }) => {
+export const Link = ({ children, ...props }) => {
   const {
     to,
   } = props
@@ -12,8 +10,8 @@ export const Link: React.FC<LinkProps> = ({ children, ...props }) => {
   const internal = /^\/(?!\/)/.test(to)
   if (internal) {
     return (
-      <GatsbyLink to={to}>
-        {children}
+      <GatsbyLink to={to} {...props}>
+        {children}1
       </GatsbyLink>
     )
   }

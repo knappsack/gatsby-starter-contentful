@@ -4,6 +4,7 @@ import slugify from "@sindresorhus/slugify"
 import { Link as GatsbyLink } from "gatsby"
 import { ContentfulAction } from "../contentful/contentful-action"
 import { useGtag } from "../../lib/gtag"
+import { Icon } from "../elements/icon"
 
 export type ActionProps = {
   model: ContentfulAction
@@ -38,7 +39,7 @@ export const Action = ({ model }: ActionProps) => {
     useGtag("event", "click", { event_id: ref.current.dataset.analyticsId })
   }
 
-  const actionAttr = {
+  const props = {
     "aria-label": description,
     "data-analytics-id": setAnalyticsId,
     "data-style": "action",
@@ -49,14 +50,16 @@ export const Action = ({ model }: ActionProps) => {
   const internal = /^\/(?!\/)/.test(path)
   if (internal) {
     return (
-      <GatsbyLink to={to} {...actionAttr}>
+      <GatsbyLink to={to} {...props}>
         {heading}
+        {icon && <Icon name={icon} />}
       </GatsbyLink>
     )
   }
   return (
-    <a href={to} target="_blank" {...actionAttr}>
+    <a href={to} {...props}>
       {heading}
+      {icon && <Icon name={icon} />}
     </a>
   )
 }

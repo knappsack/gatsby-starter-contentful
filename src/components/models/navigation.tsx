@@ -23,21 +23,21 @@ const Navigation = ({ model, options, variant }: NavigationProps) => {
   } = model
 
   return (
-    <>
-      {options.heading && <h3>{heading}</h3>}
-      <ul data-style="navigation" data-variant={variant}>
+    <div data-style="navigation" data-variant={variant}>
+      {options.heading && <h3 data-style="navigation-heading">{heading}</h3>}
+      <ul data-style="navigation-list" data-variant={variant}>
         {actionsCollection.items.map((action: ContentfulAction) => {
           const {
             sys: { id },
           } = action
           return (
-            <li key={createUuid(id)}>
+            <li data-style="navigation-item" key={createUuid(id)}>
               <Action model={action} />
             </li>
           )
         })}
       </ul>
-    </>
+    </div>
   )
 }
 

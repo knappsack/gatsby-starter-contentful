@@ -1,4 +1,5 @@
 import * as React from "react"
+
 import { graphql, PageProps } from "gatsby"
 import { Seo } from "../components/layout/seo"
 import { Section } from "../components/models/section"

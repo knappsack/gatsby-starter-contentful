@@ -7,19 +7,20 @@
 
   --modular-scale: 1.2;
 
+  --text-color: #1d1d1f;
+  --text-font-size: var(--base-font-size);
+  --text-font-weight: var(--base-font-weight);
   --text-font: var(--base-font-family);
   --text-line-height: var(--base-line-height);
-  --text-font-size: var(--base-font-size);
-  --text-color: #1d1d1f;
 
   --link-color: #06c;
   
   --region-bg-color: #f5f5f5;
   
   --unit-bg-color: #fff;
+}
 
-  
-  --enhanced-media-query: '(min-height: 500px) and (max-height: 1500px)';
+  /* --enhanced-media-query: '(min-height: 500px) and (max-height: 1500px)';
 
   @media (max-width: 1068px) {
     :root {
@@ -32,4 +33,4 @@
       --enhanced-media-query: '(min-height: 415px) and (max-height: 850px)';
     }
   }
-}
+} */
