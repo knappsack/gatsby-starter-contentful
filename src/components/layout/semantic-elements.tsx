@@ -20,9 +20,10 @@ const getSemanticTag = ({ section, count, index }) => {
   }
 
   if (
-    index === count &&
-    __typename === "Contentful_NavigationSection" &&
-    variant.toLowerCase() === "footer"
+    (index === count && __typename === "Contentful_NavigationSection") ||
+    (index === count - 1 &&
+      __typename === "Contentful_NavigationSection" &&
+      variant === "sitemap")
   ) {
     return "footer"
   }
@@ -30,7 +31,7 @@ const getSemanticTag = ({ section, count, index }) => {
   return "main"
 }
 
-const SemanticElements: React.FC<any> = props => {
+const SemanticElements: React.FC<any> = (props) => {
   const sections: Record<string, React.ReactNode[]> = {
     footer: [],
     header: [],
@@ -52,10 +53,13 @@ const SemanticElements: React.FC<any> = props => {
   return (
     <React.Fragment>
       {sections.header.length > 0 && (
-        <header role="banner">{sections.header}</header>
+        <header role="banner">
+          <a data-skip-to-content="" href="#main">Skip to content</a>
+          {sections.header}
+        </header>
       )}
       {sections.main.length > 0 && (
-        <main role="main" id="content">
+        <main role="main" id="main">
           {sections.main}
         </main>
       )}
