@@ -4,19 +4,21 @@ type IconProps = {
   name: string
 }
 
-export const Icon = ({ name }: IconProps) => {
+export const Icon = (props: IconProps) => {
+  const { name } = props
+
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="2rem"
-      height="2rem"
-      viewBox="0 0 24 24"
+      data-style="icon"
       fill="none"
+      height="1em"
       stroke="currentColor"
-      strokeWidth="1"
       strokeLinecap="round"
       strokeLinejoin="round"
-      data-style="icon"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <use href={`/feather-icons-sprite.svg#${name}`} />
     </svg>
