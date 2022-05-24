@@ -3,10 +3,10 @@
  * GitHub page: https://github.com/elad2412/the-new-css-reset
  */
 
-import type * as CSS from 'csstype'
+import type * as CSS from "csstype"
 import { globalStyle } from "@vanilla-extract/css"
 
-/** 
+/**
  * Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
  * - The "symbol *" part is to solve Firefox SVG sprite bug
  */
@@ -27,7 +27,6 @@ globalStyle(`*, *::before, *::after`, {
 globalStyle(`a, button`, {
   cursor: "revert",
 })
-
 
 /** Remove list styles (bullets/numbers) */
 globalStyle(`ol, ul, menu`, {
@@ -60,19 +59,19 @@ globalStyle(`::placeholder`, {
   color: "unset",
 })
 
-/** 
+/**
  * fix the feature of 'hidden' attribute.
- * display:revert; revert to element instead of attribute 
+ * display:revert; revert to element instead of attribute
  */
- globalStyle(`:where([hidden])`, {
+globalStyle(`:where([hidden])`, {
   display: "none",
 })
 
-/** 
+/**
  * revert for bug in Chromium browsers
- * - fix for the content editable attribute will work properly. 
+ * - fix for the content editable attribute will work properly.
  */
- globalStyle(`:where([contenteditable])`, {
+globalStyle(`:where([contenteditable])`, {
   MozUserModify: "read-write",
   WebkitUserModify: "read-write",
   overflowWrap: "break-word",

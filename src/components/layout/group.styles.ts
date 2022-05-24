@@ -1,6 +1,6 @@
 import { CSSObject } from "@emotion/react"
 import { mediaQuery } from "../../styles/media-query"
-import type { Variants } from '../../styles/types'
+import type { Variants } from "../../styles/types"
 
 const base: CSSObject = {
   display: "flex",

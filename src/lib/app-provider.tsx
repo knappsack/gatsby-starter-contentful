@@ -9,7 +9,9 @@ type AppProviderProps = {
   value: ContextType | null | undefined
 }
 
-const AppContext = React.createContext<ContextType | null | undefined>(undefined)
+const AppContext = React.createContext<ContextType | null | undefined>(
+  undefined
+)
 
 const AppProvider = ({ children, value }: AppProviderProps) => {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

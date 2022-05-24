@@ -51,9 +51,13 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
       {options.media && mediaCollection && (
         <Media model={model.mediaCollection.items} />
       )}
-      <div style={{ display: 'flex', flexDirection: "column" }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <Group variant="column" style={{ flex: 1 }}>
-          {options.icon && icon && <div><Icon name={icon} /></div>}
+          {options.icon && icon && (
+            <div>
+              <Icon name={icon} />
+            </div>
+          )}
           {options.heading && heading && (
             <Heading variant="large">{heading}</Heading>
           )}

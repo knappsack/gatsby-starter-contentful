@@ -1,13 +1,13 @@
 import type { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
-import type { Variants } from '../../styles/types'
+import type { Variants } from "../../styles/types"
 import {
   navigationVariantContract,
   textVariantContract,
   topicVariantContract,
 } from "../../styles/contracts"
-import type { NavigationSectionVariant } from '../contentful/contentful-navigation-section'
+import type { NavigationSectionVariant } from "../contentful/contentful-navigation-section"
 import type { TextSectionVariant } from "../contentful/contentful-text-section"
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
 
@@ -27,7 +27,7 @@ const variants: Variants<GridTemplateStylesProps["variant"]> = {
     paddingBottom: theme.spacing.large,
     margin: "auto",
     gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))",
-    textAlign: "center"
+    textAlign: "center",
   },
 }
 

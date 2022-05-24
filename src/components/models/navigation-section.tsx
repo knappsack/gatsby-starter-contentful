@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../analytics"

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 import { AnyForwardRef } from "../../lib/create-any-element"
 import type { UseTypesOf } from "../../lib/use-types-of"
@@ -21,4 +21,3 @@ export const GridTemplate = React.forwardRef(
     )
   }
 )
-

@@ -35,13 +35,13 @@ export const Analytics = ({
 
   const handleScroll = () => {
     if (!ref) return null
-    
+
     const bounding = ref.current?.getBoundingClientRect()
     const elementHeight = ref.current?.offsetHeight || 0
     const elementWidth = ref.current?.offsetWidth || 0
 
     if (!bounding) return null
-    
+
     if (
       !context.inViewport &&
       bounding.top >= -elementHeight &&

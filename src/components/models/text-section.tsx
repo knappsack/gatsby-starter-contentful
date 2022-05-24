@@ -16,7 +16,7 @@ import {
 import { Analytics } from "../analytics"
 import { createJumpLink } from "../../lib/create-jump-link"
 import { GridTemplate } from "../layout/grid-template"
-import { createUuid } from '../../lib/create-uuid'
+import { createUuid } from "../../lib/create-uuid"
 
 type Options = {
   renderNode?: RenderNode
@@ -114,7 +114,11 @@ const options: OptionsProps = links => {
     },
     renderText: text => {
       return text.split("\n").reduce((children, textSegment, index) => {
-        return [...children, index > 0 && <br key={createUuid(`${index}`)} />, textSegment]
+        return [
+          ...children,
+          index > 0 && <br key={createUuid(`${index}`)} />,
+          textSegment,
+        ]
       }, [])
     },
   }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import { useInView } from "react-intersection-observer"
 import { ContentfulAsset } from "../contentful/contentful-asset"
 

@@ -1,7 +1,7 @@
 import { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
-import type { Variants } from '../../styles/types'
+import type { Variants } from "../../styles/types"
 
 const base: CSSObject = {
   color: theme.colors.text,
