@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"
@@ -35,8 +33,8 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
   }
 
   return (
-    <Analytics area="region" eventId={eventId} theme={theme} variant={variant}>
-      <GridTemplate variant={variant} theme={theme}>
+    <Analytics area="section" eventId={eventId} theme={theme} variant={variant}>
+      <GridTemplate variant={variant}>
         {topicsCollection.items.map((topic: ContentfulTopic) => {
           const {
             sys: { id },

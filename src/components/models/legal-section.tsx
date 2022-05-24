@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { ContentfulNavigation } from "../contentful/contentful-navigation"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
 import Navigation from "./navigation"
@@ -28,7 +26,7 @@ const LegalSection = ({ model }: LegalSectionProps) => {
   }
 
   return (
-    <Analytics area="region" eventId={eventId} variant={variant}>
+    <Analytics area="nav" eventId={eventId} variant={variant}>
       <GridTemplate variant={variant}>
         {navigationsCollection.items.map((navigation: ContentfulNavigation) => {
           const {

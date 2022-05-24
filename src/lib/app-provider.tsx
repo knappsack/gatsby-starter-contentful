@@ -4,9 +4,14 @@ type ContextType = {
   [key: string]: string | number | boolean
 }
 
-const AppContext = React.createContext<ContextType>(undefined)
+type AppProviderProps = {
+  children: React.ReactNode
+  value: ContextType | null | undefined
+}
 
-const AppProvider = ({ children, value }) => {
+const AppContext = React.createContext<ContextType | null | undefined>(undefined)
+
+const AppProvider = ({ children, value }: AppProviderProps) => {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }
 

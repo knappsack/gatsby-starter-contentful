@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { Action } from "../elements/action"
 import { ContentfulAction } from "../contentful/contentful-action"
 import {

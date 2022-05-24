@@ -14,6 +14,7 @@ export type ContentfulNavigationSection = NavigationSectionOptions & {
     id: string
   }
   eventId: string
+  branding: boolean
   heading: boolean
   logo: ContentfulAsset
   variant: NavigationSectionVariant

@@ -1,5 +1,4 @@
-import * as React from "react"
-
+import React from 'react'
 import { useInView } from "react-intersection-observer"
 import { ContentfulAsset } from "../contentful/contentful-asset"
 
@@ -26,7 +25,7 @@ export const getAsset = ({ asset, model }: GetAssetProps) => {
   const assets = model
 
   if (contentType.includes("video/")) {
-    let poster: string = undefined
+    let poster: string | undefined = undefined
 
     if (assets.length > 1) {
       const getPoster = assets.filter(item =>
@@ -36,12 +35,23 @@ export const getAsset = ({ asset, model }: GetAssetProps) => {
     }
 
     return (
-      <video data-style="video" poster={poster} controls playsInline ref={ref}>
+      <video
+        data-style="video"
+        style={{
+          height: "auto",
+          maxWidth: "100%",
+          aspectRatio: "16 / 9",
+        }}
+        poster={poster}
+        controls
+        playsInline
+        ref={ref}
+      >
         {inView && (
-          <>
+          <React.Fragment>
             <source data-style="source" src={url} type={contentType} />
             Your browser does not support the video tag.
-          </>
+          </React.Fragment>
         )}
       </video>
     )
@@ -54,6 +64,11 @@ export const getAsset = ({ asset, model }: GetAssetProps) => {
           <img
             alt={description}
             data-style="image"
+            style={{
+              height: "auto",
+              maxWidth: "100%",
+              aspectRatio: "16 / 9",
+            }}
             src={`${url}?q=90&w=800&h=420&fit=fill&f=center&fm=webp`}
             title={title}
           />

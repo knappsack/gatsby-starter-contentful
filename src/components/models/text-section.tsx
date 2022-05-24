@@ -2,7 +2,9 @@ import * as React from "react"
 
 import {
   documentToReactComponents,
-  Options,
+  RenderMark,
+  RenderNode,
+  RenderText,
 } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types"
 
@@ -14,6 +16,13 @@ import {
 import { Analytics } from "../analytics"
 import { createJumpLink } from "../../lib/create-jump-link"
 import { GridTemplate } from "../layout/grid-template"
+import { createUuid } from '../../lib/create-uuid'
+
+type Options = {
+  renderNode?: RenderNode
+  renderMark?: RenderMark
+  renderText?: RenderText
+}
 
 type OptionsProps = (links: ContentfulLinks) => Options
 
@@ -103,6 +112,11 @@ const options: OptionsProps = links => {
         )
       },
     },
+    renderText: text => {
+      return text.split("\n").reduce((children, textSegment, index) => {
+        return [...children, index > 0 && <br key={createUuid(`${index}`)} />, textSegment]
+      }, [])
+    },
   }
 }
 
@@ -115,12 +129,11 @@ export const TextSection = ({ model }: TextSectionProps) => {
     text: { json, links },
     variant,
     eventId,
-    theme,
   } = model
 
   return (
-    <Analytics area="region" eventId={eventId} theme={theme} variant={variant}>
-      <GridTemplate variant={variant} theme={theme}>
+    <Analytics area="section" eventId={eventId} variant={variant}>
+      <GridTemplate variant={variant}>
         {documentToReactComponents(json, options(links))}
       </GridTemplate>
     </Analytics>

@@ -2,7 +2,15 @@ import * as React from "react"
 
 import { createUuid } from "../../lib/create-uuid"
 
-const getSemanticTag = ({ section, count, index }) => {
+type GetSemanticTag = {
+  section: {
+    model: Record<string, any>
+  }
+  count: number
+  index: number
+}
+
+const getSemanticTag = ({ section, count, index }: GetSemanticTag) => {
   const {
     model: {
       __typename,
@@ -31,7 +39,11 @@ const getSemanticTag = ({ section, count, index }) => {
   return "main"
 }
 
-const SemanticElements: React.FC<any> = props => {
+type SemanticElementsProps = {
+  children: JSX.Element[]
+}
+
+const SemanticElements = (props: SemanticElementsProps) => {
   const sections: Record<string, React.ReactNode[]> = {
     footer: [],
     header: [],
@@ -39,6 +51,9 @@ const SemanticElements: React.FC<any> = props => {
   }
 
   React.Children.forEach(props.children, (child, index) => {
+    if (!child) {
+      return null
+    }
     sections[
       getSemanticTag({
         section: child.props.children.props,

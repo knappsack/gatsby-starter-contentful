@@ -1,8 +1,8 @@
-import * as React from "react"
+import * as React from 'react'
+
 import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../analytics"
 import { ContentfulNavigation } from "../contentful/contentful-navigation"
-
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
 import { GridTemplate } from "../layout/grid-template"
 import LegalSection from "./legal-section"
@@ -37,7 +37,7 @@ export const NavigationSection = ({ model }: NavigationSectionProps) => {
 
   return (
     <Analytics area="nav" eventId={eventId} variant={variant}>
-      <div data-style="container">
+      <React.Fragment>
         {logo && (
           <Link
             data-style="logo"
@@ -72,7 +72,7 @@ export const NavigationSection = ({ model }: NavigationSectionProps) => {
             }
           )}
         </GridTemplate>
-      </div>
+      </React.Fragment>
     </Analytics>
   )
 }

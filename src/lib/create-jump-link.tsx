@@ -1,14 +1,10 @@
-import * as React from "react"
-
 import slugify from "@sindresorhus/slugify"
-import { GetTypesOf } from "./get-types-of"
+import { UseTypesOf } from "./use-types-of"
 
-type CreateJumpLinkProps = GetTypesOf["a"]
+type CreateJumpLinkProps = UseTypesOf["a"]
 
 export const createJumpLink = ({ children }: CreateJumpLinkProps) => {
-  const slug = children[0].key
-    ? children[0]?.props?.children.toString()
-    : children[0].toString()
-
+  const slug = children?.toString() || ''
+  
   return <a href={`#${slugify(slug)}`}>{children}</a>
 }
