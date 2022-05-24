@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    author: `@thijskrooswijk`,
+    author: "@thijskrooswijk",
     url: "https://www.knappsack.org",
     title: "Gatsby Contentful starter",
     image: "og-image.jpg",
@@ -15,7 +15,8 @@ module.exports = {
     repo: "https://github.com/knappsack/gatsby-contentful-starter",
   },
   plugins: [
-    "gatsby-plugin-postcss",
+    "gatsby-plugin-emotion",
+    "gatsby-plugin-vanilla-extract",
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-manifest",
