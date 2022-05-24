@@ -5,16 +5,26 @@ type AnyProps = React.DetailedHTMLProps<
   HTMLElement
 >
 
-export const Any: React.FC<AnyProps> = ({ children, ...props }) => {
+export const Any = (props: AnyProps) => {
   const type = props.is || "div"
   const attributes = Object.assign({}, props)
   delete attributes.is
   /**
    * Emotion CSS-in-JS helper
    * ------------------------
-   * Copy className to new element. This enables
+   * Copying the className to create element
    * inherit styles from the base component.
    */
   attributes.className = props.className
-  return React.createElement(type, attributes, children)
+  return React.createElement(type, attributes, props.children)
 }
+
+export const AnyForwardRef = React.forwardRef(
+  (props: AnyProps, ref: React.ForwardedRef<unknown>) => {
+    const type = props.is || "div"
+    const attributes = Object.assign({}, props)
+    delete attributes.is
+    attributes.className = props.className
+    return React.createElement(type, { ...attributes, ref }, props.children)
+  }
+)
