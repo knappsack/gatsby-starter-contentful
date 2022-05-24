@@ -1,25 +1,24 @@
-import * as React from "react"
-import { GetTypesOf } from "../../lib/get-types-of"
+import * as React from 'react'
 
-type GridTemplateProps = GetTypesOf["div"] & {
-  variant: string
-  theme?: string
-}
+import { AnyForwardRef } from "../../lib/create-any-element"
+import type { UseTypesOf } from "../../lib/use-types-of"
+import type { GridTemplateStylesProps } from "./grid-template.styles"
+import { gridTemplateStyles } from "./grid-template.styles"
 
-export const GridTemplate = ({
-  children,
-  variant,
-  theme,
-  ...props
-}: GridTemplateProps) => {
-  return (
-    <div
-      data-style="grid-template"
-      data-variant={variant}
-      data-theme={theme}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-}
+type GridTemplateProps = UseTypesOf["div"] & GridTemplateStylesProps
+
+export const GridTemplate = React.forwardRef(
+  (
+    { children, variant, ...props }: GridTemplateProps,
+    ref: React.Ref<HTMLDivElement>
+  ) => {
+    const styles = gridTemplateStyles({ variant })
+
+    return (
+      <AnyForwardRef is="div" css={styles} {...props} ref={ref}>
+        {children}
+      </AnyForwardRef>
+    )
+  }
+)
+

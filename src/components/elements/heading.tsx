@@ -1,16 +1,15 @@
 import * as React from "react"
 
-import { GetTypesOf } from "../../lib/get-types-of"
-import { Any } from "../../lib/create-any-element"
-import { TopicSectionVariant } from "../contentful/contentful-topic-section"
+import type { UseTypesOf } from "../../lib/use-types-of"
+import type { HeadingStylesProps } from "./heading.styles"
+import { AnyForwardRef } from "../../lib/create-any-element"
+import { headingStyles } from "./heading.styles"
 
 /**
- * GetTypesOf makes sure you only inherit Types of `h3`.
- * Note: <h1> – <h6> heading elements sharing the same types.
+ * UseTypesOf makes sure you only inherit Types of `h3`.
+ * All heading elements sharing the same types.
  */
-export type HeadingProps = GetTypesOf["h3"] & {
-  variant: TopicSectionVariant
-}
+export type HeadingProps = UseTypesOf["h3"] & HeadingStylesProps
 
 /**
  * By default the Heading component will render as `h3`,
@@ -30,10 +29,17 @@ export type HeadingProps = GetTypesOf["h3"] & {
  * ---------------
  * const Heading = () => <Any is='h3' {...props} />
  */
-export const Heading = ({ variant, children, ...props }: HeadingProps) => {
-  return (
-    <Any is="h3" data-style="heading" data-variant={variant} {...props}>
-      {children}
-    </Any>
-  )
-}
+export const Heading = React.forwardRef(
+  (
+    { children, variant, ...props }: HeadingProps,
+    ref: React.Ref<HTMLHeadingElement>
+  ) => {
+    const styles = headingStyles({ variant })
+
+    return (
+      <AnyForwardRef is="h3" css={styles} {...props} ref={ref}>
+        {children}
+      </AnyForwardRef>
+    )
+  }
+)

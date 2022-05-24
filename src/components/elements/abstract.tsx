@@ -1,17 +1,22 @@
 import * as React from "react"
 
-import { GetTypesOf } from "../../lib/get-types-of"
-import { Any } from "../../lib/create-any-element"
-import { TopicSectionVariant } from "../contentful/contentful-topic-section"
+import { abstractStyles } from "./abstract.styles"
+import type { UseTypesOf } from "../../lib/use-types-of"
+import { AnyForwardRef } from "../../lib/create-any-element"
 
-export type HeadingProps = GetTypesOf["p"] & {
-  variant: TopicSectionVariant
-}
+export type HeadingProps = UseTypesOf["p"]
 
-export const Abstract = ({ variant, children, ...props }: HeadingProps) => {
-  return (
-    <Any is="p" data-style="abstract" data-variant={variant} {...props}>
-      {children}
-    </Any>
-  )
-}
+export const Abstract = React.forwardRef(
+  (
+    { children, ...props }: HeadingProps,
+    ref: React.Ref<HTMLParagraphElement>
+  ) => {
+    const styles = abstractStyles
+
+    return (
+      <AnyForwardRef is="p" css={styles} {...props} ref={ref}>
+        {children}
+      </AnyForwardRef>
+    )
+  }
+)
