@@ -1,14 +1,16 @@
 import { CSSObject } from "@emotion/react"
 import { mediaQuery } from "../../styles/media-query"
-import type { Variants } from "../../styles/types"
+import type { Options, Variants } from "../../styles/types"
+
+type VariantStyle = "row" | "column"
+type OptionStyle = "reverse" | "space" | "center"
 
 const base: CSSObject = {
   display: "flex",
-  fontWeight: "bold",
-  gap: 24,
+  gap: 8,
 }
 
-const variants: Variants<GroupStylesProps["variant"]> = {
+const variants: Variants<VariantStyle> = {
   row: {
     flexDirection: "row",
   },
@@ -21,7 +23,11 @@ const space: CSSObject = {
   justifyContent: "space-between",
 }
 
-const reverse: Variants<GroupStylesProps["variant"]> = {
+const center: CSSObject = {
+  justifyContent: "center",
+}
+
+const reverse: Variants<VariantStyle> = {
   row: {
     flexDirection: "row-reverse",
   },
@@ -31,11 +37,8 @@ const reverse: Variants<GroupStylesProps["variant"]> = {
 }
 
 export type GroupStylesProps = {
-  variant: "row" | "column"
-  options?: Partial<{
-    reverse: boolean
-    space: boolean
-  }>
+  variant: VariantStyle
+  options?: Options<OptionStyle>
 }
 
 export const groupStyles = ({ variant, options }: GroupStylesProps) => {
@@ -43,6 +46,7 @@ export const groupStyles = ({ variant, options }: GroupStylesProps) => {
     base,
     variants[variant],
     options?.space && space,
+    options?.center && center,
     options?.reverse && reverse[variant],
   ])
 }
