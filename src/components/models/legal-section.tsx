@@ -5,6 +5,11 @@ import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../analytics"
 import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
+import {
+  copyrightStyle,
+  legalStyle,
+  supporterStyle,
+} from "./legal-section.styles"
 
 export type LegalSectionProps = {
   model: ContentfulNavigationSection
@@ -26,8 +31,13 @@ const LegalSection = ({ model }: LegalSectionProps) => {
   }
 
   return (
-    <Analytics area="nav" eventId={eventId} variant={variant}>
-      <GridTemplate variant={variant}>
+    <Analytics
+      area="nav"
+      eventId={eventId}
+      variant="footer"
+      options={{ border: true }}
+    >
+      <GridTemplate variant="footer">
         {navigationsCollection.items.map((navigation: ContentfulNavigation) => {
           const {
             sys: { id },
@@ -38,16 +48,16 @@ const LegalSection = ({ model }: LegalSectionProps) => {
               key={createUuid(id)}
               model={navigation}
               options={options}
-              variant={variant}
+              variant="footer"
             />
           )
         })}
-        <div data-style="legal">
-          <span data-style="copyright">
+        <div css={legalStyle}>
+          <span css={copyrightStyle}>
             Copyright © {new Date().getFullYear()} Contentful Gatsby Starter.
             All rights reserved.
           </span>
-          <Link to="https://github.com/thijskrooswijk" data-style="supporter">
+          <Link to="https://github.com/thijskrooswijk" css={supporterStyle}>
             Made with Knappsack
           </Link>
         </div>
