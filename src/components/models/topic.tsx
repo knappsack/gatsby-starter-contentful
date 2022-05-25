@@ -1,7 +1,6 @@
 import * as React from "react"
 
 import slugify from "@sindresorhus/slugify"
-import { Analytics } from "../analytics"
 import { Heading } from "../elements/heading"
 import { Icon } from "../elements/icon"
 import { Media } from "./media"
@@ -15,6 +14,13 @@ import { Group } from "../layout/group"
 import { ContentfulAction } from "../contentful/contentful-action"
 import { createUuid } from "../../lib/create-uuid"
 import { Action } from "../elements/action"
+import {
+  topicContentStyle,
+  topicCopyStyle,
+  topicCtaStyle,
+  topicStyles,
+} from "./topic.styles"
+import { useGtag } from '../../lib/gtag'
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -41,21 +47,27 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
     console.log(ref.current)
   }, [ref])
 
+  const setAnalyticsId = `topic:${slugify(heading)}`
+
+  const handleMouseEnter = () => {
+    useGtag("event", "engagement", { event_id: ref.current?.dataset.analyticsId })
+  }
+
   return (
-    <Analytics
-      area="unit"
-      eventId={slugify(heading)}
-      theme={theme}
-      variant={variant}
+    <div
+      css={topicStyles({ variant })}
+      data-analytics-id={setAnalyticsId}
+      onMouseEnter={handleMouseEnter}
+      ref={ref}
     >
       {options.media && mediaCollection && (
         <Media model={model.mediaCollection.items} />
       )}
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <Group variant="column" style={{ flex: 1 }}>
+      <Group variant="column" css={topicContentStyle}>
+        <Group variant="column" css={topicCopyStyle}>
           {options.icon && icon && (
-            <div>
-              <Icon name={icon} />
+            <div data-icon="">
+              <Icon variant="large" name={icon} />
             </div>
           )}
           {options.heading && heading && (
@@ -64,17 +76,19 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
           {options.abstract && abstract && <Abstract>{abstract}</Abstract>}
         </Group>
         {options.action && actionsCollection && (
-          <Group variant="row" ref={ref}>
+          <Group variant="row" css={topicCtaStyle} ref={ref}>
             {actionsCollection.items.map((action: ContentfulAction) => {
               const {
                 sys: { id },
               } = action
 
-              return <Action key={createUuid(id)} model={action} />
+              return (
+                <Action variant="primary" key={createUuid(id)} model={action} />
+              )
             })}
           </Group>
         )}
-      </div>
-    </Analytics>
+      </Group>
+    </div>
   )
 }
