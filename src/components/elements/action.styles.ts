@@ -1,7 +1,10 @@
 import { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
-import type { Variants } from "../../styles/types"
+import type { Variants, Options } from "../../styles/types"
+
+type VariantStyle = "primary" | "secondary" | "link"
+type OptionStyle = Options<"small">
 
 const base: CSSObject = {
   color: theme.colors.link,
@@ -12,7 +15,7 @@ const base: CSSObject = {
   borderRadius: 6,
 }
 
-const variants: Variants<ActionStylesProps["variant"]> = {
+const variants: Variants<VariantStyle> = {
   primary: {
     backgroundColor: theme.colors.link,
     color: theme.colors.unit,
@@ -34,16 +37,10 @@ const small = {
 }
 
 export type ActionStylesProps = {
-  variant: "primary" | "secondary" | "link",
-  options?: Partial<{
-    small: boolean
-  }>
+  variant: VariantStyle
+  options?: OptionStyle
 }
 
 export const actionStyles = ({ variant, options }: ActionStylesProps) => {
-  return mediaQuery([
-    base, 
-    variants[variant],
-    options?.small && small,
-  ])
+  return mediaQuery([base, variants[variant], options?.small && small])
 }

@@ -20,7 +20,7 @@ import {
   topicCtaStyle,
   topicStyles,
 } from "./topic.styles"
-import { useGtag } from '../../lib/gtag'
+import { useGtag } from "../../lib/gtag"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -50,7 +50,9 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
   const setAnalyticsId = `topic:${slugify(heading)}`
 
   const handleMouseEnter = () => {
-    useGtag("event", "engagement", { event_id: ref.current?.dataset.analyticsId })
+    useGtag("event", "engagement", {
+      event_id: ref.current?.dataset.analyticsId,
+    })
   }
 
   return (

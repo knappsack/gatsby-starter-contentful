@@ -30,7 +30,7 @@ const variants: Variants<GridTemplateStylesProps["variant"]> = {
   ...topicVariantContract,
   block: {
     gridTemplateColumns: ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"],
-    justifyContent: 'center',
+    justifyContent: "center",
     maxWidth: [380, 1380],
   },
 }

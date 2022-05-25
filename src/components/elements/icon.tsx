@@ -1,8 +1,8 @@
-import { iconStyles } from './icon.styles'
-import type { IconStylesProps } from './icon.styles'
-import type { UseTypesOf } from '../../lib/use-types-of'
+import { iconStyles } from "./icon.styles"
+import type { IconStylesProps } from "./icon.styles"
+import type { UseTypesOf } from "../../lib/use-types-of"
 
-type IconProps = UseTypesOf['svg'] & {
+type IconProps = UseTypesOf["svg"] & {
   name: string
   variant: IconStylesProps["variant"]
 }

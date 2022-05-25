@@ -1,13 +1,20 @@
 import { CSSObject } from "@emotion/react"
-import { navigationVariantContract, textVariantContract, topicVariantContract } from '../styles/contracts'
+import {
+  navigationVariantContract,
+  textVariantContract,
+  topicVariantContract,
+} from "../styles/contracts"
 import { theme } from "../styles/global-css-variables.css"
 import { mediaQuery } from "../styles/media-query"
 import type { Variants, Options } from "../styles/types"
-import type { NavigationSectionVariant } from './contentful/contentful-navigation-section'
-import type { TextSectionVariant } from './contentful/contentful-text-section'
-import type { TopicSectionVariant } from './contentful/contentful-topic-section'
+import type { NavigationSectionVariant } from "./contentful/contentful-navigation-section"
+import type { TextSectionVariant } from "./contentful/contentful-text-section"
+import type { TopicSectionVariant } from "./contentful/contentful-topic-section"
 
-type VariantStyle = TopicSectionVariant | NavigationSectionVariant | TextSectionVariant
+type VariantStyle =
+  | TopicSectionVariant
+  | NavigationSectionVariant
+  | TextSectionVariant
   | "nav"
   | "section"
   | "unit"
@@ -27,8 +34,8 @@ const variants: Variants<VariantStyle> = {
   ...textVariantContract,
   ...topicVariantContract,
   block: {
-    display: "flex", 
-    flexDirection: "column"
+    display: "flex",
+    flexDirection: "column",
   },
   nav: {},
   section: {},
