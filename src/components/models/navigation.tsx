@@ -6,6 +6,10 @@ import {
 } from "../contentful/contentful-navigation-section"
 import { ContentfulNavigation } from "../contentful/contentful-navigation"
 import { createUuid } from "../../lib/create-uuid"
+import { navigationListStyles } from "./navigation-list.styles"
+import { navigationHeadingStyle } from "./navigation-heading.styles"
+import { Heading } from "../elements/heading"
+import { navigationItemStyles } from "./navigation-item.styles"
 
 export type NavigationProps = {
   model: ContentfulNavigation
@@ -21,16 +25,20 @@ const Navigation = ({ model, options, variant }: NavigationProps) => {
   } = model
 
   return (
-    <div data-style="navigation" data-variant={variant}>
-      {options.heading && <h3 data-style="navigation-heading">{heading}</h3>}
-      <ul data-style="navigation-list" data-variant={variant}>
+    <div>
+      {options.heading && (
+        <Heading variant="small" css={navigationHeadingStyle}>
+          {heading}
+        </Heading>
+      )}
+      <ul css={navigationListStyles({ variant })}>
         {actionsCollection.items.map((action: ContentfulAction) => {
           const {
             sys: { id },
           } = action
           return (
-            <li data-style="navigation-item" key={createUuid(id)}>
-              <Action model={action} />
+            <li css={navigationItemStyles({ variant })} key={createUuid(id)}>
+              <Action variant="link" model={action} />
             </li>
           )
         })}

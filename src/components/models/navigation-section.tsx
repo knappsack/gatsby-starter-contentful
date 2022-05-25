@@ -31,7 +31,7 @@ export const NavigationSection = ({ model }: NavigationSectionProps) => {
     "data-style": "navigation",
   }
 
-  if (variant.toLocaleLowerCase() === "footer") {
+  if (variant === "footer") {
     return <LegalSection model={model} {...props} />
   }
 
