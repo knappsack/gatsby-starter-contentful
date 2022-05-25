@@ -6,7 +6,6 @@ import type { Variants } from "../../styles/types"
 const base: CSSObject = {
   color: theme.colors.text,
   fontFamily: theme.fontFamily.body,
-  fontSize: theme.size.default,
   fontWeight: "bold",
 }
 
@@ -18,7 +17,7 @@ const variants: Variants<HeadingStylesProps["variant"]> = {
     fontSize: 24,
   },
   small: {
-    fontSize: 18,
+    fontSize: theme.size.default,
   },
 }
 
@@ -26,6 +25,6 @@ export type HeadingStylesProps = {
   variant: "large" | "medium" | "small"
 }
 
-export const headingStyles = ({ variant = "medium" }: HeadingStylesProps) => {
+export const headingStyles = ({ variant }: HeadingStylesProps) => {
   return mediaQuery([base, variants[variant]])
 }
