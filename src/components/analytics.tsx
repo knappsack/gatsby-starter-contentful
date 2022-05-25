@@ -3,35 +3,28 @@ import * as React from "react"
 import { UseTypesOf } from "../lib/use-types-of"
 import { useGtag } from "../lib/gtag"
 import { isBrowser } from "../lib/is-browser"
+import { analyticsStyles, AnalyticsStylesProps } from "./analytics.styles"
 
 type AnalyticsProps = UseTypesOf["div"] & {
-  area: "section" | "unit" | "nav"
+  area: "section" | "nav"
   eventId?: string
   theme?: string
-  variant: string
+  variant: AnalyticsStylesProps["variant"]
+  options?: AnalyticsStylesProps["options"]
 }
 
 export const Analytics = ({
   area,
   eventId,
   variant,
+  options,
   children,
 }: AnalyticsProps) => {
   const ref = React.useRef<HTMLDivElement>(null)
 
   const [context, setContext] = React.useState({
-    engagement: false,
     inViewport: false,
   })
-
-  const handleMouseEnter = () => {
-    if (context.engagement) return
-    setContext({ ...context, engagement: true })
-
-    useGtag("event", "engagement", {
-      event_id: ref.current?.dataset.analytics,
-    })
-  }
 
   const handleScroll = () => {
     if (!ref) return null
@@ -73,8 +66,11 @@ export const Analytics = ({
 
   const analyticsId = `${area}:${eventId ? eventId : variant}`
 
+  const styles = analyticsStyles({ variant, options })
+
   const props = {
     "data-analytics": analyticsId,
+    css: styles,
     ref: ref,
   }
 
@@ -83,12 +79,6 @@ export const Analytics = ({
       return <nav {...props}>{children}</nav>
     case "section":
       return <section {...props}>{children}</section>
-    case "unit":
-      return (
-        <div {...props} onMouseEnter={handleMouseEnter}>
-          {children}
-        </div>
-      )
     default:
       return <>{children}</>
   }
