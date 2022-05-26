@@ -13,22 +13,36 @@ const base: CSSObject = {
   fontSize: theme.size.default,
   padding: "8px 16px",
   borderRadius: 6,
+  ":focus": {
+    boxShadow: `0 0 0 4px ${theme.colors.focus}`,
+    outline: "none",
+  },
 }
 
 const variants: Variants<VariantStyle> = {
   primary: {
     backgroundColor: theme.colors.link,
     color: theme.colors.unit,
+    border: `1px solid ${theme.colors.transparent}`,
     borderColor: theme.colors.link,
+    ":hover": {
+      backgroundColor: theme.colors.hover,
+    }
   },
   secondary: {
     backgroundColor: theme.colors.transparent,
     color: theme.colors.link,
+    border: `1px solid ${theme.colors.transparent}`,
     borderColor: theme.colors.link,
+    ":hover": {
+      borderColor: theme.colors.focus,
+    }
   },
   link: {
     fontSize: theme.size.default,
-    textDecoration: "underline",
+    ":hover": {
+      textDecoration: "underline",
+    }
   },
 }
 

@@ -6,7 +6,8 @@ const base: CSSObject = {
   color: theme.colors.text,
   fontFamily: theme.fontFamily.body,
   fontSize: theme.size.default,
-  fontWeight: "normal",
+  fontWeight: 400,
+  lineHeight: 1.5,
 }
 
 export const abstractStyles = () => {

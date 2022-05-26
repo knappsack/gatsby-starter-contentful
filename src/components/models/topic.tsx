@@ -79,15 +79,22 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
         </Group>
         {options.action && actionsCollection && (
           <Group variant="row" css={topicCtaStyle} ref={ref}>
-            {actionsCollection.items.map((action: ContentfulAction) => {
-              const {
-                sys: { id },
-              } = action
+            {actionsCollection.items
+              .slice(0, 2)
+              .map((action: ContentfulAction, index) => {
+                const {
+                  sys: { id },
+                } = action
+                const variant = index === 0 ? "primary" : "secondary"
 
-              return (
-                <Action variant="primary" key={createUuid(id)} model={action} />
-              )
-            })}
+                return (
+                  <Action
+                    variant={variant}
+                    key={createUuid(id)}
+                    model={action}
+                  />
+                )
+              })}
           </Group>
         )}
       </Group>

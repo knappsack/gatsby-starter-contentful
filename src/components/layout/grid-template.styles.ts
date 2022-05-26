@@ -1,6 +1,6 @@
 import type { CSSObject } from "@emotion/react"
 import { mediaQuery } from "../../styles/media-query"
-import type { Variants } from "../../styles/types"
+import type { Options, Variants } from "../../styles/types"
 import {
   navigationVariantContract,
   textVariantContract,
@@ -10,6 +10,9 @@ import type { NavigationSectionVariant } from "../contentful/contentful-navigati
 import type { TextSectionVariant } from "../contentful/contentful-text-section"
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
 import { theme } from "../../styles/global-css-variables.css"
+
+type VariantStyle = TopicSectionVariant | TextSectionVariant | NavigationSectionVariant
+type OptionStyle = Options<"">
 
 const base: CSSObject = {
   display: "grid",
@@ -28,6 +31,12 @@ const variants: Variants<GridTemplateStylesProps["variant"]> = {
   },
   ...textVariantContract,
   ...topicVariantContract,
+  card: {
+    display: "flex",
+    margin: "auto",
+    justifyContent: 'center',
+    flexWrap: "wrap",
+  },
   block: {
     gridTemplateColumns: ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"],
     justifyContent: "center",
@@ -36,7 +45,8 @@ const variants: Variants<GridTemplateStylesProps["variant"]> = {
 }
 
 export type GridTemplateStylesProps = {
-  variant: TopicSectionVariant | TextSectionVariant | NavigationSectionVariant
+  variant: VariantStyle
+  options?: OptionStyle
 }
 
 export const gridTemplateStyles = ({ variant }: GridTemplateStylesProps) => {

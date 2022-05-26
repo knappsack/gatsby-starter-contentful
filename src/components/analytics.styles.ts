@@ -21,7 +21,7 @@ type VariantStyle =
 type OptionStyle = Options<"fixed" | "border">
 
 const base: CSSObject = {
-  backgroundColor: theme.colors.region,
+  backgroundColor: theme.colors.section,
   paddingLeft: theme.spacing.large,
   paddingRight: theme.spacing.large,
 }

@@ -14,6 +14,20 @@ const base: CSSObject = {
 
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,
+  card: {
+    overflow: "hidden",
+    maxWidth: 327,
+    minWidth: 327,
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    border: theme.colors.border,
+    boxShadow: `0px 0px 16px ${theme.colors.border}`,
+    borderRadius: 4,
+    "[data-icon]": {
+      color: theme.colors.link,
+    },
+  },
   block: {
     display: "flex",
     flexDirection: "column",
@@ -44,4 +58,5 @@ export const topicCopyStyle: CSSObject = {
 
 export const topicCtaStyle: CSSObject = {
   flex: "0 1 0%",
+  flexWrap: "wrap",
 }
