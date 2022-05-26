@@ -8,11 +8,7 @@ import type { TopicSectionVariant } from "../contentful/contentful-topic-section
 type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"reversed">
 
-const base: CSSObject = {
-  "[data-topic-icon]": {
-    color: theme.colors.link,
-  },
-}
+const base: CSSObject = {}
 
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,
@@ -44,6 +40,11 @@ const variants: Variants<VariantStyle> = {
     },
   },
   headline: {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+  },
+  quote: {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",

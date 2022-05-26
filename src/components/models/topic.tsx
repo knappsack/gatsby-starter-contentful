@@ -39,7 +39,7 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
 
   return (
     <div
-      css={topicStyles({ variant })}
+      css={topicStyles({ variant, options })}
       data-analytics-id={setAnalyticsId}
       onMouseEnter={handleMouseEnter}
       ref={ref}

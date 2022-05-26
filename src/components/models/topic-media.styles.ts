@@ -7,11 +7,7 @@ import type { TopicSectionVariant } from "../contentful/contentful-topic-section
 type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"">
 
-const base: CSSObject = {
-  picture: {
-    width: "100%",
-  }
-}
+const base: CSSObject = {}
 
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,
@@ -19,17 +15,38 @@ const variants: Variants<VariantStyle> = {
     aspectRatio: "16 / 9",
     picture: {
       display: "flex",
+      img: {
+        width: "100%",
+      },
+    },
+    video: {
+      display: "flex",
+      width: "100%",
     },
   },
   block: {
-    aspectRatio: "16 / 9",
     picture: {
       display: "flex",
+      img: {
+        width: "100%",
+      },
+    },
+    video: {
+      display: "flex",
+      width: "100%",
     },
   },
   featured: {
-    maxWidth: ["35em", "45%"]
-  }
+    display: "flex",
+    width: "100%",
+    maxWidth: ["35em", "45%"],
+    picture: {
+      margin: "auto",
+    },
+    video: {
+      margin: "auto",
+    },
+  },
 }
 
 export type TopicMediaStylesProps = {
@@ -37,6 +54,9 @@ export type TopicMediaStylesProps = {
   options?: OptionStyle
 }
 
-export const topicMediaStyles = ({ variant, options }: TopicMediaStylesProps) => {
+export const topicMediaStyles = ({
+  variant,
+  options,
+}: TopicMediaStylesProps) => {
   return mediaQuery([base, variants[variant]])
 }

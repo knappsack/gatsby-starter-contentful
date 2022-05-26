@@ -1,13 +1,29 @@
-import React from "react"
+import { CSSObject } from '@emotion/react'
+import * as React from "react"
+
 import { useInView } from "react-intersection-observer"
 import { ContentfulAsset } from "../contentful/contentful-asset"
 
 type GetAssetProps = {
   asset: ContentfulAsset
   model: ContentfulAsset[]
+  variant: "small" | "large"
+  ratio: Partial<"square" | "wide" | undefined>
 }
 
-export const getAsset = ({ asset, model }: GetAssetProps) => {
+const assetStyles = (ratio: any, options: any) => ({
+  height: "auto",
+  maxWidth: "100%",
+  aspectRatio: ratio && options.aspectRatio[ratio],
+  objectFit: "cover",
+} as CSSObject)
+
+export const getAsset = ({
+  asset,
+  model,
+  variant = "small",
+  ratio = undefined,
+}: GetAssetProps) => {
   const { ref, inView = false } = useInView({ triggerOnce: true })
 
   const {
@@ -24,6 +40,23 @@ export const getAsset = ({ asset, model }: GetAssetProps) => {
 
   const assets = model
 
+  const options = {
+    dimensions: {
+      small: {
+        height: 420,
+        width: 800,
+      },
+      large: {
+        height: 840,
+        width: 1600,
+      },
+    },
+    aspectRatio: {
+      square: "1 / 1",
+      wide: "16 / 9",
+    },
+  }
+
   if (contentType.includes("video/")) {
     let poster: string | undefined = undefined
 
@@ -31,17 +64,13 @@ export const getAsset = ({ asset, model }: GetAssetProps) => {
       const getPoster = assets.filter(item =>
         item.contentType.includes("image/")
       )
-      poster = `${getPoster[0].url}?q=90&w=800&h=420&fit=fill&f=center`
+      poster = `${getPoster[0].url}?q=90&w=${options.dimensions[variant].width}&h=${options.dimensions[variant].height}&fit=fill&f=center`
     }
 
     return (
       <video
         data-style="video"
-        style={{
-          height: "auto",
-          maxWidth: "100%",
-          aspectRatio: "16 / 9",
-        }}
+        css={assetStyles(ratio, options)}
         poster={poster}
         controls
         playsInline
@@ -64,12 +93,8 @@ export const getAsset = ({ asset, model }: GetAssetProps) => {
           <img
             alt={description}
             data-style="image"
-            style={{
-              height: "auto",
-              maxWidth: "100%",
-              aspectRatio: "16 / 9",
-            }}
-            src={`${url}?q=90&w=800&h=420&fit=fill&f=center&fm=webp`}
+            css={assetStyles(ratio, options)}
+            src={`${url}?q=90&w=${options.dimensions[variant].width}&h=${options.dimensions[variant].height}&fit=fill&f=center&fm=webp`}
             title={title}
           />
         )}
