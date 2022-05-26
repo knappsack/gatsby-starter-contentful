@@ -7,32 +7,20 @@ import type { TopicSectionVariant } from "../contentful/contentful-topic-section
 type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"">
 
-const base: CSSObject = {}
+const base: CSSObject = {
+  flex: "0 1 0%",
+  flexWrap: "wrap",
+}
 
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,
-  card: {
-    aspectRatio: "16 / 9",
-    picture: {
-      display: "flex",
-    },
-  },
-  block: {
-    aspectRatio: "16 / 9",
-    picture: {
-      display: "flex",
-    },
-  },
-  featured: {
-    maxWidth: ["35em", "45%"]
-  }
 }
 
-export type MediaStylesProps = {
+export type TopicActionsStylesProps = {
   variant: VariantStyle
   options?: OptionStyle
 }
 
-export const mediaStyles = ({ variant, options }: MediaStylesProps) => {
+export const topicActionsStyles = ({ variant, options }: TopicActionsStylesProps) => {
   return mediaQuery([base, variants[variant]])
 }

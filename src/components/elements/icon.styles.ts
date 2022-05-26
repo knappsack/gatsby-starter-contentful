@@ -13,9 +13,13 @@ const variants: Variants<VariantStyle> = {
     strokeWidth: 1,
   },
   medium: {
+    height: 32,
+    width: 32,
     strokeWidth: 1.5,
   },
   small: {
+    height: 16,
+    width: 16,
     strokeWidth: 1.5,
   },
 }

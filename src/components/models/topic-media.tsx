@@ -4,15 +4,15 @@ import { createUuid } from "../../lib/create-uuid"
 import type { ContentfulAsset } from "../contentful/contentful-asset"
 import type { TopicSectionVariant } from '../contentful/contentful-topic-section'
 import { getAsset } from "./asset"
-import { mediaStyles } from './media.styles'
+import { topicMediaStyles } from './topic-media.styles'
 
-export type MediaProps = {
+export type TopicMediaProps = {
   model: ContentfulAsset[]
   variant: TopicSectionVariant
 }
 
-export const Media = ({ model, variant }: MediaProps) => (
-  <div css={mediaStyles({ variant })}>
+export const TopicMedia = ({ model, variant }: TopicMediaProps) => (
+  <div css={topicMediaStyles({ variant })}>
     {model.map((asset: ContentfulAsset) => {
       const {
         sys: { id },
