@@ -1,10 +1,26 @@
+import * as React from "react"
+
 import slugify from "@sindresorhus/slugify"
-import { UseTypesOf } from "./use-types-of"
+import type { Block, Inline } from "@contentful/rich-text-types"
+import type { UseTypesOf } from "./use-types-of"
 
-type CreateJumpLinkProps = UseTypesOf["a"]
+type CreateJumpLinkProps = UseTypesOf["a"] & {
+  node: Block | Inline
+}
 
-export const createJumpLink = ({ children }: CreateJumpLinkProps) => {
-  const slug = children?.toString() || ""
+export const createJumpLink = ({ node, children }: CreateJumpLinkProps) => {
+  // @ts-ignore: value is not defined as type
+  const value: string | null | undefined = node?.content[0].value
 
-  return <a href={`#${slugify(slug)}`}>{children}</a>
+  if (!value) {
+    return <React.Fragment>{children}</React.Fragment>
+  }
+
+  const slug = slugify(value)
+
+  return (
+    <a id={slug} href={`#` + slug}>
+      {children}
+    </a>
+  )
 }

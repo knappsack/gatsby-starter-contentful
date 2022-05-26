@@ -30,6 +30,9 @@ const variants: Variants<GridTemplateStylesProps["variant"]> = {
     gridTemplateColumns: ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"],
   },
   ...textVariantContract,
+  text: {
+    maxWidth: 712,
+  },
   ...topicVariantContract,
   card: {
     display: "flex",

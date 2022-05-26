@@ -1,4 +1,5 @@
 import * as React from "react"
+import * as styles from "./text-section.styles"
 
 import {
   documentToReactComponents,
@@ -8,7 +9,7 @@ import {
 } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types"
 
-import {
+import type {
   ContentfulLinks,
   ContentfulTextSection,
 } from "../contentful/contentful-text-section"
@@ -17,6 +18,7 @@ import { Analytics } from "../analytics"
 import { createJumpLink } from "../../lib/create-jump-link"
 import { GridTemplate } from "../layout/grid-template"
 import { createUuid } from "../../lib/create-uuid"
+import { Heading } from "../elements/heading"
 
 type Options = {
   renderNode?: RenderNode
@@ -49,7 +51,7 @@ const options: OptionsProps = links => {
       [INLINES.HYPERLINK]: (node, children) => {
         return (
           <a
-            data-style="a"
+            css={styles.anchorStyles}
             href={node.data.uri}
             target="_blank"
             rel="noreferrer"
@@ -61,44 +63,44 @@ const options: OptionsProps = links => {
       [INLINES.ENTRY_HYPERLINK]: (node, children) => {
         const entry = contentfulEntryMap.get(node.data.target.sys.id)
         return (
-          <a data-style="a" href={entry.slug}>
+          <a css={styles.anchorStyles} href={entry.slug}>
             {children}
           </a>
         )
       },
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 data-style="h1">{children}</h1>
+        <Heading variant="large">{children}</Heading>
       ),
-      [BLOCKS.HEADING_2]: (node, children) => {
-        return <h2 data-style="h2">{createJumpLink({ children })}</h2>
-      },
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <Heading variant="large">{createJumpLink({ node, children })}</Heading>
+      ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 data-style="h3">{createJumpLink({ children })}</h3>
+        <Heading variant="large">{createJumpLink({ node, children })}</Heading>
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 data-style="h4">{createJumpLink({ children })}</h4>
+        <Heading variant="large">{createJumpLink({ node, children })}</Heading>
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <h5 data-style="h5">{createJumpLink({ children })}</h5>
+        <Heading variant="large">{createJumpLink({ node, children })}</Heading>
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <h6 data-style="h6">{createJumpLink({ children })}</h6>
+        <Heading variant="large">{createJumpLink({ node, children })}</Heading>
       ),
-      [BLOCKS.OL_LIST]: (node, children) => <ol data-style="ol">{children}</ol>,
-      [BLOCKS.UL_LIST]: (node, children) => <ul data-style="ul">{children}</ul>,
+      [BLOCKS.OL_LIST]: (node, children) => <ol css={styles.listStyles}>{children}</ol>,
+      [BLOCKS.UL_LIST]: (node, children) => <ul css={styles.listStyles}>{children}</ul>,
       [BLOCKS.LIST_ITEM]: (node, children) => (
-        <li data-style="li">{children}</li>
+        <li css={styles.listItemStyles}>{children}</li>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => {
         // @ts-ignore: value is not defined as type
         if (node.content[0].value === "") {
           return null
         } else {
-          return <p data-style="p">{children}</p>
+          return <p css={styles.paragraphStyles}>{children}</p>
         }
       },
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote data-style="blockquote">{children}</blockquote>
+        <blockquote css={styles.blockquoteStyles}>{children}</blockquote>
       ),
       [BLOCKS.HR]: () => <hr data-style="hr" />,
       [BLOCKS.EMBEDDED_ASSET]: node => {
@@ -113,13 +115,15 @@ const options: OptionsProps = links => {
       },
     },
     renderText: text => {
-      return text.split("\n").reduce((children, textSegment, index) => {
-        return [
-          ...children,
-          index > 0 && <br key={createUuid(`${index}`)} />,
-          textSegment,
-        ]
-      }, [])
+      return text
+        .split("\n")
+        .reduce((children: React.ReactNode[], textSegment, index) => {
+          return [
+            ...children,
+            index > 0 && <br key={createUuid(`${index}`)} />,
+            textSegment,
+          ]
+        }, [])
     },
   }
 }
