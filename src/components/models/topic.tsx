@@ -15,7 +15,7 @@ import { ContentfulAction } from "../contentful/contentful-action"
 import { createUuid } from "../../lib/create-uuid"
 import { Action } from "../elements/action"
 import {
-  topicContentStyle,
+  topicContentStyles,
   topicCopyStyle,
   topicCtaStyle,
   topicStyles,
@@ -63,9 +63,9 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
       ref={ref}
     >
       {options.media && mediaCollection && (
-        <Media model={model.mediaCollection.items} />
+        <Media variant={variant} model={model.mediaCollection.items} />
       )}
-      <Group variant="column" css={topicContentStyle}>
+      <Group variant="column" css={topicContentStyles({ variant })}>
         <Group variant="column" css={topicCopyStyle}>
           {options.icon && icon && (
             <div data-icon="">

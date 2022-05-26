@@ -13,6 +13,9 @@ const base: CSSObject = {
   fontSize: theme.size.default,
   padding: "8px 16px",
   borderRadius: 6,
+  "svg": {
+    transform: "translate(6px, 2px)",
+  },
   ":focus": {
     boxShadow: `0 0 0 4px ${theme.colors.focus}`,
     outline: "none",

@@ -9,12 +9,15 @@ type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"">
 
 const base: CSSObject = {
-  backgroundColor: theme.colors.unit,
+  "[data-icon]": {
+    color: theme.colors.link,
+  },
 }
 
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,
   card: {
+    backgroundColor: theme.colors.unit,
     overflow: "hidden",
     maxWidth: 327,
     minWidth: 327,
@@ -24,16 +27,18 @@ const variants: Variants<VariantStyle> = {
     border: theme.colors.border,
     boxShadow: `0px 0px 16px ${theme.colors.border}`,
     borderRadius: 4,
-    "[data-icon]": {
-      color: theme.colors.link,
-    },
   },
   block: {
     display: "flex",
     flexDirection: "column",
-    "[data-icon]": {
-      color: theme.colors.link,
-    },
+  },
+  featured: {
+    display: "flex",
+    flexDirection: ["column", "row"],
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    paddingTop: theme.spacing.default,
+    paddingBottom: theme.spacing.default,
   },
 }
 
@@ -46,10 +51,28 @@ export const topicStyles = ({ variant, options }: TopicStylesProps) => {
   return mediaQuery([base, variants[variant]])
 }
 
-export const topicContentStyle: CSSObject = {
-  flex: "1 1 auto",
-  gap: theme.spacing.default,
-  padding: theme.spacing.default,
+const baseTopicContent: CSSObject = {}
+
+const variantsTopicContent: Variants<VariantStyle> = {
+  ...topicVariantContract,
+  block: {
+    flex: "1 1 auto",
+    gap: theme.spacing.default,
+    padding: theme.spacing.default,
+  },
+  card: {
+    flex: "1 1 auto",
+    gap: theme.spacing.default,
+    padding: theme.spacing.default,
+  },
+  featured: {
+    width: "100%",
+    maxWidth: ["35em", "45%"],
+  }
+}
+
+export const topicContentStyles = ({ variant, options }: TopicStylesProps) => {
+  return mediaQuery([baseTopicContent, variantsTopicContent[variant]])
 }
 
 export const topicCopyStyle: CSSObject = {
