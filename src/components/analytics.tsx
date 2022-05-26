@@ -7,10 +7,9 @@ import { analyticsStyles, AnalyticsStylesProps } from "./analytics.styles"
 
 type AnalyticsProps = UseTypesOf["div"] & {
   area: "section" | "nav"
-  eventId?: string
-  theme?: string
-  variant: AnalyticsStylesProps["variant"]
+  eventId: string
   options?: AnalyticsStylesProps["options"]
+  variant: AnalyticsStylesProps["variant"]
 }
 
 export const Analytics = ({

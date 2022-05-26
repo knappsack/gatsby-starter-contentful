@@ -21,6 +21,10 @@ type VariantStyle =
 type OptionStyle = Options<"fixed" | "border">
 
 const base: CSSObject = {
+  /** Dark mode */
+  // "@media (prefers-color-scheme: dark)": {
+  //   backgroundColor: theme.colors.text,
+  // },
   backgroundColor: theme.colors.section,
   paddingLeft: theme.spacing.large,
   paddingRight: theme.spacing.large,
