@@ -1,8 +1,4 @@
-import * as React from "react"
-
-import slugify from "@sindresorhus/slugify"
 import { Heading } from "../elements/heading"
-import { TopicMedia } from "./topic-media"
 import { ContentfulTopic } from "../contentful/contentful-topic"
 import {
   TopicSectionOptions,
@@ -13,15 +9,22 @@ import { Group } from "../layout/group"
 import { topicContentStyles } from "./topic-content.styles"
 import { TopicActions } from "./topic-actions"
 import { TopicIcon } from "./topic-icon"
-import { CSSObject } from "@emotion/react"
 
 export type TopicProps = {
   model: ContentfulTopic
   options: TopicSectionOptions
   variant: TopicSectionVariant
+  sectionIndex: number
+  topicIndex: number
 }
 
-export const TopicContent = ({ model, options, variant }: TopicProps) => {
+export const TopicContent = ({
+  model,
+  options,
+  variant,
+  sectionIndex,
+  topicIndex,
+}: TopicProps) => {
   const {
     sys: { id },
     abstract,
@@ -33,6 +36,19 @@ export const TopicContent = ({ model, options, variant }: TopicProps) => {
   const headingVariant = ["card", "block"].includes(variant)
     ? "medium"
     : "large"
+  
+  let headingTag = "h3"
+  if (
+    ["featured", "headline"].includes(variant) &&
+    sectionIndex === 1 &&
+    topicIndex === 0
+  ) {
+    headingTag = "h1"
+  } else if (["featured", "headline"].includes(variant)) {
+    headingTag = "h2"
+  } else if (["quote"].includes(variant)) {
+    headingTag = "p"
+  }
 
   return (
     <Group
@@ -45,7 +61,9 @@ export const TopicContent = ({ model, options, variant }: TopicProps) => {
           <TopicIcon model={{ icon }} variant={variant} />
         )}
         {options.heading && heading && (
-          <Heading variant={headingVariant}>{heading}</Heading>
+          <Heading is={headingTag} variant={headingVariant}>
+            {heading}
+          </Heading>
         )}
         {options.abstract && abstract && <Abstract>{abstract}</Abstract>}
       </Group>

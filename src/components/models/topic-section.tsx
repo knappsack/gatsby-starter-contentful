@@ -7,9 +7,10 @@ import { Topic } from "./topic"
 
 export type TopicSectionProps = {
   model: ContentfulTopicSection
+  sectionIndex: number
 }
 
-export const TopicSection = ({ model }: TopicSectionProps) => {
+export const TopicSection = ({ model, sectionIndex }: TopicSectionProps) => {
   const {
     abstract,
     action,
@@ -31,11 +32,11 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
     media,
     reversed,
   }
-
+  
   return (
     <Analytics area="section" eventId={eventId} variant={variant}>
       <GridTemplate variant={variant}>
-        {topicsCollection.items.map((topic: ContentfulTopic) => {
+        {topicsCollection.items.map((topic: ContentfulTopic, index) => {
           const {
             sys: { id },
           } = model
@@ -45,6 +46,8 @@ export const TopicSection = ({ model }: TopicSectionProps) => {
               key={createUuid(id)}
               model={topic}
               options={options}
+              sectionIndex={sectionIndex}
+              topicIndex={index}
               variant={variant}
             />
           )

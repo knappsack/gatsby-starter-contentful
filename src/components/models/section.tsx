@@ -18,25 +18,28 @@ type SectionProps = {
   model: ContentfulSection[]
 }
 
-export const Section = ({ model }: SectionProps) => {
-  return (
-    <SemanticElements>
-      {model?.map((section: ContentfulSection) => {
-        return (
-          <React.Fragment key={createUuid(section.sys.id)}>
-            {getSection({ section })}
-          </React.Fragment>
-        )
-      })}
-    </SemanticElements>
-  )
-}
+export const Section = ({ model }: SectionProps) => (
+  <SemanticElements>
+    {model?.map((section: ContentfulSection, index) => {
+      const {
+        sys: { id },
+      } = section
+
+      return (
+        <React.Fragment key={createUuid(id)}>
+          {getSection({ section, index })}
+        </React.Fragment>
+      )
+    })}
+  </SemanticElements>
+)
 
 type GetSectionProps = {
   section: ContentfulSection
+  index: number
 }
 
-const getSection = ({ section }: GetSectionProps) => {
+const getSection = ({ section, index }: GetSectionProps) => {
   switch (section.__typename) {
     case `Contentful_NavigationSection`:
       return (
@@ -44,7 +47,12 @@ const getSection = ({ section }: GetSectionProps) => {
       )
 
     case `Contentful_TopicSection`:
-      return <TopicSection model={section as ContentfulTopicSection} />
+      return (
+        <TopicSection
+          model={section as ContentfulTopicSection}
+          sectionIndex={index}
+        />
+      )
 
     case `Contentful_TextSection`:
       return <TextSection model={section as ContentfulTextSection} />

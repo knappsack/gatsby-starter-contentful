@@ -15,9 +15,17 @@ export type TopicProps = {
   model: ContentfulTopic
   options: TopicSectionOptions
   variant: TopicSectionVariant
+  sectionIndex: number
+  topicIndex: number
 }
 
-export const Topic = ({ model, options, variant }: TopicProps) => {
+export const Topic = ({
+  model,
+  options,
+  variant,
+  sectionIndex,
+  topicIndex,
+}: TopicProps) => {
   const ref = React.useRef<HTMLDivElement>(null)
 
   const {
@@ -47,7 +55,13 @@ export const Topic = ({ model, options, variant }: TopicProps) => {
       {options.media && mediaCollection && (
         <TopicMedia variant={variant} model={mediaCollection.items} />
       )}
-      <TopicContent model={model} variant={variant} options={options} />
+      <TopicContent
+        model={model}
+        options={options}
+        sectionIndex={sectionIndex}
+        topicIndex={topicIndex}
+        variant={variant}
+      />
     </div>
   )
 }
