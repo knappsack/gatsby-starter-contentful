@@ -9,22 +9,17 @@ import { Group } from "../layout/group"
 import { topicContentStyles } from "./topic-content.styles"
 import { TopicActions } from "./topic-actions"
 import { TopicIcon } from "./topic-icon"
+import { DataProps } from "./section"
+import { useHeadingTag } from '../../lib/use-heading-tag'
 
 export type TopicProps = {
   model: ContentfulTopic
   options: TopicSectionOptions
   variant: TopicSectionVariant
-  sectionIndex: number
-  topicIndex: number
+  data: DataProps
 }
 
-export const TopicContent = ({
-  model,
-  options,
-  variant,
-  sectionIndex,
-  topicIndex,
-}: TopicProps) => {
+export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
   const {
     sys: { id },
     abstract,
@@ -36,19 +31,6 @@ export const TopicContent = ({
   const headingVariant = ["card", "block"].includes(variant)
     ? "medium"
     : "large"
-  
-  let headingTag = "h3"
-  if (
-    ["featured", "headline"].includes(variant) &&
-    sectionIndex === 1 &&
-    topicIndex === 0
-  ) {
-    headingTag = "h1"
-  } else if (["featured", "headline"].includes(variant)) {
-    headingTag = "h2"
-  } else if (["quote"].includes(variant)) {
-    headingTag = "p"
-  }
 
   return (
     <Group
@@ -61,7 +43,7 @@ export const TopicContent = ({
           <TopicIcon model={{ icon }} variant={variant} />
         )}
         {options.heading && heading && (
-          <Heading is={headingTag} variant={headingVariant}>
+          <Heading is={useHeadingTag(data, variant)} variant={headingVariant}>
             {heading}
           </Heading>
         )}

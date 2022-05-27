@@ -3,14 +3,15 @@ import { Analytics } from "../analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"
 import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
 import { GridTemplate } from "../layout/grid-template"
+import { DataProps } from "./section"
 import { Topic } from "./topic"
 
 export type TopicSectionProps = {
   model: ContentfulTopicSection
-  sectionIndex: number
+  data: DataProps
 }
 
-export const TopicSection = ({ model, sectionIndex }: TopicSectionProps) => {
+export const TopicSection = ({ model, data }: TopicSectionProps) => {
   const {
     abstract,
     action,
@@ -32,7 +33,7 @@ export const TopicSection = ({ model, sectionIndex }: TopicSectionProps) => {
     media,
     reversed,
   }
-  
+
   return (
     <Analytics area="section" eventId={eventId} variant={variant}>
       <GridTemplate variant={variant}>
@@ -46,8 +47,7 @@ export const TopicSection = ({ model, sectionIndex }: TopicSectionProps) => {
               key={createUuid(id)}
               model={topic}
               options={options}
-              sectionIndex={sectionIndex}
-              topicIndex={index}
+              data={{ ...data, topicIndex: index }}
               variant={variant}
             />
           )

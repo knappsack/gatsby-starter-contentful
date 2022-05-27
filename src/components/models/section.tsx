@@ -9,6 +9,9 @@ import { NavigationSection } from "./navigation-section"
 import { TextSection } from "./text-section"
 import { TopicSection } from "./topic-section"
 
+type DataRecord<Data extends string> = Partial<Record<Data, number>>
+export type DataProps = DataRecord<"sectionIndex" | "topicIndex">
+
 type ContentfulSection =
   | ContentfulNavigationSection
   | ContentfulTextSection
@@ -16,6 +19,7 @@ type ContentfulSection =
 
 type SectionProps = {
   model: ContentfulSection[]
+  data: DataProps
 }
 
 export const Section = ({ model }: SectionProps) => (
@@ -27,7 +31,7 @@ export const Section = ({ model }: SectionProps) => (
 
       return (
         <React.Fragment key={createUuid(id)}>
-          {getSection({ section, index })}
+          {getSection({ section, data: { sectionIndex: index }})}
         </React.Fragment>
       )
     })}
@@ -36,10 +40,10 @@ export const Section = ({ model }: SectionProps) => (
 
 type GetSectionProps = {
   section: ContentfulSection
-  index: number
+  data: DataProps
 }
 
-const getSection = ({ section, index }: GetSectionProps) => {
+const getSection = ({ section, data }: GetSectionProps) => {
   switch (section.__typename) {
     case `Contentful_NavigationSection`:
       return (
@@ -50,7 +54,7 @@ const getSection = ({ section, index }: GetSectionProps) => {
       return (
         <TopicSection
           model={section as ContentfulTopicSection}
-          sectionIndex={index}
+          data={data}
         />
       )
 
