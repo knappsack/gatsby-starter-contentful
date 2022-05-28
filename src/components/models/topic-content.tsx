@@ -10,7 +10,9 @@ import { topicContentStyles } from "./topic-content.styles"
 import { TopicActions } from "./topic-actions"
 import { TopicIcon } from "./topic-icon"
 import { DataProps } from "./section"
-import { useHeadingTag } from '../../lib/use-heading-tag'
+import { useHeadingTag } from "../../lib/use-heading-tag"
+import { HeadingStylesProps } from "../elements/heading.styles"
+import { AbstractStylesProps } from "../elements/abstract.styles"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -28,9 +30,18 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
     icon,
   } = model
 
-  const headingVariant = ["card", "block"].includes(variant)
-    ? "medium"
-    : "large"
+  let headingVariant: HeadingStylesProps["variant"] = "medium"
+  let abstractVariant: AbstractStylesProps["variant"] = "medium"
+
+  if (["headline"].includes(variant)) {
+    headingVariant = "xlarge"
+    abstractVariant = "large"
+  }
+
+  if (["quote"].includes(variant)) {
+    headingVariant = "small"
+    abstractVariant = "xlarge"
+  }
 
   return (
     <Group
@@ -47,7 +58,9 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
             {heading}
           </Heading>
         )}
-        {options.abstract && abstract && <Abstract>{abstract}</Abstract>}
+        {options.abstract && abstract && (
+          <Abstract variant={abstractVariant}>{abstract}</Abstract>
+        )}
       </Group>
       {options.action && actionsCollection && (
         <TopicActions model={actionsCollection.items} variant={variant} />
