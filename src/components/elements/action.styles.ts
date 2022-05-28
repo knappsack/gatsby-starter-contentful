@@ -13,7 +13,7 @@ const base: CSSObject = {
   fontSize: theme.size.default,
   padding: "8px 16px",
   borderRadius: 6,
-  "svg": {
+  svg: {
     transform: "translate(6px, 2px)",
   },
   ":focus": {
@@ -30,7 +30,7 @@ const variants: Variants<VariantStyle> = {
     borderColor: theme.colors.link,
     ":hover": {
       backgroundColor: theme.colors.hover,
-    }
+    },
   },
   secondary: {
     backgroundColor: theme.colors.transparent,
@@ -39,13 +39,13 @@ const variants: Variants<VariantStyle> = {
     borderColor: theme.colors.link,
     ":hover": {
       borderColor: theme.colors.focus,
-    }
+    },
   },
   link: {
     fontSize: theme.size.default,
     ":hover": {
       textDecoration: "underline",
-    }
+    },
   },
 }
 

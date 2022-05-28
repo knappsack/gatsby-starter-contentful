@@ -10,7 +10,7 @@ import type {
 import { topicStyles } from "./topic.styles"
 import { useGtag } from "../../lib/gtag"
 import { TopicContent } from "./topic-content"
-import { DataProps } from './section'
+import { DataProps } from "./section"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -19,12 +19,7 @@ export type TopicProps = {
   data: DataProps
 }
 
-export const Topic = ({
-  model,
-  options,
-  variant,
-  data,
-}: TopicProps) => {
+export const Topic = ({ model, options, variant, data }: TopicProps) => {
   const ref = React.useRef<HTMLDivElement>(null)
 
   const {

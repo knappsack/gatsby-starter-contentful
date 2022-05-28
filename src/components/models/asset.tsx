@@ -1,4 +1,4 @@
-import { CSSObject } from '@emotion/react'
+import { CSSObject } from "@emotion/react"
 import * as React from "react"
 
 import { useInView } from "react-intersection-observer"
@@ -11,12 +11,13 @@ type GetAssetProps = {
   ratio: Partial<"square" | "wide" | undefined>
 }
 
-const assetStyles = (ratio: any, options: any) => ({
-  height: "auto",
-  maxWidth: "100%",
-  aspectRatio: ratio && options.aspectRatio[ratio],
-  objectFit: "cover",
-} as CSSObject)
+const assetStyles = (ratio: any, options: any) =>
+  ({
+    height: "auto",
+    maxWidth: "100%",
+    aspectRatio: ratio && options.aspectRatio[ratio],
+    objectFit: "cover",
+  } as CSSObject)
 
 export const getAsset = ({
   asset,

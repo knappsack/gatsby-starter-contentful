@@ -12,8 +12,12 @@ export type TopicMediaProps = {
 }
 
 export const TopicMedia = ({ model, variant }: TopicMediaProps) => {
-  const assetVariant = ["headline", "quote"].includes(variant) ? "large" : "small"
-  const assetRatio = ["headline", "quote"].includes(variant) ? undefined : "wide"
+  const assetVariant = ["headline", "quote"].includes(variant)
+    ? "large"
+    : "small"
+  const assetRatio = ["headline", "quote"].includes(variant)
+    ? undefined
+    : "wide"
 
   return (
     <div css={topicMediaStyles({ variant })}>
@@ -24,7 +28,12 @@ export const TopicMedia = ({ model, variant }: TopicMediaProps) => {
 
         return (
           <React.Fragment key={createUuid(id)}>
-            {getAsset({ asset, model, variant: assetVariant, ratio: assetRatio })}
+            {getAsset({
+              asset,
+              model,
+              variant: assetVariant,
+              ratio: assetRatio,
+            })}
           </React.Fragment>
         )
       })}

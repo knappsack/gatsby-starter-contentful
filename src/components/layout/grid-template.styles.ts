@@ -11,7 +11,10 @@ import type { TextSectionVariant } from "../contentful/contentful-text-section"
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
 import { theme } from "../../styles/global-css-variables.css"
 
-type VariantStyle = TopicSectionVariant | TextSectionVariant | NavigationSectionVariant
+type VariantStyle =
+  | TopicSectionVariant
+  | TextSectionVariant
+  | NavigationSectionVariant
 type OptionStyle = Options<"">
 
 const base: CSSObject = {
@@ -37,7 +40,7 @@ const variants: Variants<GridTemplateStylesProps["variant"]> = {
   card: {
     display: "flex",
     margin: "auto",
-    justifyContent: 'center',
+    justifyContent: "center",
     flexWrap: "wrap",
   },
   block: {

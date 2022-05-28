@@ -24,7 +24,7 @@ export const paragraphStyles = () => {
 }
 
 const blockquote: CSSObject = {
-  display: 'grid',
+  display: "grid",
   gap: 16,
   fontSize: 24,
   fontStyle: "italic",

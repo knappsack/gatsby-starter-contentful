@@ -11,8 +11,8 @@ export type TopicIconProps = {
 
 export const TopicIcon = ({ model, variant }: TopicIconProps) => {
   const { icon } = model
-  
-  const iconVariant = ['block', 'card'].includes(variant) ? "medium" : "large"
+
+  const iconVariant = ["block", "card"].includes(variant) ? "medium" : "large"
 
   return (
     <div css={topicIconStyles({ variant })}>

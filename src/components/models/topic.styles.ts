@@ -48,7 +48,7 @@ const variants: Variants<VariantStyle> = {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
-  }
+  },
 }
 
 const reversed: Variants<VariantStyle> = {
@@ -57,8 +57,8 @@ const reversed: Variants<VariantStyle> = {
     flexDirection: ["column-reverse", "row-reverse"],
   },
   headline: {
-    flexDirection: "column-reverse"
-  }
+    flexDirection: "column-reverse",
+  },
 }
 
 export type TopicStylesProps = {

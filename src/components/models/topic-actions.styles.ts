@@ -21,6 +21,9 @@ export type TopicActionsStylesProps = {
   options?: OptionStyle
 }
 
-export const topicActionsStyles = ({ variant, options }: TopicActionsStylesProps) => {
+export const topicActionsStyles = ({
+  variant,
+  options,
+}: TopicActionsStylesProps) => {
   return mediaQuery([base, variants[variant]])
 }

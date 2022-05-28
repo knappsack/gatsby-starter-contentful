@@ -31,7 +31,7 @@ export const Section = ({ model }: SectionProps) => (
 
       return (
         <React.Fragment key={createUuid(id)}>
-          {getSection({ section, data: { sectionIndex: index }})}
+          {getSection({ section, data: { sectionIndex: index } })}
         </React.Fragment>
       )
     })}
@@ -52,10 +52,7 @@ const getSection = ({ section, data }: GetSectionProps) => {
 
     case `Contentful_TopicSection`:
       return (
-        <TopicSection
-          model={section as ContentfulTopicSection}
-          data={data}
-        />
+        <TopicSection model={section as ContentfulTopicSection} data={data} />
       )
 
     case `Contentful_TextSection`:

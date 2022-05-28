@@ -86,8 +86,12 @@ const options: OptionsProps = links => {
       [BLOCKS.HEADING_6]: (node, children) => (
         <Heading variant="large">{createJumpLink({ node, children })}</Heading>
       ),
-      [BLOCKS.OL_LIST]: (node, children) => <ol css={styles.listStyles}>{children}</ol>,
-      [BLOCKS.UL_LIST]: (node, children) => <ul css={styles.listStyles}>{children}</ul>,
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <ol css={styles.listStyles}>{children}</ol>
+      ),
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul css={styles.listStyles}>{children}</ul>
+      ),
       [BLOCKS.LIST_ITEM]: (node, children) => (
         <li css={styles.listItemStyles}>{children}</li>
       ),
