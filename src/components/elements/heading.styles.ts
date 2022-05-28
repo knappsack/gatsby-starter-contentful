@@ -13,7 +13,7 @@ const base: CSSObject = {
 
 const variants: Variants<VariantStyle> = {
   xlarge: {
-    fontSize: 42,
+    fontSize: [42, 50],
   },
   large: {
     fontSize: 32,

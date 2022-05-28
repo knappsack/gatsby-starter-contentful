@@ -19,7 +19,7 @@ const variants: Variants<VariantStyle> = {
     lineHeight: 1.375,
   },
   large: {
-    fontSize: 22,
+    fontSize: [20, 24],
   },
   medium: {
     fontSize: theme.size.default,

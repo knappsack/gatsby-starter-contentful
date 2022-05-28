@@ -25,6 +25,10 @@ const variants: Variants<VariantStyle> = {
     width: "100%",
     maxWidth: ["35em", "45%"],
   },
+  headline: {
+    paddingTop: theme.spacing.large,
+    paddingBottom: theme.spacing.large,
+  }
 }
 
 type TopicContentStylesProps = {
