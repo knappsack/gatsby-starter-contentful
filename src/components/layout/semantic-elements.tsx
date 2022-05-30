@@ -1,6 +1,8 @@
 import * as React from "react"
 
 import { createUuid } from "../../lib/create-uuid"
+import { SkipToContent } from "../elements/skip-to-content"
+import { skipToContentStyles } from "../elements/skip-to-content.styles"
 
 type GetSemanticTag = {
   section: {
@@ -69,9 +71,7 @@ const SemanticElements = (props: SemanticElementsProps) => {
     <React.Fragment>
       {sections.header.length > 0 && (
         <header role="banner">
-          <a data-skip-to-content="" href="#main">
-            Skip to content
-          </a>
+          <SkipToContent>Skip to content</SkipToContent>
           {sections.header}
         </header>
       )}
