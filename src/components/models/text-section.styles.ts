@@ -3,8 +3,8 @@ import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 
 const base: CSSObject = {
-  fontFamily: theme.fontFamily.body,
-  fontSize: theme.size.default,
+  fontFamily: theme.font.family.body,
+  fontSize: theme.font.size.default,
   lineHeight: 1.5,
 }
 
@@ -26,7 +26,7 @@ export const paragraphStyles = () => {
 const blockquote: CSSObject = {
   display: "grid",
   gap: 16,
-  fontSize: 24,
+  fontSize: theme.font.size.xlarge,
   fontStyle: "italic",
   borderLeft: "4px solid silver",
   paddingLeft: 24,

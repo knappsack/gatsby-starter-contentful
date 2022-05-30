@@ -28,7 +28,7 @@ const variants: Variants<VariantStyle> = {
   headline: {
     paddingTop: theme.spacing.large,
     paddingBottom: theme.spacing.large,
-  }
+  },
 }
 
 type TopicContentStylesProps = {

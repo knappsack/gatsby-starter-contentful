@@ -7,23 +7,25 @@ type VariantStyle = "xlarge" | "large" | "medium" | "small"
 
 const base: CSSObject = {
   color: theme.colors.text,
-  fontFamily: theme.fontFamily.body,
-  fontWeight: "bold",
+  fontFamily: theme.font.family.body,
+  // @ts-ignore unsolvable type error from Vanilla Extract
+  fontWeight: theme.font.weight.bold,
 }
 
 const variants: Variants<VariantStyle> = {
   xlarge: {
-    fontSize: [42, 50],
+    fontSize: [theme.font.size.xxlarge, theme.font.size.huge],
   },
   large: {
-    fontSize: 32,
+    fontSize: theme.font.size.xxlarge,
   },
   medium: {
-    fontSize: 24,
+    fontSize: theme.font.size.xlarge,
   },
   small: {
-    fontSize: theme.size.default,
-    fontWeight: 400,
+    fontSize: theme.font.size.default,
+    // @ts-ignore unsolvable type error from Vanilla Extract
+    fontWeight: theme.font.weight.default,
   },
 }
 

@@ -14,9 +14,33 @@ export const theme = createGlobalTheme(`:root`, {
     text: "#1d1d1f",
     unit: "#fff",
   },
-  fontFamily: {
-    body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-    default: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  font: {
+    family: {
+      body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+      default: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+    },
+    weight: {
+      default: "400",
+      thin: "100",
+      extralight: "200",
+      light: "300",
+      normal: "400",
+      medium: "500",
+      semibold: "600",
+      bold: "700",
+      extrabold: "800",
+      black: "900",
+    },
+    size: {
+      default: "18px",
+      xsmall: "8px",
+      small: "12px",
+      medium: "16px",
+      large: "20px",
+      xlarge: "24px",
+      xxlarge: "32px",
+      huge: "50px",
+    },
   },
   spacing: {
     default: "16px",
@@ -26,35 +50,5 @@ export const theme = createGlobalTheme(`:root`, {
     large: "24px",
     xlarge: "32px",
     xxlarge: "48px",
-  },
-  size: {
-    default: "18px",
-    xsmall: "8px",
-    small: "12px",
-    medium: "16px",
-  },
-  fontWeight: {
-    default: "400",
-    thin: "100",
-    extralight: "200",
-    light: "300",
-    normal: "400",
-    medium: "500",
-    semibold: "600",
-    bold: "700",
-    extrabold: "800",
-    black: "900",
-  },
-  screens: {
-    sm: "640px",
-    // => @media (min-width: 640px) { ... }
-    md: "768px",
-    // => @media (min-width: 768px) { ... }
-    lg: "1024px",
-    // => @media (min-width: 1024px) { ... }
-    xl: "1280px",
-    // => @media (min-width: 1280px) { ... }
-    "2xl": "1536px",
-    // => @media (min-width: 1536px) { ... }
   },
 })

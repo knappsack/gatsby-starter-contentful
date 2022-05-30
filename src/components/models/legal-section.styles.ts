@@ -10,9 +10,9 @@ export const legalStyle = mediaQuery({
 } as CSSObject)
 
 const base: CSSObject = {
-  fontFamily: theme.fontFamily.body,
+  fontFamily: theme.font.family.body,
   color: theme.colors.text,
-  fontSize: theme.size.small,
+  fontSize: theme.font.size.small,
   lineHeight: 1.5,
 }
 

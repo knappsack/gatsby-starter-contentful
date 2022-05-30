@@ -33,6 +33,11 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
   let headingVariant: HeadingStylesProps["variant"] = "medium"
   let abstractVariant: AbstractStylesProps["variant"] = "medium"
 
+  if (["featured"].includes(variant)) {
+    headingVariant = "xlarge"
+    abstractVariant = "medium"
+  }
+
   if (["headline"].includes(variant)) {
     headingVariant = "xlarge"
     abstractVariant = "large"
