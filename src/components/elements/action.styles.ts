@@ -4,13 +4,13 @@ import { mediaQuery } from "../../styles/media-query"
 import type { Variants, Options } from "../../styles/types"
 
 type VariantStyle = "primary" | "secondary" | "link"
-type OptionStyle = Options<"small">
+type OptionStyle = Options<"large">
 
 const base: CSSObject = {
   color: theme.colors.link,
   display: "inline-block",
-  fontFamily: theme.fontFamily.body,
-  fontSize: theme.size.default,
+  fontFamily: theme.font.family.body,
+  fontSize: theme.font.size.default,
   padding: "8px 16px",
   borderRadius: 6,
   svg: {
@@ -42,15 +42,16 @@ const variants: Variants<VariantStyle> = {
     },
   },
   link: {
-    fontSize: theme.size.default,
+    fontSize: theme.font.size.default,
     ":hover": {
       textDecoration: "underline",
     },
   },
 }
 
-const small = {
-  fontSize: theme.size.small,
+const large = {
+  fontSize: theme.font.size.large,
+  padding: "12px 20px",
 }
 
 export type ActionStylesProps = {
@@ -59,5 +60,9 @@ export type ActionStylesProps = {
 }
 
 export const actionStyles = ({ variant, options }: ActionStylesProps) => {
-  return mediaQuery([base, variants[variant], options?.small && small])
+  return mediaQuery([
+    base,
+    variants[variant],
+    options?.large && large,
+  ])
 }
