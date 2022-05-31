@@ -1,4 +1,4 @@
-import { CSSObject } from "@emotion/react"
+import type { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 
@@ -54,4 +54,39 @@ const listItem: CSSObject = {}
 
 export const listItemStyles = () => {
   return mediaQuery([base, listItem])
+}
+
+const bold: CSSObject = {
+  fontWeight: "bold",
+}
+
+export const boldStyles = () => {
+  return mediaQuery([base, bold])
+}
+
+const italic: CSSObject = {
+  fontStyle: "italic",
+}
+
+export const italicStyles = () => {
+  return mediaQuery([base, italic])
+}
+
+const underline: CSSObject = {
+  textDecoration: "underline",
+}
+
+export const underlineStyles = () => {
+  return mediaQuery([base, underline])
+}
+
+const code: CSSObject = {
+  padding: 2,
+  fontSize: ".875em",
+  fontFamily: theme.font.family.code,
+  color: theme.colors.highlight,
+}
+
+export const codeStyles = () => {
+  return mediaQuery([base, code])
 }

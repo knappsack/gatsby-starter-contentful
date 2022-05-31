@@ -2,22 +2,23 @@ import { createGlobalTheme } from "@vanilla-extract/css"
 
 export const theme = createGlobalTheme(`:root`, {
   colors: {
-    transparent: "transparent",
-    current: "currentColor",
     border: "#d2d2d2",
+    current: "currentColor",
     default: "#1d1d1f",
-    heading: "#1d1d1f",
-    link: "#06c",
-    hover: "#0077ed",
     focus: "hsl(210deg 100% 49% / 60%)",
+    highlight: "#f92672",
+    hover: "#0077ed",
+    link: "#06c",
     section: "#f5f5f5",
     text: "#1d1d1f",
+    transparent: "transparent",
     unit: "#fff",
   },
   font: {
     family: {
+      code: `Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace`,
       body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-      default: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+      heading: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
     },
     weight: {
       default: "400",

@@ -42,10 +42,10 @@ const options: OptionsProps = links => {
 
   return {
     renderMark: {
-      [MARKS.BOLD]: text => <b data-style="bold">{text}</b>,
-      [MARKS.ITALIC]: text => <i data-style="italic">{text}</i>,
-      [MARKS.UNDERLINE]: text => <u data-style="underline">{text}</u>,
-      [MARKS.CODE]: text => <code data-style="code">{text}</code>,
+      [MARKS.BOLD]: text => <b css={styles.boldStyles}>{text}</b>,
+      [MARKS.ITALIC]: text => <i css={styles.italicStyles}>{text}</i>,
+      [MARKS.UNDERLINE]: text => <u css={styles.underlineStyles}>{text}</u>,
+      [MARKS.CODE]: text => <code css={styles.codeStyles}>{text}</code>,
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
