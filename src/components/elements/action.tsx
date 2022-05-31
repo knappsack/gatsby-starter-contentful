@@ -2,7 +2,7 @@ import * as React from "react"
 
 import slugify from "@sindresorhus/slugify"
 import { Link as GatsbyLink } from "gatsby"
-import { ContentfulAction } from "../contentful/contentful-action"
+import type { ContentfulAction } from "../contentful/contentful-action"
 import { useGtag } from "../../lib/gtag"
 import { Icon } from "../elements/icon"
 import { actionStyles } from "./action.styles"
@@ -63,7 +63,7 @@ export const Action = ({ model, variant, options }: ActionProps) => {
     )
   }
   return (
-    <a href={to} {...props}>
+    <a href={to} {...props} rel="noreferrer noopener" target="_blank">
       {heading}
       {icon && <Icon variant="small" name={icon} />}
     </a>

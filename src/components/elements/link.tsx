@@ -1,10 +1,11 @@
-import * as React from "react"
+import * as React from 'react'
 
 import { Link as GatsbyLink } from "gatsby"
+import type { GatsbyLinkProps } from "gatsby"
 
-export const Link = ({ children, ...props }) => {
-  const { to } = props
+type LinkProps = React.PropsWithoutRef<GatsbyLinkProps<{}>>
 
+export const Link = ({ children, to, ...props }: LinkProps) => {
   const internal = /^\/(?!\/)/.test(to)
   if (internal) {
     return (
@@ -14,7 +15,7 @@ export const Link = ({ children, ...props }) => {
     )
   }
   return (
-    <a href={to} target="_blank" {...props}>
+    <a href={to} {...props} rel="noreferrer noopener" target="_blank">
       {children}
     </a>
   )
