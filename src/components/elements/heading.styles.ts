@@ -1,9 +1,10 @@
 import { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
-import type { Variants } from "../../styles/types"
+import type { Options, Variants } from "../../styles/types"
 
 type VariantStyle = "xlarge" | "large" | "medium" | "small"
+type OptionStyle = Options<"margin">
 
 const base: CSSObject = {
   color: theme.colors.text,
@@ -24,15 +25,18 @@ const variants: Variants<VariantStyle> = {
   },
   small: {
     fontSize: theme.font.size.default,
-    // @ts-ignore unsolvable type error from Vanilla Extract
-    fontWeight: theme.font.weight.default,
   },
+}
+
+const margin: CSSObject = {
+  marginBottom: theme.spacing.small,
 }
 
 export type HeadingStylesProps = {
   variant: VariantStyle
+  options?: OptionStyle
 }
 
-export const headingStyles = ({ variant }: HeadingStylesProps) => {
-  return mediaQuery([base, variants[variant]])
+export const headingStyles = ({ variant, options }: HeadingStylesProps) => {
+  return mediaQuery([base, variants[variant], options?.margin && margin])
 }

@@ -1,13 +1,14 @@
-import { CSSObject } from "@emotion/react"
-import { theme } from "../../styles/global-css-variables.css"
+import type { CSSObject } from "@emotion/react"
 import { mediaQuery } from "../../styles/media-query"
 import type { Variants } from "../../styles/types"
+
+type VariantStyle = "footer" | "header" | "sitemap"
 
 const base: CSSObject = {
   display: "flex",
 }
 
-const variants: Variants<NavigationListStylesProps["variant"]> = {
+const variants: Variants<VariantStyle> = {
   footer: {
     flexDirection: ["column", "row"],
     margin: "0 -16px",
@@ -22,7 +23,7 @@ const variants: Variants<NavigationListStylesProps["variant"]> = {
 }
 
 export type NavigationListStylesProps = {
-  variant: "footer" | "header" | "sitemap"
+  variant: VariantStyle
 }
 
 export const navigationListStyles = ({

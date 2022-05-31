@@ -1,5 +1,3 @@
-import * as styles from "./navigation-heading.styles"
-
 import { Action } from "../elements/action"
 import type { ContentfulAction } from "../contentful/contentful-action"
 import type {
@@ -28,7 +26,7 @@ export const Navigation = ({ model, options, variant }: NavigationProps) => {
   return (
     <div>
       {options.heading && heading && (
-        <Heading variant="small" css={styles.navigationHeadingStyles}>
+        <Heading variant="small" options={{ margin: true }}>
           {heading}
         </Heading>
       )}

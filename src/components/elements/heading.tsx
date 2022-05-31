@@ -31,10 +31,10 @@ export type HeadingProps = UseTypesOf["h3"] & HeadingStylesProps
  */
 export const Heading = React.forwardRef(
   (
-    { children, variant, ...props }: HeadingProps,
+    { children, variant, options, ...props }: HeadingProps,
     ref: React.Ref<HTMLHeadingElement>
   ) => {
-    const styles = headingStyles({ variant })
+    const styles = headingStyles({ variant, options })
 
     return (
       <AnyForwardRef is="h3" css={styles} {...props} ref={ref}>
