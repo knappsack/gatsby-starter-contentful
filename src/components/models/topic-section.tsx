@@ -1,5 +1,5 @@
 import { createUuid } from "../../lib/create-uuid"
-import { Analytics } from "../analytics"
+import { Analytics } from "../layout/analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"
 import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
 import { GridTemplate } from "../layout/grid-template"

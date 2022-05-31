@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import { UseTypesOf } from "../lib/use-types-of"
-import { useGtag } from "../lib/gtag"
-import { isBrowser } from "../lib/is-browser"
+import { UseTypesOf } from "../../lib/use-types-of"
+import { useGtag } from "../../lib/gtag"
+import { isBrowser } from "../../lib/is-browser"
 import { analyticsStyles, AnalyticsStylesProps } from "./analytics.styles"
 
 type AnalyticsProps = UseTypesOf["div"] & {

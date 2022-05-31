@@ -3,9 +3,9 @@ import type {
   ContentfulNavigationSection,
   NavigationSectionOptions,
 } from "../contentful/contentful-navigation-section"
-import Navigation from "./navigation"
+import { Navigation } from "./navigation"
 import { createUuid } from "../../lib/create-uuid"
-import { Analytics } from "../analytics"
+import { Analytics } from "../layout/analytics"
 import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
 import type { UseTypesOf } from "../../lib/use-types-of"
@@ -38,10 +38,7 @@ export type NavigationSitemapProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection
 }
 
-export const NavigationSitemap = ({
-  model,
-  ...props
-}: NavigationSitemapProps) => {
+export const NavigationSitemap = ({ model }: NavigationSitemapProps) => {
   const {
     sys: { id },
     branding,
@@ -61,9 +58,8 @@ export const NavigationSitemap = ({
     <Analytics
       area="nav"
       eventId={eventId}
-      variant="sitemap"
       options={{ border: true }}
-      {...props}
+      variant="sitemap"
     >
       <Container options={options}>
         {options.branding && logo && (

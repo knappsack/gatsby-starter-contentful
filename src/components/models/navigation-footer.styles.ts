@@ -9,17 +9,25 @@ const legal: CSSObject = {
   justifyContent: "space-between",
 }
 
-const base: CSSObject = {
+export const legalStyles = () => {
+  return mediaQuery(legal)
+}
+
+const copyright: CSSObject = {
   fontFamily: theme.font.family.body,
   color: theme.colors.text,
   fontSize: theme.font.size.small,
   lineHeight: 1.5,
 }
 
+export const copyrightStyles = () => {
+  return mediaQuery(copyright)
+}
+
 const supporter: CSSObject = {
   textDecoration: "underline",
 }
 
-export const legalStyles = mediaQuery(legal)
-export const copyrightStyles = mediaQuery(base)
-export const supporterStyles = mediaQuery([base, supporter])
+export const supporterStyles = () => {
+  return mediaQuery([copyright, supporter])
+}

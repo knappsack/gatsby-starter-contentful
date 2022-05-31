@@ -14,7 +14,7 @@ import type {
   ContentfulTextSection,
 } from "../contentful/contentful-text-section"
 
-import { Analytics } from "../analytics"
+import { Analytics } from "../layout/analytics"
 import { createJumpLink } from "../../lib/create-jump-link"
 import { GridTemplate } from "../layout/grid-template"
 import { createUuid } from "../../lib/create-uuid"

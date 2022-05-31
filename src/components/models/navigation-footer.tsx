@@ -2,9 +2,9 @@ import * as styles from "./navigation-footer.styles"
 
 import { ContentfulNavigation } from "../contentful/contentful-navigation"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
-import Navigation from "./navigation"
+import { Navigation } from "./navigation"
 import { createUuid } from "../../lib/create-uuid"
-import { Analytics } from "../analytics"
+import { Analytics } from "../layout/analytics"
 import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
 
@@ -31,8 +31,8 @@ export const NavigationFooter = ({ model }: NavigationFooterProps) => {
     <Analytics
       area="section"
       eventId={eventId}
-      variant="footer"
       options={{ border: true }}
+      variant="footer"
     >
       <GridTemplate variant="default">
         {navigationsCollection.items

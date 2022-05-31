@@ -1,8 +1,8 @@
 import { ContentfulNavigation } from "../contentful/contentful-navigation"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
-import Navigation from "./navigation"
+import { Navigation } from "./navigation"
 import { createUuid } from "../../lib/create-uuid"
-import { Analytics } from "../analytics"
+import { Analytics } from "../layout/analytics"
 import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
 import { UseTypesOf } from "../../lib/use-types-of"
@@ -11,10 +11,7 @@ export type NavigationHeaderProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection
 }
 
-export const NavigationHeader = ({
-  model,
-  ...props
-}: NavigationHeaderProps) => {
+export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
   const {
     sys: { id },
     branding,
@@ -31,7 +28,16 @@ export const NavigationHeader = ({
   }
 
   return (
-    <Analytics area="nav" eventId={eventId} variant="header" {...props}>
+    <Analytics
+      area="nav"
+      aria-label="Global navigation"
+      eventId={eventId}
+      role="navigation"
+      variant="header"
+      options={{
+        border: true
+      }}
+    >
       {options.branding && logo && (
         <Link
           aria-label={logo.title}
@@ -45,7 +51,7 @@ export const NavigationHeader = ({
         >
           <img
             alt={logo.description}
-            src={`${logo.url}?fm=webp`}
+            src={`${logo.url}?w=150&fm=webp`}
             title={logo.title}
           />
         </Link>

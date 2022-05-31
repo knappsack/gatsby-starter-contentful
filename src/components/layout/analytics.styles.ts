@@ -3,13 +3,13 @@ import {
   navigationVariantContract,
   textVariantContract,
   topicVariantContract,
-} from "../styles/contracts"
-import { theme } from "../styles/global-css-variables.css"
-import { mediaQuery } from "../styles/media-query"
-import type { Variants, Options } from "../styles/types"
-import type { NavigationSectionVariant } from "./contentful/contentful-navigation-section"
-import type { TextSectionVariant } from "./contentful/contentful-text-section"
-import type { TopicSectionVariant } from "./contentful/contentful-topic-section"
+} from "../../styles/contracts"
+import { theme } from "../../styles/global-css-variables.css"
+import { mediaQuery } from "../../styles/media-query"
+import type { Variants, Options } from "../../styles/types"
+import type { NavigationSectionVariant } from "../contentful/contentful-navigation-section"
+import type { TextSectionVariant } from "../contentful/contentful-text-section"
+import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
 
 type VariantStyle =
   | TopicSectionVariant
@@ -32,6 +32,9 @@ const base: CSSObject = {
 
 const variants: Variants<VariantStyle> = {
   ...navigationVariantContract,
+  header: {
+    borderBottom: `1px solid transparent`,
+  },
   sitemap: {
     borderTop: `1px solid transparent`,
   },

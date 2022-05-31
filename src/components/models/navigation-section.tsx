@@ -9,19 +9,13 @@ export type NavigationSectionProps = {
 
 export const NavigationSection = ({ model }: NavigationSectionProps) => {
   switch (model.variant) {
-    case `header`:
-      return (
-        <NavigationHeader
-          model={model}
-          aria-label="Global navigation"
-          role="navigation"
-        />
-      )
+    case "header":
+      return <NavigationHeader model={model} />
 
-    case `footer`:
+    case "footer":
       return <NavigationFooter model={model} />
 
-    case `sitemap`:
+    case "sitemap":
       return <NavigationSitemap model={model} />
 
     default:

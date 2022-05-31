@@ -1,13 +1,14 @@
+import * as styles from "./navigation-heading.styles"
+
 import { Action } from "../elements/action"
-import { ContentfulAction } from "../contentful/contentful-action"
-import {
+import type { ContentfulAction } from "../contentful/contentful-action"
+import type {
   NavigationSectionOptions,
   NavigationSectionVariant,
 } from "../contentful/contentful-navigation-section"
-import { ContentfulNavigation } from "../contentful/contentful-navigation"
+import type { ContentfulNavigation } from "../contentful/contentful-navigation"
 import { createUuid } from "../../lib/create-uuid"
 import { navigationListStyles } from "./navigation-list.styles"
-import { navigationHeadingStyle } from "./navigation-heading.styles"
 import { Heading } from "../elements/heading"
 import { navigationItemStyles } from "./navigation-item.styles"
 
@@ -17,7 +18,7 @@ export type NavigationProps = {
   variant: NavigationSectionVariant
 }
 
-const Navigation = ({ model, options, variant }: NavigationProps) => {
+export const Navigation = ({ model, options, variant }: NavigationProps) => {
   const {
     sys: { id },
     heading,
@@ -27,7 +28,7 @@ const Navigation = ({ model, options, variant }: NavigationProps) => {
   return (
     <div>
       {options.heading && heading && (
-        <Heading variant="small" css={navigationHeadingStyle}>
+        <Heading variant="small" css={styles.navigationHeadingStyles}>
           {heading}
         </Heading>
       )}
@@ -47,5 +48,3 @@ const Navigation = ({ model, options, variant }: NavigationProps) => {
     </div>
   )
 }
-
-export default Navigation
