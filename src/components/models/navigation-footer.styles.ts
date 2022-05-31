@@ -2,12 +2,12 @@ import { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 
-export const legalStyle = mediaQuery({
+const legal: CSSObject = {
   display: "flex",
   flexDirection: ["column", "row"],
   gap: theme.spacing.small,
   justifyContent: "space-between",
-} as CSSObject)
+}
 
 const base: CSSObject = {
   fontFamily: theme.font.family.body,
@@ -20,5 +20,6 @@ const supporter: CSSObject = {
   textDecoration: "underline",
 }
 
-export const copyrightStyle = base
-export const supporterStyle = [base, supporter]
+export const legalStyles = mediaQuery(legal)
+export const copyrightStyles = mediaQuery(base)
+export const supporterStyles = mediaQuery([base, supporter])

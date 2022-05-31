@@ -26,7 +26,7 @@ const Navigation = ({ model, options, variant }: NavigationProps) => {
 
   return (
     <div>
-      {options.heading && (
+      {options.heading && heading && (
         <Heading variant="small" css={navigationHeadingStyle}>
           {heading}
         </Heading>
@@ -36,6 +36,7 @@ const Navigation = ({ model, options, variant }: NavigationProps) => {
           const {
             sys: { id },
           } = action
+
           return (
             <li css={navigationItemStyles({ variant })} key={createUuid(id)}>
               <Action variant="link" model={action} />

@@ -9,10 +9,10 @@ type GridTemplateProps = UseTypesOf["div"] & GridTemplateStylesProps
 
 export const GridTemplate = React.forwardRef(
   (
-    { children, variant, ...props }: GridTemplateProps,
+    { children, variant, options, ...props }: GridTemplateProps,
     ref: React.Ref<HTMLDivElement>
   ) => {
-    const styles = gridTemplateStyles({ variant })
+    const styles = gridTemplateStyles({ variant, options })
 
     return (
       <AnyForwardRef is="div" css={styles} {...props} ref={ref}>

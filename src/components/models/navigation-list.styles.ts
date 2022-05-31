@@ -5,18 +5,20 @@ import type { Variants } from "../../styles/types"
 
 const base: CSSObject = {
   display: "flex",
-  flexDirection: "column",
 }
 
 const variants: Variants<NavigationListStylesProps["variant"]> = {
   footer: {
     flexDirection: ["column", "row"],
-    margin: "0 -12px",
+    margin: "0 -16px",
   },
   header: {
     flexDirection: ["column", "row"],
   },
-  sitemap: {},
+  sitemap: {
+    flexDirection: "column",
+    margin: "0 -16px",
+  },
 }
 
 export type NavigationListStylesProps = {

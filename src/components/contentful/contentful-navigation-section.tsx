@@ -4,6 +4,7 @@ import { ContentfulAsset } from "./contentful-asset"
 
 export type NavigationSectionOptions = {
   heading: boolean
+  branding: boolean
 }
 
 export type NavigationSectionVariant = "header" | "footer" | "sitemap"
@@ -14,8 +15,6 @@ export type ContentfulNavigationSection = NavigationSectionOptions & {
     id: string
   }
   eventId: string
-  branding: boolean
-  heading: boolean
   logo: ContentfulAsset
   variant: NavigationSectionVariant
   navigationsCollection: {
@@ -34,6 +33,7 @@ export const navigationSection = graphql`
     }
     eventId
     heading
+    branding
     variant
     navigationsCollection(limit: 10) {
       items {

@@ -18,6 +18,7 @@ export const Analytics = ({
   variant,
   options,
   children,
+  ...props
 }: AnalyticsProps) => {
   const ref = React.useRef<HTMLDivElement>(null)
 
@@ -67,7 +68,8 @@ export const Analytics = ({
 
   const styles = analyticsStyles({ variant, options })
 
-  const props = {
+  const properties = {
+    ...props,
     "data-analytics": analyticsId,
     css: styles,
     ref: ref,
@@ -75,9 +77,9 @@ export const Analytics = ({
 
   switch (area) {
     case "nav":
-      return <nav {...props}>{children}</nav>
+      return <nav {...properties}>{children}</nav>
     case "section":
-      return <section {...props}>{children}</section>
+      return <section {...properties}>{children}</section>
     default:
       return <>{children}</>
   }

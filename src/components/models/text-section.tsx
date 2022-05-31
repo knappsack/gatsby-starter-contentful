@@ -145,7 +145,7 @@ export const TextSection = ({ model }: TextSectionProps) => {
 
   return (
     <Analytics area="section" eventId={eventId} variant={variant}>
-      <GridTemplate variant={variant}>
+      <GridTemplate variant="text">
         {documentToReactComponents(json, options(links))}
       </GridTemplate>
     </Analytics>

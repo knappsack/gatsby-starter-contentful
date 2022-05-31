@@ -32,6 +32,9 @@ const base: CSSObject = {
 
 const variants: Variants<VariantStyle> = {
   ...navigationVariantContract,
+  sitemap: {
+    borderTop: `1px solid transparent`,
+  },
   footer: {
     borderTop: `1px solid transparent`,
   },

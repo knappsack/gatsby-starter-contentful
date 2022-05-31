@@ -2,7 +2,6 @@ import * as React from "react"
 
 import { createUuid } from "../../lib/create-uuid"
 import { SkipToContent } from "../elements/skip-to-content"
-import { skipToContentStyles } from "../elements/skip-to-content.styles"
 
 type GetSemanticTag = {
   section: {
@@ -24,7 +23,7 @@ const getSemanticTag = ({ section, count, index }: GetSemanticTag) => {
   if (
     index === 0 &&
     __typename === "Contentful_NavigationSection" &&
-    variant.toLowerCase() === "header"
+    variant === "header"
   ) {
     return "header"
   }

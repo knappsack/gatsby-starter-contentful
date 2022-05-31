@@ -1,5 +1,7 @@
 import { CSSObject } from "@emotion/react"
+import { theme } from '../../styles/global-css-variables.css'
 
 export const navigationHeadingStyle: CSSObject = {
-  margin: "4px auto",
+  marginBottom: theme.spacing.small,
+  fontWeight: "bold",
 }

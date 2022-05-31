@@ -1,20 +1,16 @@
 import type { CSSObject } from "@emotion/react"
 import { mediaQuery } from "../../styles/media-query"
 import type { Options, Variants } from "../../styles/types"
-import {
-  navigationVariantContract,
-  textVariantContract,
-  topicVariantContract,
-} from "../../styles/contracts"
-import type { NavigationSectionVariant } from "../contentful/contentful-navigation-section"
-import type { TextSectionVariant } from "../contentful/contentful-text-section"
-import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
 import { theme } from "../../styles/global-css-variables.css"
 
 type VariantStyle =
-  | TopicSectionVariant
-  | TextSectionVariant
-  | NavigationSectionVariant
+  | "block"
+  | "branding"
+  | "card"
+  | "default"
+  | "header"
+  | "sitemap"
+  | "text"
 type OptionStyle = Options<"">
 
 const base: CSSObject = {
@@ -26,17 +22,19 @@ const base: CSSObject = {
   paddingBottom: theme.spacing.large,
 }
 
-const variants: Variants<GridTemplateStylesProps["variant"]> = {
-  ...navigationVariantContract,
+const variants: Variants<VariantStyle> = {
+  header: {
+    gridArea: "header",
+  },
   sitemap: {
+    gridArea: "sitemap",
+    width: "100%",
     padding: 0,
     gridTemplateColumns: ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"],
   },
-  ...textVariantContract,
   text: {
     maxWidth: 712,
   },
-  ...topicVariantContract,
   card: {
     display: "flex",
     margin: "auto",
@@ -47,6 +45,21 @@ const variants: Variants<GridTemplateStylesProps["variant"]> = {
     gridTemplateColumns: ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"],
     justifyContent: "center",
     maxWidth: [380, 1380],
+  },
+  default: {},
+  branding: {
+    gridTemplateColumns: [undefined, undefined, "20%"],
+    gridTemplateAreas: [
+      `
+      "branding"
+      "sitemap"
+    `,
+      `
+      "branding"
+      "sitemap"
+    `,
+      `"branding sitemap sitemap sitemap sitemap"`,
+    ],
   },
 }
 

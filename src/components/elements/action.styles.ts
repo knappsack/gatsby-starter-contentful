@@ -1,4 +1,4 @@
-import { CSSObject } from "@emotion/react"
+import type { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 import type { Variants, Options } from "../../styles/types"
@@ -7,11 +7,11 @@ type VariantStyle = "primary" | "secondary" | "link"
 type OptionStyle = Options<"large">
 
 const base: CSSObject = {
+  padding: "8px 16px",
   color: theme.colors.link,
   display: "inline-block",
   fontFamily: theme.font.family.body,
   fontSize: theme.font.size.default,
-  padding: "8px 16px",
   borderRadius: 6,
   svg: {
     transform: "translate(6px, 2px)",

@@ -1,3 +1,5 @@
+import * as styles from "./navigation-footer.styles"
+
 import { ContentfulNavigation } from "../contentful/contentful-navigation"
 import { ContentfulNavigationSection } from "../contentful/contentful-navigation-section"
 import Navigation from "./navigation"
@@ -5,17 +7,12 @@ import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../analytics"
 import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
-import {
-  copyrightStyle,
-  legalStyle,
-  supporterStyle,
-} from "./legal-section.styles"
 
-export type LegalSectionProps = {
+export type NavigationFooterProps = {
   model: ContentfulNavigationSection
 }
 
-const LegalSection = ({ model }: LegalSectionProps) => {
+export const NavigationFooter = ({ model }: NavigationFooterProps) => {
   const {
     sys: { id },
     branding,
@@ -32,13 +29,13 @@ const LegalSection = ({ model }: LegalSectionProps) => {
 
   return (
     <Analytics
-      area="nav"
+      area="section"
       eventId={eventId}
       variant="footer"
       options={{ border: true }}
     >
-      <GridTemplate variant="footer">
-        {navigationsCollection.items.map((navigation: ContentfulNavigation) => {
+      <GridTemplate variant="default">
+        {navigationsCollection.items.slice(0, 1).map((navigation: ContentfulNavigation) => {
           const {
             sys: { id },
           } = model
@@ -48,16 +45,16 @@ const LegalSection = ({ model }: LegalSectionProps) => {
               key={createUuid(id)}
               model={navigation}
               options={options}
-              variant="footer"
+              variant={variant}
             />
           )
         })}
-        <div css={legalStyle}>
-          <span css={copyrightStyle}>
+        <div css={styles.legalStyles}>
+          <span css={styles.copyrightStyles}>
             Copyright © {new Date().getFullYear()} Contentful Gatsby Starter.
             All rights reserved.
           </span>
-          <Link to="https://github.com/thijskrooswijk" css={supporterStyle}>
+          <Link to="https://github.com/thijskrooswijk" css={styles.supporterStyles}>
             Made with Knappsack
           </Link>
         </div>
@@ -65,5 +62,3 @@ const LegalSection = ({ model }: LegalSectionProps) => {
     </Analytics>
   )
 }
-
-export default LegalSection
