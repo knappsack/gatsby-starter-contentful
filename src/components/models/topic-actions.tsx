@@ -5,7 +5,7 @@ import { createUuid } from "../../lib/create-uuid"
 import { Action } from "../elements/action"
 import { GroupStylesProps } from "../layout/group.styles"
 import { topicActionsStyles } from "./topic-actions.styles"
-import { ActionStylesProps } from '../elements/action.styles'
+import { ActionStylesProps } from "../elements/action.styles"
 
 export type TopicProps = {
   model: ContentfulAction[]
@@ -35,7 +35,14 @@ export const TopicActions = ({ model, variant }: TopicProps) => {
         } = action
         const variant = index === 0 ? "primary" : "secondary"
 
-        return <Action model={action} variant={variant} options={actionOptions} key={createUuid(id)} />
+        return (
+          <Action
+            model={action}
+            variant={variant}
+            options={actionOptions}
+            key={createUuid(id)}
+          />
+        )
       })}
     </Group>
   )

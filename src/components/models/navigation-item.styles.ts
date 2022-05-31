@@ -1,5 +1,5 @@
 import { CSSObject } from "@emotion/react"
-import { theme } from '../../styles/global-css-variables.css'
+import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 import type { Variants } from "../../styles/types"
 
@@ -19,7 +19,7 @@ const variants: Variants<VariantStyle> = {
     a: {
       paddingTop: theme.spacing.small,
       paddingBottom: theme.spacing.small,
-    }
+    },
   },
 }
 

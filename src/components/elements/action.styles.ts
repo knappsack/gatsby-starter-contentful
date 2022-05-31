@@ -60,9 +60,5 @@ export type ActionStylesProps = {
 }
 
 export const actionStyles = ({ variant, options }: ActionStylesProps) => {
-  return mediaQuery([
-    base,
-    variants[variant],
-    options?.large && large,
-  ])
+  return mediaQuery([base, variants[variant], options?.large && large])
 }

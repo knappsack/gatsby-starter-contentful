@@ -35,26 +35,31 @@ export const NavigationFooter = ({ model }: NavigationFooterProps) => {
       options={{ border: true }}
     >
       <GridTemplate variant="default">
-        {navigationsCollection.items.slice(0, 1).map((navigation: ContentfulNavigation) => {
-          const {
-            sys: { id },
-          } = model
+        {navigationsCollection.items
+          .slice(0, 1)
+          .map((navigation: ContentfulNavigation) => {
+            const {
+              sys: { id },
+            } = model
 
-          return (
-            <Navigation
-              key={createUuid(id)}
-              model={navigation}
-              options={options}
-              variant={variant}
-            />
-          )
-        })}
+            return (
+              <Navigation
+                key={createUuid(id)}
+                model={navigation}
+                options={options}
+                variant={variant}
+              />
+            )
+          })}
         <div css={styles.legalStyles}>
           <span css={styles.copyrightStyles}>
             Copyright © {new Date().getFullYear()} Contentful Gatsby Starter.
             All rights reserved.
           </span>
-          <Link to="https://github.com/thijskrooswijk" css={styles.supporterStyles}>
+          <Link
+            to="https://github.com/thijskrooswijk"
+            css={styles.supporterStyles}
+          >
             Made with Knappsack
           </Link>
         </div>

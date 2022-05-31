@@ -3,7 +3,7 @@ import { Analytics } from "../analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"
 import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
 import { GridTemplate } from "../layout/grid-template"
-import { GridTemplateStylesProps } from '../layout/grid-template.styles'
+import { GridTemplateStylesProps } from "../layout/grid-template.styles"
 import { DataProps } from "./section"
 import { Topic } from "./topic"
 
@@ -36,12 +36,12 @@ export const TopicSection = ({ model, data }: TopicSectionProps) => {
   }
 
   let gridVariant: GridTemplateStylesProps["variant"] = "default"
-  
-  if(['block'].includes(variant)) {
+
+  if (["block"].includes(variant)) {
     gridVariant = "block"
   }
 
-  if(['card'].includes(variant)) {
+  if (["card"].includes(variant)) {
     gridVariant = "card"
   }
 
