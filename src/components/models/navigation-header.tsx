@@ -14,7 +14,7 @@ import { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { Heading } from "../elements/heading"
 import { useWindowWidth } from "../../lib/use-window-width"
-import { mediaQuery } from '../../styles/media-query'
+import { mediaQuery } from "../../styles/media-query"
 
 export type NavigationHeaderProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection
@@ -43,7 +43,6 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
   const options = {
     branding: true,
     heading: false,
-    mobile: windowWidth < 1023,
   }
 
   const handleNavigation = (event: React.MouseEvent<HTMLElement>) => {
@@ -67,7 +66,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
     }
   }, [navigationVisibility])
 
-  const mobileOnlyProps = windowWidth < 1023 && {
+  const mobileOnlyProps = windowWidth < 1024 && {
     "tab-index": -1,
     role: "dialog",
     "aria-modal": navigationVisibility,
@@ -117,7 +116,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
           onClick={handleNavigation}
           css={[
             actionStyles({ variant: "primary" }),
-            mediaQuery({ display: ["block", "block", "none"]}),
+            mediaQuery({ display: ["block", "block", "none"] }),
             { marginTop: "auto", marginBottom: "auto" },
           ]}
           aria-label="Toggle navigation"
@@ -136,54 +135,56 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
             navigationHeaderStyles({
               options: {
                 visible: navigationVisibility,
-                mobile: windowWidth < 1023,
               },
             }),
-            windowWidth < 1023 && navigationStyle,
+            {
+              "@media (max-width: 1023px)": navigationStyle,
+            },
           ]}
           {...mobileOnlyProps}
         >
-          {windowWidth < 1023 && (
-            <div
-              css={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "14px 24px",
-                alignContent: "center",
-                position: "sticky",
-                top: 0,
-                background: "white",
-                borderBottom: `1px solid ${theme.colors.border}`,
-              }}
+          <div
+            css={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "14px 24px",
+              alignContent: "center",
+              position: "sticky",
+              top: 0,
+              background: "white",
+              borderBottom: `1px solid ${theme.colors.border}`,
+              "@media (min-width: 1024px)": {
+                display: "none",
+              },
+            }}
+          >
+            <Heading
+              id="navigation"
+              is="h5"
+              variant="small"
+              css={{ margin: "auto 0" }}
             >
-              <Heading
-                id="navigation"
-                is="h5"
-                variant="small"
-                css={{ margin: "auto 0" }}
-              >
-                Knappsack
-              </Heading>
-              <button
-                onClick={handleNavigation}
-                css={{
-                  color: theme.colors.link,
-                  display: "inline-flex",
-                  cursor: "pointer",
-                  borderRadius: 6,
-                  ":focus": {
-                    boxShadow: `0 0 0 4px ${theme.colors.focus}`,
-                    outline: "none",
-                  },
-                }}
-                aria-label="Close navigation"
-                aria-controls="global-navigation"
-                role="button"
-              >
-                <Icon name="x" variant="medium" aria-hidden="true" />
-              </button>
-            </div>
-          )}
+              Knappsack
+            </Heading>
+            <button
+              onClick={handleNavigation}
+              css={{
+                color: theme.colors.link,
+                display: "inline-flex",
+                cursor: "pointer",
+                borderRadius: 6,
+                ":focus": {
+                  boxShadow: `0 0 0 4px ${theme.colors.focus}`,
+                  outline: "none",
+                },
+              }}
+              aria-label="Close navigation"
+              aria-controls="global-navigation"
+              role="button"
+            >
+              <Icon name="x" variant="medium" aria-hidden="true" />
+            </button>
+          </div>
           {navigationsCollection.items.map(
             (navigation: ContentfulNavigation) => {
               const {
@@ -219,8 +220,10 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
               zIndex: 1040,
             },
             navigationStyle,
-            windowWidth > 1022 && {
-              visibility: "hidden",
+            {
+              "@media (min-width: 1024px)": {
+                visibility: "hidden",
+              },
             },
           ]}
         />

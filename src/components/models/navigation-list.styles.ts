@@ -4,7 +4,7 @@ import { mediaQuery } from "../../styles/media-query"
 import type { Options, Variants } from "../../styles/types"
 
 type VariantStyle = "footer" | "header" | "sitemap"
-type OptionStyle = Options<"mobile">
+type OptionStyle = Options<"">
 
 const base: CSSObject = {
   display: "flex",
@@ -17,6 +17,17 @@ const variants: Variants<VariantStyle> = {
   },
   header: {
     flexDirection: ["column", "row"],
+    "@media (max-width: 1023px)": {
+      marginTop: 4,
+      flexDirection: ["column", "column"],
+      paddingLeft: theme.spacing.small,
+      paddingRight: theme.spacing.small,
+      a: {
+        display: "block",
+        paddingTop: theme.spacing.medium,
+        paddingBottom: theme.spacing.medium,
+      },
+    },
   },
   sitemap: {
     flexDirection: "column",
@@ -24,34 +35,12 @@ const variants: Variants<VariantStyle> = {
   },
 }
 
-const mobile: Variants<VariantStyle> = {
-  footer: {},
-  header: {
-    marginTop: 4,
-    flexDirection: ["column", "column"],
-    paddingLeft: theme.spacing.small,
-    paddingRight: theme.spacing.small,
-    a: {
-      display: "block",
-      paddingTop: theme.spacing.medium,
-      paddingBottom: theme.spacing.medium,
-    },
-  },
-  sitemap: {},
-}
-
 export type NavigationListStylesProps = {
   variant: VariantStyle
-  options?: OptionStyle
 }
 
 export const navigationListStyles = ({
   variant,
-  options,
 }: NavigationListStylesProps) => {
-  return mediaQuery([
-    base,
-    variants[variant],
-    options?.mobile && mobile[variant],
-  ])
+  return mediaQuery([base, variants[variant]])
 }
