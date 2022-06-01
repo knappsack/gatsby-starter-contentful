@@ -7,6 +7,7 @@ type VariantStyle = "primary" | "secondary" | "link"
 type OptionStyle = Options<"large">
 
 const base: CSSObject = {
+  cursor: "pointer",
   padding: "8px 16px",
   color: theme.colors.link,
   display: "inline-block",

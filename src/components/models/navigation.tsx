@@ -6,17 +6,26 @@ import type {
 } from "../contentful/contentful-navigation-section"
 import type { ContentfulNavigation } from "../contentful/contentful-navigation"
 import { createUuid } from "../../lib/create-uuid"
-import { navigationListStyles } from "./navigation-list.styles"
+import {
+  navigationListStyles,
+  NavigationListStylesProps,
+} from "./navigation-list.styles"
 import { Heading } from "../elements/heading"
 import { navigationItemStyles } from "./navigation-item.styles"
+import type { UseTypesOf } from "../../lib/use-types-of"
 
-export type NavigationProps = {
+export type NavigationProps = UseTypesOf["div"] & {
   model: ContentfulNavigation
-  options: NavigationSectionOptions
+  options: NavigationSectionOptions & NavigationListStylesProps["options"]
   variant: NavigationSectionVariant
 }
 
-export const Navigation = ({ model, options, variant }: NavigationProps) => {
+export const Navigation = ({
+  model,
+  options,
+  variant,
+  ...props
+}: NavigationProps) => {
   const {
     sys: { id },
     heading,
@@ -24,13 +33,18 @@ export const Navigation = ({ model, options, variant }: NavigationProps) => {
   } = model
 
   return (
-    <div>
+    <div {...props}>
       {options.heading && heading && (
         <Heading variant="small" options={{ margin: true }}>
           {heading}
         </Heading>
       )}
-      <ul css={navigationListStyles({ variant })}>
+      <ul
+        css={navigationListStyles({
+          variant,
+          options: { mobile: options?.mobile },
+        })}
+      >
         {actionsCollection.items.map((action: ContentfulAction) => {
           const {
             sys: { id },
