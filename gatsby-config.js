@@ -60,5 +60,6 @@ module.exports = {
         trackingId: `G-8M97W0P504`,
       },
     },
+    `gatsby-plugin-offline`,
   ],
 }
