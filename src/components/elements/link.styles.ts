@@ -14,6 +14,6 @@ export type LinkStylesProps = {
   variant?: VariantStyle
 }
 
-export const linkStyles = ({ variant = '' }: LinkStylesProps) => {
+export const linkStyles = ({ variant = "" }: LinkStylesProps) => {
   return mediaQuery([base, variants[variant]])
 }

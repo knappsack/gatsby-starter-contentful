@@ -1,5 +1,5 @@
 import type { CSSObject } from "@emotion/react"
-import { theme } from '../../styles/global-css-variables.css'
+import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 import type { Options, Variants } from "../../styles/types"
 
@@ -35,7 +35,7 @@ const mobile: Variants<VariantStyle> = {
       display: "block",
       paddingTop: theme.spacing.medium,
       paddingBottom: theme.spacing.medium,
-    }
+    },
   },
   sitemap: {},
 }
