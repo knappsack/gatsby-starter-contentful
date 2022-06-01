@@ -11,23 +11,23 @@ const base: CSSObject = {
 }
 
 const visible: CSSObject = {
-  transform: "translateX(0)",
+  transform: ["translateX(0)", "translateX(0)", "translateX(0)"],
   transition: "transform .2s .2s ease-in-out",
 }
 
 const mobile: CSSObject = {
-  background: theme.colors.unit,
+  background: [theme.colors.unit, theme.colors.unit, "unset"],
   bottom: 0,
-  boxShadow: "0 1rem 3rem rgb(0 0 0 / 18%)",
+  boxShadow: ["0 1rem 3rem rgb(0 0 0 / 18%)", "0 1rem 3rem rgb(0 0 0 / 18%)", "unset"],
   justifyContent: "flex-end",
-  maxWidth: 376,
-  overflowY: "auto",
-  position: "fixed",
+  maxWidth: [376, 376, "unset"],
+  overflowY: ["auto", "auto", "unset"],
+  position: ["fixed", "fixed", "unset"],
   right: 0,
   top: 0,
-  transform: "translateX(100%)",
-  transition: "transform .2s ease-in-out",
-  width: "100%",
+  transform: ["translateX(100%)", "translateX(100%)", "unset"],
+  transition: ["transform .2s ease-in-out", "transform .2s ease-in-out", "unset"],
+  width: ["100%", "100%", "unset"],
   zIndex: 1050,
 }
 

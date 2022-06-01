@@ -219,7 +219,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
               zIndex: 1040,
             },
             navigationStyle,
-            windowWidth > 1023 && {
+            windowWidth > 1022 && {
               visibility: "hidden",
             },
           ]}
