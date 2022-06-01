@@ -14,6 +14,7 @@ import { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { Heading } from "../elements/heading"
 import { useWindowWidth } from "../../lib/use-window-width"
+import { mediaQuery } from '../../styles/media-query'
 
 export type NavigationHeaderProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection
@@ -112,23 +113,22 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
             />
           </Link>
         )}
-        {windowWidth < 1023 && (
-          <button
-            onClick={handleNavigation}
-            css={[
-              actionStyles({ variant: "primary" }),
-              { marginTop: "auto", marginBottom: "auto" },
-            ]}
-            aria-label="Toggle navigation"
-            aria-controls="global-navigation"
-            aria-expanded={navigationVisibility}
-            aria-pressed={navigationVisibility}
-            role="button"
-            ref={ref}
-          >
-            Menu <Icon name="menu" variant="small" aria-hidden="true" />
-          </button>
-        )}
+        <button
+          onClick={handleNavigation}
+          css={[
+            actionStyles({ variant: "primary" }),
+            mediaQuery({ display: ["block", "block", "none"]}),
+            { marginTop: "auto", marginBottom: "auto" },
+          ]}
+          aria-label="Toggle navigation"
+          aria-controls="global-navigation"
+          aria-expanded={navigationVisibility}
+          aria-pressed={navigationVisibility}
+          role="button"
+          ref={ref}
+        >
+          Menu <Icon name="menu" variant="small" aria-hidden="true" />
+        </button>
         <div
           id="global-navigation"
           aria-labelledby="navigation"

@@ -1,12 +1,13 @@
-import { CSSObject, keyframes } from "@emotion/react"
+import { CSSObject } from "@emotion/react"
+import { theme } from '../../styles/global-css-variables.css'
 import { mediaQuery } from "../../styles/media-query"
 import type { Options } from "../../styles/types"
 
 type OptionStyle = Options<"visible" | "mobile">
 
 const base: CSSObject = {
-  marginTop: "auto",
   marginBottom: "auto",
+  marginTop: "auto",
 }
 
 const visible: CSSObject = {
@@ -15,19 +16,19 @@ const visible: CSSObject = {
 }
 
 const mobile: CSSObject = {
-  position: "fixed",
+  background: theme.colors.unit,
+  bottom: 0,
+  boxShadow: "0 1rem 3rem rgb(0 0 0 / 18%)",
+  justifyContent: "flex-end",
+  maxWidth: 376,
   overflowY: "auto",
+  position: "fixed",
   right: 0,
   top: 0,
-  bottom: 0,
-  zIndex: 1050,
-  justifyContent: "flex-end",
   transform: "translateX(100%)",
-  maxWidth: 376,
-  width: "100%",
-  background: "white",
   transition: "transform .2s ease-in-out",
-  boxShadow: "0 1rem 3rem rgb(0 0 0 / 18%)",
+  width: "100%",
+  zIndex: 1050,
 }
 
 export type NavigationHeaderStylesProps = {
