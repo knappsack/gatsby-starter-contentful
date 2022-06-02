@@ -19,7 +19,6 @@ type ContentfulSection =
 
 type SectionProps = {
   model: ContentfulSection[]
-  data: DataProps
 }
 
 export const Section = ({ model }: SectionProps) => (

@@ -39,10 +39,7 @@ export type NavigationHeaderStylesProps = {
 export const navigationHeaderStyles = ({
   options,
 }: NavigationHeaderStylesProps) => {
-  return mediaQuery([
-    base,
-    options?.visible && visible,
-  ])
+  return mediaQuery([base, options?.visible && visible])
 }
 
 export const vissuallyHidden: CSSObject = {
