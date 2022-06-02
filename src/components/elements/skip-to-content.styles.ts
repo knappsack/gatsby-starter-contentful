@@ -3,7 +3,7 @@ import { theme } from "../../styles/global-css-variables.css"
 
 export const skipToContentStyles: CSSObject = {
   background: theme.colors.link,
-  color: theme.colors.unit,
+  color: theme.colors.light,
   fontFamily: theme.font.family.body,
   fontSize: theme.font.size.default,
   left: 24,

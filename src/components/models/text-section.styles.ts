@@ -8,9 +8,16 @@ const base: CSSObject = {
   lineHeight: 1.5,
 }
 
+export const focusStyles: CSSObject = {
+  borderRadius: 6,
+  outline: `${theme.colors.focus} solid 4px`,
+  outlineOffset: "4px",
+}
+
 const anchor: CSSObject = {
   color: theme.colors.link,
   textDecoration: "underline",
+  ':focus': focusStyles,
 }
 
 export const anchorStyles = () => {
@@ -28,7 +35,7 @@ const blockquote: CSSObject = {
   gap: 16,
   fontSize: theme.font.size.xlarge,
   fontStyle: "italic",
-  borderLeft: "4px solid silver",
+  borderLeft: `4px solid ${theme.colors.border}`,
   paddingLeft: 24,
   marginTop: 24,
   marginBottom: 24,
@@ -89,4 +96,12 @@ const code: CSSObject = {
 
 export const codeStyles = () => {
   return mediaQuery([base, code])
+}
+
+const hr: CSSObject = {
+  color: theme.colors.border,
+}
+
+export const hrStyles = () => {
+  return mediaQuery([base, hr])
 }

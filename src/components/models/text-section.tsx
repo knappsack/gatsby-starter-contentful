@@ -106,12 +106,11 @@ const options: OptionsProps = links => {
       [BLOCKS.QUOTE]: (node, children) => (
         <blockquote css={styles.blockquoteStyles}>{children}</blockquote>
       ),
-      [BLOCKS.HR]: () => <hr data-style="hr" />,
+      [BLOCKS.HR]: () => <hr css={styles.hrStyles} />,
       [BLOCKS.EMBEDDED_ASSET]: node => {
         const asset = contentfulAssetMap.get(node.data.target.sys.id)
         return (
           <img
-            data-style="img"
             src={asset.url + `?q=90&w=1360`}
             alt={asset.description}
           />

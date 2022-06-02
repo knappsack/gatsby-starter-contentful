@@ -1,6 +1,7 @@
 import { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
+import { focusStyles } from "./text-section.styles"
 
 const legal: CSSObject = {
   display: "flex",
@@ -26,6 +27,10 @@ export const copyrightStyles = () => {
 
 const supporter: CSSObject = {
   textDecoration: "underline",
+  ":hover": {
+    color: theme.colors.hover,
+  },
+  ":focus": focusStyles,
 }
 
 export const supporterStyles = () => {

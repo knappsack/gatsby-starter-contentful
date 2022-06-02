@@ -3,6 +3,7 @@ import * as React from "react"
 
 import { useInView } from "react-intersection-observer"
 import { ContentfulAsset } from "../contentful/contentful-asset"
+import { focusStyles } from './text-section.styles'
 
 type GetAssetProps = {
   asset: ContentfulAsset
@@ -17,6 +18,7 @@ const assetStyles = (ratio: any, options: any) =>
     maxWidth: "100%",
     aspectRatio: ratio && options.aspectRatio[ratio],
     objectFit: "cover",
+    ':focus': focusStyles,
   } as CSSObject)
 
 export const getAsset = ({
@@ -70,7 +72,6 @@ export const getAsset = ({
 
     return (
       <video
-        data-style="video"
         css={assetStyles(ratio, options)}
         poster={poster}
         controls

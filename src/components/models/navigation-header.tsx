@@ -15,6 +15,7 @@ import { theme } from "../../styles/global-css-variables.css"
 import { Heading } from "../elements/heading"
 import { useWindowWidth } from "../../lib/use-window-width"
 import { mediaQuery } from "../../styles/media-query"
+import { focusStyles } from './text-section.styles'
 
 export type NavigationHeaderProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection
@@ -98,10 +99,11 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
             aria-label={logo.title}
             css={{
               gridArea: "branding",
-              display: "inline-block",
-              width: 46,
+              display: "flex",
+              width: 42,
               height: "auto",
               margin: "auto 0",
+              ":focus": focusStyles,
             }}
             to="/"
           >
@@ -109,6 +111,12 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
               alt={logo.description}
               src={`${logo.url}?w=150&fm=webp`}
               title={logo.title}
+              width={150}
+              height="auto"
+              css={{
+                display: "flex",
+                margin: "auto",
+              }}
             />
           </Link>
         )}

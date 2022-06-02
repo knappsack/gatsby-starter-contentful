@@ -26,7 +26,7 @@ const base: CSSObject = {
 const variants: Variants<VariantStyle> = {
   primary: {
     backgroundColor: theme.colors.link,
-    color: theme.colors.unit,
+    color: theme.colors.light,
     border: `1px solid ${theme.colors.transparent}`,
     borderColor: theme.colors.link,
     ":hover": {
@@ -39,7 +39,7 @@ const variants: Variants<VariantStyle> = {
     border: `1px solid ${theme.colors.transparent}`,
     borderColor: theme.colors.link,
     ":hover": {
-      borderColor: theme.colors.focus,
+      borderColor: theme.colors.hover,
     },
   },
   link: {

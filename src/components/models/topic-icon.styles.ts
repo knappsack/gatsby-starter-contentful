@@ -9,7 +9,7 @@ type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"">
 
 const base: CSSObject = {
-  color: theme.colors.link,
+  color: theme.colors.focus,
 }
 
 const variants: Variants<VariantStyle> = {

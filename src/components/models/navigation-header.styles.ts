@@ -9,7 +9,7 @@ const base: CSSObject = {
   marginBottom: "auto",
   marginTop: "auto",
   "@media (max-width: 1023px)": {
-    background: theme.colors.unit,
+    background: theme.colors.light,
     bottom: 0,
     boxShadow: "0 1rem 3rem rgb(0 0 0 / 18%)",
     justifyContent: "flex-end",

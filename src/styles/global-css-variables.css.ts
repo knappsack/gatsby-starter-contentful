@@ -1,18 +1,27 @@
 import { createGlobalTheme } from "@vanilla-extract/css"
-
+// bg-indigo-50	background-color: rgb(238 242 255);
+// bg-indigo-100	background-color: rgb(224 231 255);
+// bg-indigo-200	background-color: rgb(199 210 254);
+// bg-indigo-300	background-color: rgb(165 180 252);
+// bg-indigo-400	background-color: rgb(129 140 248);
+// bg-indigo-500	background-color: rgb(99 102 241);
+// bg-indigo-600	background-color: rgb(79 70 229);
+// bg-indigo-700	background-color: rgb(67 56 202);
+// bg-indigo-800	background-color: rgb(55 48 163);
+// bg-indigo-900	background-color: rgb(49 46 129);
 export const theme = createGlobalTheme(`:root`, {
+  /** @note https://tailwindcss.com/docs/background-color  */
   colors: {
-    border: "#d2d2d2",
-    current: "currentColor",
-    default: "#1d1d1f",
-    focus: "hsl(210deg 100% 49% / 60%)",
+    border: "rgba(0 0 0 / 10%)",
+    dark: "#1d1d1f",
+    focus: "rgba(165 180 252)",
     highlight: "#f92672",
-    hover: "#0077ed",
-    link: "#06c",
+    hover: "rgb(55 48 163)",
+    light: "rgb(255 255 255)",
+    link: "rgb(79 70 229)",
     section: "#f5f5f5",
     text: "#1d1d1f",
     transparent: "transparent",
-    unit: "#fff",
   },
   font: {
     family: {

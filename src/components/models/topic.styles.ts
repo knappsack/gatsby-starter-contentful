@@ -13,7 +13,7 @@ const base: CSSObject = {}
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,
   card: {
-    backgroundColor: theme.colors.unit,
+    backgroundColor: theme.colors.light,
     border: theme.colors.border,
     borderRadius: 4,
     boxShadow: `0px 0px 16px ${theme.colors.border}`,

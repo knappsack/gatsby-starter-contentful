@@ -17,7 +17,9 @@ const variants: Variants<VariantStyle> = {
   },
   header: {
     flexDirection: ["column", "row"],
+    margin: "0 -16px",
     "@media (max-width: 1023px)": {
+      margin: 0,
       marginTop: 4,
       flexDirection: ["column", "column"],
       paddingLeft: theme.spacing.small,

@@ -25,7 +25,9 @@ const base: CSSObject = {
   // "@media (prefers-color-scheme: dark)": {
   //   backgroundColor: theme.colors.text,
   // },
-  backgroundColor: theme.colors.section,
+  // '&[data-theme="dark"]': {
+  //   backgroundColor: theme.colors.dark,
+  // },
   paddingLeft: theme.spacing.large,
   paddingRight: theme.spacing.large,
 }

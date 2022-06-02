@@ -9,6 +9,7 @@ import { Analytics } from "../layout/analytics"
 import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
 import type { UseTypesOf } from "../../lib/use-types-of"
+import { focusStyles } from "./text-section.styles"
 
 type ContainerProps = UseTypesOf["div"] & {
   options: NavigationSectionOptions
@@ -67,16 +68,24 @@ export const NavigationSitemap = ({ model }: NavigationSitemapProps) => {
             aria-label={logo.title}
             css={{
               gridArea: "branding",
-              display: "inline-block",
-              width: 54,
+              display: "flex",
+              width: 42,
               height: "auto",
+              marginBottom: "auto",
+              ":focus": focusStyles,
             }}
             to="/"
           >
             <img
               alt={logo.description}
-              src={`${logo.url}?fm=webp`}
+              src={`${logo.url}?w=150&fm=webp`}
               title={logo.title}
+              width={150}
+              height="auto"
+              css={{
+                display: "flex",
+                margin: "auto",
+              }}
             />
           </Link>
         )}
