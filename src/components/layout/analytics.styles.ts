@@ -35,12 +35,14 @@ const base: CSSObject = {
 const variants: Variants<VariantStyle> = {
   ...navigationVariantContract,
   header: {
+    background: theme.colors.section,
     borderBottom: `1px solid transparent`,
   },
   sitemap: {
-    borderTop: `1px solid transparent`,
+    background: theme.colors.section,
   },
   footer: {
+    background: theme.colors.section,
     borderTop: `1px solid transparent`,
   },
   ...textVariantContract,
