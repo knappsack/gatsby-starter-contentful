@@ -23,7 +23,7 @@ const handleRefreshData = (event: React.MouseEvent<HTMLButtonElement>) => {
 }
 
 export const RefreshData = () => {
-  if (process.env.NODE_ENV === "production") return null
+  if (!process.env.ENABLE_GATSBY_REFRESH_ENDPOINT) return null
 
   return (
     <button
