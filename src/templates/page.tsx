@@ -21,7 +21,7 @@ const Page = ({
   const section = page.sectionsCollection?.items
 
   return (
-    <>
+    <React.Fragment>
       <Seo
         description={
           page.seoDescription || globals.siteDescription || undefined
@@ -32,7 +32,7 @@ const Page = ({
         url={page.slug || undefined}
       />
       <Section model={section} />
-    </>
+    </React.Fragment>
   )
 }
 export default Page
@@ -54,3 +54,15 @@ export const query = graphql`
     }
   }
 `
+/** (SSR) Server-side renders at runtime (uses getServerData) */
+// export async function getServerData() {}
+
+/** (DSG) Deferred static generation - page generated at runtime */
+// export async function config() {
+//   // @ts-ignore
+//   return ({ params }) => {
+//     return {
+//       defer: true
+//     }
+//   }
+// }

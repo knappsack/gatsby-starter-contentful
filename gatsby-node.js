@@ -32,7 +32,9 @@ exports.createPages = async ({ actions, graphql }) => {
   }
 
   const pageTemplate = path.resolve(`./src/templates/page.tsx`)
-  result.data.contentful.pageCollection.items.forEach(page => {
+  const pages = result.data.contentful.pageCollection.items
+  
+  pages.forEach((page, index) => {
     const path = page.slug
     createPage({
       path,
@@ -41,9 +43,12 @@ exports.createPages = async ({ actions, graphql }) => {
         pageId: page.sys.id,
         globalsId: result.data.contentful.globalsCollection.items[0].sys.id,
       },
-      // OR:
-      // The first 100 pages will receive defer: false,
-      // the other 900 pages receive defer: true.
+      /** 
+       * (DSG) Deferred static generation - page generated at runtime 
+       * ---
+       * The first 100 pages will receive defer: false,
+       * the other 900 pages receive defer: true.
+       */
       // defer: index + 1 > 100,
     })
   })
