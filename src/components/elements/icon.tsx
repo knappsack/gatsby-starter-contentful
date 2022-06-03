@@ -12,6 +12,7 @@ export const Icon = ({ variant, name, ...props }: IconProps) => {
 
   return (
     <svg
+      aria-label={name}
       fill="none"
       height="1em"
       stroke="currentColor"
