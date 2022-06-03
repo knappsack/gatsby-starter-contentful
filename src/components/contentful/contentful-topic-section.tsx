@@ -4,15 +4,9 @@ import { ContentfulTopic } from "./contentful-topic"
 export type TopicSectionVariant =
   | "block"
   | "card"
-  | "divider"
   | "featured"
-  | "gallery"
   | "headline"
-  | "hero"
-  | "image"
   | "quote"
-  | "showcase"
-  | "video"
 
 export type TopicSectionOptions = {
   abstract: boolean

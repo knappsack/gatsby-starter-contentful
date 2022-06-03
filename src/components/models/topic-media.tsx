@@ -4,6 +4,7 @@ import { createUuid } from "../../lib/create-uuid"
 import type { ContentfulAsset } from "../contentful/contentful-asset"
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
 import { getAsset } from "./asset"
+import { AssetStylesProps } from './asset.styles'
 import { topicMediaStyles } from "./topic-media.styles"
 
 export type TopicMediaProps = {
@@ -12,12 +13,18 @@ export type TopicMediaProps = {
 }
 
 export const TopicMedia = ({ model, variant }: TopicMediaProps) => {
-  const assetVariant = ["headline", "quote"].includes(variant)
-    ? "large"
-    : "small"
-  const assetRatio = ["headline", "quote"].includes(variant)
-    ? undefined
-    : "wide"
+  const variants: Record<TopicSectionVariant, AssetStylesProps['variant']> = {
+    block: "small",
+    card: "small",
+    featured: "medium",
+    headline: "large",
+    quote: "large",
+  }
+
+  const options = {
+    square: undefined,
+    wide: ["block", "card", "featured"].includes(variant),
+  }
 
   return (
     <div css={topicMediaStyles({ variant })}>
@@ -31,8 +38,8 @@ export const TopicMedia = ({ model, variant }: TopicMediaProps) => {
             {getAsset({
               asset,
               model,
-              variant: assetVariant,
-              ratio: assetRatio,
+              variant: variants[variant],
+              options,
             })}
           </React.Fragment>
         )

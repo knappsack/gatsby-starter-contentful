@@ -3,13 +3,13 @@ export const topicVariantContract = {
   card: {},
   divider: {},
   featured: {},
-  gallery: {},
+  // gallery: {},
   headline: {},
-  hero: {},
-  image: {},
+  // hero: {},
+  // image: {},
   quote: {},
-  showcase: {},
-  video: {},
+  // showcase: {},
+  // video: {},
 }
 
 export const textVariantContract = {

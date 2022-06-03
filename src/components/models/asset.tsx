@@ -1,32 +1,18 @@
-import { CSSObject } from "@emotion/react"
 import * as React from "react"
 
 import { useInView } from "react-intersection-observer"
-import { ContentfulAsset } from "../contentful/contentful-asset"
-import { focusStyles } from './text-section.styles'
+import type { ContentfulAsset } from "../contentful/contentful-asset"
+import { assetStyles } from "./asset.styles"
+import type { AssetStylesProps } from "./asset.styles"
 
 type GetAssetProps = {
   asset: ContentfulAsset
   model: ContentfulAsset[]
-  variant: "small" | "large"
-  ratio: Partial<"square" | "wide" | undefined>
+  variant: AssetStylesProps["variant"]
+  options: AssetStylesProps["options"]
 }
 
-const assetStyles = (ratio: any, options: any) =>
-  ({
-    height: "auto",
-    maxWidth: "100%",
-    aspectRatio: ratio && options.aspectRatio[ratio],
-    objectFit: "cover",
-    ':focus': focusStyles,
-  } as CSSObject)
-
-export const getAsset = ({
-  asset,
-  model,
-  variant = "small",
-  ratio = undefined,
-}: GetAssetProps) => {
+export const getAsset = ({ asset, model, variant, options }: GetAssetProps) => {
   const { ref, inView = false } = useInView({ triggerOnce: true })
 
   const {
@@ -43,20 +29,18 @@ export const getAsset = ({
 
   const assets = model
 
-  const options = {
-    dimensions: {
-      small: {
-        height: 420,
-        width: 800,
-      },
-      large: {
-        height: 840,
-        width: 1600,
-      },
+  const dimensions = {
+    small: {
+      height: 420,
+      width: 800,
     },
-    aspectRatio: {
-      square: "1 / 1",
-      wide: "16 / 9",
+    medium: {
+      height: 630,
+      width: 1200,
+    },
+    large: {
+      height: 840,
+      width: 1600,
     },
   }
 
@@ -67,12 +51,12 @@ export const getAsset = ({
       const getPoster = assets.filter(item =>
         item.contentType.includes("image/")
       )
-      poster = `${getPoster[0].url}?q=90&w=${options.dimensions[variant].width}&h=${options.dimensions[variant].height}&fit=fill&f=center`
+      poster = `${getPoster[0].url}?q=90&w=${dimensions[variant].width}&h=${dimensions[variant].height}&fit=fill&f=center`
     }
 
     return (
       <video
-        css={assetStyles(ratio, options)}
+        css={assetStyles({ variant, options })}
         poster={poster}
         controls
         playsInline
@@ -80,7 +64,7 @@ export const getAsset = ({
       >
         {inView && (
           <React.Fragment>
-            <source data-style="source" src={url} type={contentType} />
+            <source src={url} type={contentType} />
             Your browser does not support the video tag.
           </React.Fragment>
         )}
@@ -90,13 +74,12 @@ export const getAsset = ({
 
   if (contentType.includes("image/") && assets.length === 1) {
     return (
-      <picture data-style="picture" ref={ref}>
+      <picture ref={ref}>
         {inView && (
           <img
             alt={description}
-            data-style="image"
-            css={assetStyles(ratio, options)}
-            src={`${url}?q=90&w=${options.dimensions[variant].width}&h=${options.dimensions[variant].height}&fit=fill&f=center&fm=webp`}
+            css={assetStyles({ variant, options })}
+            src={`${url}?q=90&w=${dimensions[variant].width}&h=${dimensions[variant].height}&fit=fill&f=center&fm=webp`}
             title={title}
           />
         )}
