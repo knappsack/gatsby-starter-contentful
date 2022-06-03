@@ -35,9 +35,9 @@ export const TopicActions = ({ model, variant }: TopicProps) => {
         const {
           sys: { id },
         } = action
-        
+
         const variant = index === 0 ? "primary" : "secondary"
-        const is = sliceNumber === 1 ? 'div' : undefined
+        const is = sliceNumber === 1 ? "div" : undefined
 
         return (
           <Action

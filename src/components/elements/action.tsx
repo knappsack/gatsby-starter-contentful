@@ -7,7 +7,7 @@ import { useGtag } from "../../lib/gtag"
 import { Icon } from "../elements/icon"
 import { actionStyles } from "./action.styles"
 import type { ActionStylesProps } from "./action.styles"
-import { createLink } from '../../lib/create-link'
+import { createLink } from "../../lib/create-link"
 
 export type ActionProps = {
   model: ContentfulAction
@@ -47,7 +47,7 @@ export const Action = ({ model, variant, options, is }: ActionProps) => {
     onClick: handleOnClick,
   }
 
-  if (is === 'div') {
+  if (is === "div") {
     return (
       <div {...forwardProps}>
         {heading}

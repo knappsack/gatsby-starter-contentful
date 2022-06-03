@@ -19,7 +19,6 @@ export const TopicContainer = ({
   children,
   ...props
 }: TopicContainerProps) => {
-
   const handleOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     useGtag("event", "click", {
       event_id: event.currentTarget.dataset.analyticsId,
@@ -30,11 +29,7 @@ export const TopicContainer = ({
     const to = createLink({ model })
 
     return (
-      <Link
-        onClick={handleOnClick}
-        to={to}
-        {...props}
-      >
+      <Link onClick={handleOnClick} to={to} {...props}>
         {children}
       </Link>
     )

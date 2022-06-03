@@ -15,8 +15,8 @@ import { theme } from "../../styles/global-css-variables.css"
 import { Heading } from "../elements/heading"
 import { useWindowWidth } from "../../lib/use-window-width"
 import { mediaQuery } from "../../styles/media-query"
-import { focusStyles } from './text-section.styles'
-import { useGtag } from '../../lib/gtag'
+import { focusStyles } from "./text-section.styles"
+import { useGtag } from "../../lib/gtag"
 
 export type NavigationHeaderProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection

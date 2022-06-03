@@ -109,12 +109,7 @@ const options: OptionsProps = links => {
       [BLOCKS.HR]: () => <hr css={styles.hrStyles} />,
       [BLOCKS.EMBEDDED_ASSET]: node => {
         const asset = contentfulAssetMap.get(node.data.target.sys.id)
-        return (
-          <img
-            src={asset.url + `?q=90&w=1360`}
-            alt={asset.description}
-          />
-        )
+        return <img src={asset.url + `?q=90&w=1360`} alt={asset.description} />
       },
     },
     renderText: text => {

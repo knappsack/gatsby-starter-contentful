@@ -1,6 +1,6 @@
 import { CSSObject } from "@emotion/react"
 import { mediaQuery } from "../../styles/media-query"
-import { Options, Variants } from '../../styles/types'
+import { Options, Variants } from "../../styles/types"
 import { focusStyles } from "./text-section.styles"
 
 type VariantStyle = "small" | "medium" | "large"

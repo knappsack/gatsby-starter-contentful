@@ -17,7 +17,7 @@ export const focusStyles: CSSObject = {
 const anchor: CSSObject = {
   color: theme.colors.link,
   textDecoration: "underline",
-  ':focus': focusStyles,
+  ":focus": focusStyles,
 }
 
 export const anchorStyles = () => {

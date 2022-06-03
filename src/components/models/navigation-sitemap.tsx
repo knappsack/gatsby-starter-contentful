@@ -10,7 +10,7 @@ import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
 import type { UseTypesOf } from "../../lib/use-types-of"
 import { focusStyles } from "./text-section.styles"
-import { useGtag } from '../../lib/gtag'
+import { useGtag } from "../../lib/gtag"
 
 type ContainerProps = UseTypesOf["div"] & {
   options: NavigationSectionOptions

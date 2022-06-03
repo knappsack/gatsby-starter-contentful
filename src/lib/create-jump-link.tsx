@@ -3,7 +3,7 @@ import * as React from "react"
 import slugify from "@sindresorhus/slugify"
 import type { Block, Inline } from "@contentful/rich-text-types"
 import type { UseTypesOf } from "./use-types-of"
-import { focusStyles } from '../components/models/text-section.styles'
+import { focusStyles } from "../components/models/text-section.styles"
 
 type CreateJumpLinkProps = UseTypesOf["a"] & {
   node: Block | Inline
@@ -20,7 +20,7 @@ export const createJumpLink = ({ node, children }: CreateJumpLinkProps) => {
   const slug = slugify(value)
 
   return (
-    <a id={slug} css={{':focus': focusStyles}} href={`#` + slug}>
+    <a id={slug} css={{ ":focus": focusStyles }} href={`#` + slug}>
       {children}
     </a>
   )
