@@ -23,20 +23,25 @@ export const TopicActions = ({ model, variant }: TopicProps) => {
     large: ["headline"].includes(variant),
   }
 
+  let sliceNumber = ["card"].includes(variant) ? 1 : 2
+
   return (
     <Group
       variant="row"
       options={groupOptions}
       css={topicActionsStyles({ variant })}
     >
-      {model.slice(0, 2).map((action: ContentfulAction, index) => {
+      {model.slice(0, sliceNumber).map((action: ContentfulAction, index) => {
         const {
           sys: { id },
         } = action
+        
         const variant = index === 0 ? "primary" : "secondary"
+        const is = sliceNumber === 1 ? 'div' : undefined
 
         return (
           <Action
+            is={is}
             model={action}
             variant={variant}
             options={actionOptions}

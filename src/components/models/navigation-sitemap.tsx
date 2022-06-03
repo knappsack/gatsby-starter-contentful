@@ -10,6 +10,7 @@ import { Link } from "../elements/link"
 import { GridTemplate } from "../layout/grid-template"
 import type { UseTypesOf } from "../../lib/use-types-of"
 import { focusStyles } from "./text-section.styles"
+import { useGtag } from '../../lib/gtag'
 
 type ContainerProps = UseTypesOf["div"] & {
   options: NavigationSectionOptions
@@ -55,6 +56,12 @@ export const NavigationSitemap = ({ model }: NavigationSitemapProps) => {
     heading,
   }
 
+  const handleOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    useGtag("event", "click", {
+      event_id: event.currentTarget.dataset.analyticsId,
+    })
+  }
+
   return (
     <Analytics
       area="nav"
@@ -66,6 +73,8 @@ export const NavigationSitemap = ({ model }: NavigationSitemapProps) => {
         {options.branding && logo && (
           <Link
             aria-label={logo.title}
+            onClick={handleOnClick}
+            data-analytics-id="action:logo-sitemap"
             css={{
               gridArea: "branding",
               display: "flex",

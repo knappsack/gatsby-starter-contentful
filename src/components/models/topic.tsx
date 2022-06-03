@@ -11,6 +11,7 @@ import { topicStyles } from "./topic.styles"
 import { useGtag } from "../../lib/gtag"
 import { TopicContent } from "./topic-content"
 import { DataProps } from "./section"
+import { TopicContainer } from "./topic-container"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -20,8 +21,6 @@ export type TopicProps = {
 }
 
 export const Topic = ({ model, options, variant, data }: TopicProps) => {
-  const ref = React.useRef<HTMLDivElement>(null)
-
   const {
     sys: { id },
     abstract,
@@ -31,20 +30,21 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
     mediaCollection,
   } = model
 
-  const setAnalyticsId = `topic:${slugify(heading)}`
+  const analyticsId = `topic:${slugify(heading)}`
 
-  const handleMouseEnter = () => {
+  const handleOnMouseEnter = (event: React.MouseEvent<HTMLAnchorElement>) => {
     useGtag("event", "engagement", {
-      event_id: ref.current?.dataset.analyticsId,
+      event_id: event.currentTarget.dataset.analyticsId,
     })
   }
 
   return (
-    <div
+    <TopicContainer
       css={topicStyles({ variant, options })}
-      data-analytics-id={setAnalyticsId}
-      onMouseEnter={handleMouseEnter}
-      ref={ref}
+      data-analytics-id={analyticsId}
+      model={actionsCollection.items[0]}
+      onMouseEnter={handleOnMouseEnter}
+      variant={variant}
     >
       {options.media && mediaCollection && (
         <TopicMedia variant={variant} model={mediaCollection.items} />
@@ -55,6 +55,6 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
         data={data}
         variant={variant}
       />
-    </div>
+    </TopicContainer>
   )
 }

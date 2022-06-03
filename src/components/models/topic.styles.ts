@@ -4,6 +4,7 @@ import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 import type { Variants, Options } from "../../styles/types"
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
+import { focusStyles } from './text-section.styles'
 
 type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"reversed">
@@ -23,6 +24,11 @@ const variants: Variants<VariantStyle> = {
     minWidth: 327,
     overflow: "hidden",
     width: "100%",
+    cursor: "pointer",
+    transition: "transform .2s ease",
+    ':hover, :focus': {
+      transform: "scale(1.05)"
+    }
   },
   block: {
     display: "flex",

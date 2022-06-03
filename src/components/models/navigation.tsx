@@ -1,3 +1,4 @@
+import slugify from "@sindresorhus/slugify"
 import { Action } from "../elements/action"
 import type { ContentfulAction } from "../contentful/contentful-action"
 import type {
@@ -10,6 +11,7 @@ import { navigationListStyles } from "./navigation-list.styles"
 import { Heading } from "../elements/heading"
 import { navigationItemStyles } from "./navigation-item.styles"
 import type { UseTypesOf } from "../../lib/use-types-of"
+import { useGtag } from "../../lib/gtag"
 
 export type NavigationProps = UseTypesOf["div"] & {
   model: ContentfulNavigation
@@ -29,8 +31,20 @@ export const Navigation = ({
     actionsCollection,
   } = model
 
+  const handleOnMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+    useGtag("event", "engagement", {
+      event_id: event.currentTarget.dataset.analyticsId,
+    })
+  }
+
+  const analyticsId = `navigation:${slugify(heading)}`
+
   return (
-    <div {...props}>
+    <div
+      onMouseEnter={handleOnMouseEnter}
+      data-analytics-id={analyticsId}
+      {...props}
+    >
       {options.heading && heading && (
         <Heading variant="small" options={{ margin: true }}>
           {heading}

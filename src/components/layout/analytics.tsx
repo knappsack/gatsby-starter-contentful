@@ -64,11 +64,11 @@ export const Analytics = ({
     }
   })
 
-  const analyticsId = `${area}:${eventId ? eventId : variant}`
+  const analyticsId = `${area}:${eventId || variant}`
 
   const styles = analyticsStyles({ variant, options })
 
-  const properties = {
+  const forwardProps = {
     ...props,
     "data-analytics": analyticsId,
     css: styles,
@@ -77,9 +77,9 @@ export const Analytics = ({
 
   switch (area) {
     case "nav":
-      return <nav {...properties}>{children}</nav>
+      return <nav {...forwardProps}>{children}</nav>
     case "section":
-      return <section {...properties}>{children}</section>
+      return <section {...forwardProps}>{children}</section>
     default:
       return <>{children}</>
   }

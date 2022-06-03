@@ -16,6 +16,7 @@ import { Heading } from "../elements/heading"
 import { useWindowWidth } from "../../lib/use-window-width"
 import { mediaQuery } from "../../styles/media-query"
 import { focusStyles } from './text-section.styles'
+import { useGtag } from '../../lib/gtag'
 
 export type NavigationHeaderProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection
@@ -44,6 +45,12 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
   const options = {
     branding: true,
     heading: false,
+  }
+
+  const handleOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    useGtag("event", "click", {
+      event_id: event.currentTarget.dataset.analyticsId,
+    })
   }
 
   const handleNavigation = (event: React.MouseEvent<HTMLElement>) => {
@@ -97,6 +104,8 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
         {options.branding && logo && (
           <Link
             aria-label={logo.title}
+            onClick={handleOnClick}
+            data-analytics-id="action:logo-header"
             css={{
               gridArea: "branding",
               display: "flex",

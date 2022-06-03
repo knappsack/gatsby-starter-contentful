@@ -6,33 +6,26 @@ import { linkStyles } from "./link.styles"
 
 type LinkProps = React.PropsWithoutRef<GatsbyLinkProps<{}>>
 
-export const Link = React.forwardRef(
-  (
-    { children, to, ...props }: LinkProps,
-    ref: React.ForwardedRef<HTMLAnchorElement>
-  ) => {
-    const styles = linkStyles({})
+export const Link = ({ children, to, ...props }: LinkProps) => {
+  const styles = linkStyles({})
 
-    const internal = /^\/(?!\/)/.test(to)
-    if (internal) {
-      /** @deprecated — Replace `innerRef` with `ref` if GatsbyLink allows type ref  */
-      return (
-        <GatsbyLink to={to} css={styles} {...props} innerRef={ref}>
-          {children}
-        </GatsbyLink>
-      )
-    }
+  const internal = /^\/(?!\/)/.test(to)
+  if (internal) {
     return (
-      <a
-        href={to}
-        css={styles}
-        rel="noreferrer noopener"
-        target="_blank"
-        {...props}
-        ref={ref}
-      >
+      <GatsbyLink to={to} css={styles} {...props}>
         {children}
-      </a>
+      </GatsbyLink>
     )
   }
-)
+  return (
+    <a
+      href={to}
+      css={styles}
+      rel="noreferrer noopener"
+      target="_blank"
+      {...props}
+    >
+      {children}
+    </a>
+  )
+}
