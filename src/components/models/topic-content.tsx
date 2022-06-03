@@ -13,6 +13,7 @@ import { DataProps } from "./section"
 import { useHeadingTag } from "../../lib/use-heading-tag"
 import { HeadingStylesProps } from "../elements/heading.styles"
 import { AbstractStylesProps } from "../elements/abstract.styles"
+import { IconStylesProps } from "../elements/icon.styles"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -30,22 +31,26 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
     icon,
   } = model
 
-  let headingVariant: HeadingStylesProps["variant"] = "medium"
-  let abstractVariant: AbstractStylesProps["variant"] = "medium"
-
-  if (["featured"].includes(variant)) {
-    headingVariant = "xlarge"
-    abstractVariant = "medium"
+  const headingVariants: Record<
+    TopicSectionVariant,
+    HeadingStylesProps["variant"]
+  > = {
+    block: "medium",
+    card: "medium",
+    featured: "xlarge",
+    headline: "xlarge",
+    quote: "small",
   }
 
-  if (["headline"].includes(variant)) {
-    headingVariant = "xlarge"
-    abstractVariant = "large"
-  }
-
-  if (["quote"].includes(variant)) {
-    headingVariant = "small"
-    abstractVariant = "xlarge"
+  const abstractVariants: Record<
+    TopicSectionVariant,
+    AbstractStylesProps["variant"]
+  > = {
+    block: "medium",
+    card: "medium",
+    featured: "medium",
+    headline: "large",
+    quote: "xlarge",
   }
 
   return (
@@ -55,16 +60,17 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
       variant="column"
     >
       <Group variant="column">
-        {options.icon && icon && (
-          <TopicIcon model={{ icon }} variant={variant} />
-        )}
+        {options.icon && icon && <TopicIcon model={icon} variant={variant} />}
         {options.heading && heading && (
-          <Heading is={useHeadingTag(data, variant)} variant={headingVariant}>
+          <Heading
+            is={useHeadingTag(data, variant)}
+            variant={headingVariants[variant]}
+          >
             {heading}
           </Heading>
         )}
         {options.abstract && abstract && (
-          <Abstract variant={abstractVariant}>{abstract}</Abstract>
+          <Abstract variant={abstractVariants[variant]}>{abstract}</Abstract>
         )}
       </Group>
       {options.action && actionsCollection && (

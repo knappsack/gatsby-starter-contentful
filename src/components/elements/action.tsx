@@ -49,9 +49,9 @@ export const Action = ({ model, variant, options, is }: ActionProps) => {
 
   if (is === "div") {
     return (
-      <div {...forwardProps}>
+      <div css={styles}>
         {heading}
-        {icon && <Icon variant="small" name={icon} />}
+        {icon && <Icon variant="small" icon={icon} />}
       </div>
     )
   }
@@ -61,7 +61,7 @@ export const Action = ({ model, variant, options, is }: ActionProps) => {
     return (
       <GatsbyLink to={to} {...forwardProps}>
         {heading}
-        {icon && <Icon variant="small" name={icon} />}
+        {icon && <Icon variant="small" icon={icon} />}
       </GatsbyLink>
     )
   }
@@ -69,7 +69,7 @@ export const Action = ({ model, variant, options, is }: ActionProps) => {
   return (
     <a href={to} {...forwardProps} rel="noreferrer noopener" target="_blank">
       {heading}
-      {icon && <Icon variant="small" name={icon} />}
+      {icon && <Icon variant="small" icon={icon} />}
     </a>
   )
 }

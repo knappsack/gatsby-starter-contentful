@@ -4,7 +4,7 @@ import { createUuid } from "../../lib/create-uuid"
 import type { ContentfulAsset } from "../contentful/contentful-asset"
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
 import { getAsset } from "./asset"
-import { AssetStylesProps } from "./asset.styles"
+import type { AssetStylesProps } from "./asset.styles"
 import { topicMediaStyles } from "./topic-media.styles"
 
 export type TopicMediaProps = {

@@ -3,7 +3,7 @@ import { topicVariantContract } from "../../styles/contracts"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 import type { Variants, Options } from "../../styles/types"
-import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
+import { TopicSectionVariant } from "../contentful/contentful-topic-section"
 
 type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"">

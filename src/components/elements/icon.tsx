@@ -3,16 +3,16 @@ import type { IconStylesProps } from "./icon.styles"
 import type { UseTypesOf } from "../../lib/use-types-of"
 
 type IconProps = UseTypesOf["svg"] & {
-  name: string
+  icon: string
   variant: IconStylesProps["variant"]
 }
 
-export const Icon = ({ variant, name, ...props }: IconProps) => {
+export const Icon = ({ variant, icon, ...props }: IconProps) => {
   const styles = iconStyles({ variant })
 
   return (
     <svg
-      aria-label={name}
+      aria-label={icon}
       fill="none"
       height="1em"
       stroke="currentColor"
@@ -25,7 +25,7 @@ export const Icon = ({ variant, name, ...props }: IconProps) => {
       css={styles}
       {...props}
     >
-      <use href={`/feather-icons-sprite.svg#${name}`} />
+      <use href={`/feather-icons-sprite.svg#${icon}`} />
     </svg>
   )
 }

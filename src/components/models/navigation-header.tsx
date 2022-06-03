@@ -143,7 +143,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
           role="button"
           ref={ref}
         >
-          Menu <Icon name="menu" variant="small" aria-hidden="true" />
+          Menu <Icon icon="menu" variant="small" aria-hidden="true" />
         </button>
         <div
           id="global-navigation"
@@ -199,7 +199,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
               aria-controls="global-navigation"
               role="button"
             >
-              <Icon name="x" variant="medium" aria-hidden="true" />
+              <Icon icon="x" variant="medium" aria-hidden="true" />
             </button>
           </div>
           {navigationsCollection.items.map(
