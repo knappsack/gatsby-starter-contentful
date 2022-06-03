@@ -26,8 +26,10 @@ export const TopicMedia = ({ model, variant }: TopicMediaProps) => {
     wide: ["block", "card", "featured"].includes(variant),
   }
 
+  const styles = topicMediaStyles({ variant })
+
   return (
-    <div css={topicMediaStyles({ variant })}>
+    <div css={styles}>
       {model.map((asset: ContentfulAsset) => {
         const {
           sys: { id },

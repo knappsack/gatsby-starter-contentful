@@ -28,6 +28,7 @@ export const getAsset = ({ asset, model, variant, options }: GetAssetProps) => {
   } = asset
 
   const assets = model
+  const styles = assetStyles({ variant, options })
 
   const dimensions = {
     small: {
@@ -55,13 +56,7 @@ export const getAsset = ({ asset, model, variant, options }: GetAssetProps) => {
     }
 
     return (
-      <video
-        css={assetStyles({ variant, options })}
-        poster={poster}
-        controls
-        playsInline
-        ref={ref}
-      >
+      <video controls css={styles} playsInline poster={poster} ref={ref}>
         {inView && (
           <React.Fragment>
             <source src={url} type={contentType} />
@@ -78,7 +73,7 @@ export const getAsset = ({ asset, model, variant, options }: GetAssetProps) => {
         {inView && (
           <img
             alt={description}
-            css={assetStyles({ variant, options })}
+            css={styles}
             src={`${url}?q=90&w=${dimensions[variant].width}&h=${dimensions[variant].height}&fit=fill&f=center&fm=webp`}
             title={title}
           />

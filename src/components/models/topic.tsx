@@ -30,17 +30,18 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
     mediaCollection,
   } = model
 
-  const analyticsId = `topic:${slugify(heading)}`
-
   const handleOnMouseEnter = (event: React.MouseEvent<HTMLAnchorElement>) => {
     useGtag("event", "engagement", {
       event_id: event.currentTarget.dataset.analyticsId,
     })
   }
 
+  const analyticsId = `topic:${slugify(heading)}`
+  const styles = topicStyles({ variant, options })
+
   return (
     <TopicContainer
-      css={topicStyles({ variant, options })}
+      css={styles}
       data-analytics-id={analyticsId}
       model={actionsCollection.items[0]}
       onMouseEnter={handleOnMouseEnter}
