@@ -15,10 +15,6 @@ import { HeadingStylesProps } from "../elements/heading.styles"
 import { AbstractStylesProps } from "../elements/abstract.styles"
 import { marked } from "marked"
 
-marked.setOptions({
-  breaks: true,
-})
-
 export type TopicProps = {
   model: ContentfulTopic
   options: TopicSectionOptions
@@ -75,7 +71,7 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
         )}
         {options.abstract && abstract && (
           <Abstract variant={abstractVariants[variant]}>
-            {marked.parseInline(abstract)}
+            {marked.parse(abstract)}
           </Abstract>
         )}
       </Group>

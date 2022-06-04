@@ -16,7 +16,7 @@ export const Abstract = React.forwardRef(
 
     return (
       <AnyForwardRef
-        is="p"
+        is="div"
         css={styles}
         {...props}
         ref={ref}
