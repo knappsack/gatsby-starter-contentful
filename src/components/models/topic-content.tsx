@@ -13,7 +13,11 @@ import { DataProps } from "./section"
 import { useHeadingTag } from "../../lib/use-heading-tag"
 import { HeadingStylesProps } from "../elements/heading.styles"
 import { AbstractStylesProps } from "../elements/abstract.styles"
-import { IconStylesProps } from "../elements/icon.styles"
+import { marked } from "marked"
+
+marked.setOptions({
+  breaks: true,
+})
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -70,7 +74,9 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
           </Heading>
         )}
         {options.abstract && abstract && (
-          <Abstract variant={abstractVariants[variant]}>{abstract}</Abstract>
+          <Abstract variant={abstractVariants[variant]}>
+            {marked.parseInline(abstract)}
+          </Abstract>
         )}
       </Group>
       {options.action && actionsCollection && (

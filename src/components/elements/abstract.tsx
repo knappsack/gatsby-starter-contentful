@@ -9,15 +9,19 @@ export type HeadingProps = UseTypesOf["p"] & AbstractStylesProps
 
 export const Abstract = React.forwardRef(
   (
-    { children, variant, ...props }: HeadingProps,
+    { children = "", variant, ...props }: HeadingProps,
     ref: React.Ref<HTMLParagraphElement>
   ) => {
     const styles = abstractStyles({ variant })
 
     return (
-      <AnyForwardRef is="p" css={styles} {...props} ref={ref}>
-        {children}
-      </AnyForwardRef>
+      <AnyForwardRef
+        is="p"
+        css={styles}
+        {...props}
+        ref={ref}
+        dangerouslySetInnerHTML={{ __html: children?.toString() || "" }}
+      />
     )
   }
 )

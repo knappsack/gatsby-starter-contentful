@@ -44,6 +44,7 @@
     "gatsby-source-filesystem": "^4.12.1",
     "gatsby-source-graphql": "^4.12.1",
     "gatsby-transformer-sharp": "^4.12.1",
+    "marked": "^4.0.16",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@emotion/babel-plugin": "^11.9.2",
     "@types/facepaint": "^1.2.2",
+    "@types/marked": "^4.0.3",
     "@types/react": "^18.0.6",
     "@types/react-dom": "^18.0.2",
     "@types/react-helmet": "^6.1.5",
