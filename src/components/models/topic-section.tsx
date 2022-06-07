@@ -1,12 +1,12 @@
 import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../layout/analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"
-import { ContentfulTopicSection } from "../contentful/contentful-topic-section"
+import type { ContentfulTopicSection, TopicSectionVariant } from "../contentful/contentful-topic-section"
 import { GridTemplate } from "../layout/grid-template"
 import { GridTemplateStylesProps } from "../layout/grid-template.styles"
 import { DataProps } from "./section"
 import { Topic } from "./topic"
-import { ScrollerContent } from "../layout/scroller-content"
+import { Scroller } from "../layout/scroller"
 
 export type TopicSectionProps = {
   model: ContentfulTopicSection
@@ -36,20 +36,25 @@ export const TopicSection = ({ model, data }: TopicSectionProps) => {
     reversed,
   }
 
-  let gridVariant: GridTemplateStylesProps["variant"] = "default"
-
-  if (["block"].includes(variant)) {
-    gridVariant = "block"
+  const gridVariants: Record<
+    TopicSectionVariant,
+    GridTemplateStylesProps["variant"]
+  > = {
+    block: "block",
+    card: "card",
+    featured: "default",
+    headline: "default",
+    quote: "default",
   }
 
-  if (["card"].includes(variant)) {
-    gridVariant = "card"
+  const scrollerOptions = {
+    scroll: ['card'].includes(variant)
   }
-
+  
   return (
     <Analytics area="section" eventId={eventId} variant={variant}>
-      <GridTemplate variant={gridVariant}>
-        <ScrollerContent variant={variant}>
+      <GridTemplate variant={gridVariants[variant]}>
+        <Scroller variant="content" options={scrollerOptions}>
           {topicsCollection.items.map((topic: ContentfulTopic, index) => {
             const {
               sys: { id },
@@ -65,7 +70,7 @@ export const TopicSection = ({ model, data }: TopicSectionProps) => {
               />
             )
           })}
-        </ScrollerContent>
+        </Scroller>
       </GridTemplate>
     </Analytics>
   )

@@ -11,7 +11,7 @@ import { topicStyles } from "./topic.styles"
 import { useGtag } from "../../lib/gtag"
 import { TopicContent } from "./topic-content"
 import { DataProps } from "./section"
-import { ScrollerItem } from "../layout/scroller-item"
+import { Scroller } from "../layout/scroller"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -40,11 +40,15 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
     })
   }
 
+  const scrollerOptions = {
+    scroll: ["card"].includes(variant),
+  }
+
   const analyticsId = `topic:${slugify(heading)}`
   const styles = topicStyles({ variant, options })
 
   return (
-    <ScrollerItem variant={variant}>
+    <Scroller variant="item" options={scrollerOptions}>
       <div
         css={styles}
         data-analytics-id={analyticsId}
@@ -60,6 +64,6 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
           variant={variant}
         />
       </div>
-    </ScrollerItem>
+    </Scroller>
   )
 }
