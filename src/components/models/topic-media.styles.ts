@@ -15,6 +15,8 @@ const variants: Variants<VariantStyle> = {
     aspectRatio: "16 / 9",
     picture: {
       display: "flex",
+      width: "100%",
+      height: "100%",
       img: {
         width: "100%",
       },
@@ -22,12 +24,15 @@ const variants: Variants<VariantStyle> = {
     video: {
       display: "flex",
       width: "100%",
+      height: "100%",
     },
   },
   block: {
     aspectRatio: "16 / 9",
     picture: {
       display: "flex",
+      width: "100%",
+      height: "100%",
       img: {
         width: "100%",
       },
@@ -35,6 +40,7 @@ const variants: Variants<VariantStyle> = {
     video: {
       display: "flex",
       width: "100%",
+      height: "100%",
     },
   },
   featured: {
