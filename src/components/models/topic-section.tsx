@@ -6,7 +6,7 @@ import { GridTemplate } from "../layout/grid-template"
 import { GridTemplateStylesProps } from "../layout/grid-template.styles"
 import { DataProps } from "./section"
 import { Topic } from "./topic"
-import { ScrollerContent } from "./scroller-content"
+import { ScrollerContent } from "../layout/scroller-content"
 
 export type TopicSectionProps = {
   model: ContentfulTopicSection

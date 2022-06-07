@@ -11,7 +11,7 @@ import { topicStyles } from "./topic.styles"
 import { useGtag } from "../../lib/gtag"
 import { TopicContent } from "./topic-content"
 import { DataProps } from "./section"
-import { ScrollerItem } from "./scroller-item"
+import { ScrollerItem } from "../layout/scroller-item"
 
 export type TopicProps = {
   model: ContentfulTopic

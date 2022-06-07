@@ -1,8 +1,7 @@
 import * as React from "react"
 
-import { theme } from '../../styles/global-css-variables.css'
-
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
+import { scrollerItemStyles } from './scroller-item.styles'
 
 export type ScrollerItemProps = {
   variant: TopicSectionVariant
@@ -14,14 +13,7 @@ export const ScrollerItem = ({ variant, children }: ScrollerItemProps) => {
 
   if (!scrollItem) return <React.Fragment>{children}</React.Fragment>
 
-  const styles = {
-    display: "inline-flex",
-    scrollSnapCoordinate: "left",
-    scrollSnapAlign: "start",
-    ':last-of-type > div': {
-      marginRight: theme.spacing.xxlarge,
-    }
-  }
+  const styles = scrollerItemStyles()
 
   return <div css={styles}>{children}</div>
 }
