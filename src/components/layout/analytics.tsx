@@ -1,9 +1,10 @@
 import * as React from "react"
 
-import { UseTypesOf } from "../../lib/use-types-of"
+import type { UseTypesOf } from "../../lib/use-types-of"
 import { useGtag } from "../../lib/gtag"
 import { isBrowser } from "../../lib/is-browser"
-import { analyticsStyles, AnalyticsStylesProps } from "./analytics.styles"
+import { analyticsStyles } from "./analytics.styles"
+import type { AnalyticsStylesProps } from "./analytics.styles"
 
 type AnalyticsProps = UseTypesOf["div"] & {
   area: "section" | "nav"
@@ -21,10 +22,7 @@ export const Analytics = ({
   ...props
 }: AnalyticsProps) => {
   const ref = React.useRef<HTMLDivElement>(null)
-
-  const [context, setContext] = React.useState({
-    inViewport: false,
-  })
+  const [inViewport, setInViewport] = React.useState(false)
 
   const handleScroll = () => {
     if (!ref) return null
@@ -36,7 +34,7 @@ export const Analytics = ({
     if (!bounding) return null
 
     if (
-      !context.inViewport &&
+      !inViewport &&
       bounding.top >= -elementHeight &&
       bounding.left >= -elementWidth &&
       bounding.right <=
@@ -46,7 +44,7 @@ export const Analytics = ({
         (window.innerHeight || document.documentElement.clientHeight) +
           elementHeight
     ) {
-      setContext({ ...context, inViewport: true })
+      setInViewport(!inViewport)
 
       useGtag("event", "viewing", {
         event_id: ref.current?.dataset.analytics,
@@ -65,7 +63,6 @@ export const Analytics = ({
   })
 
   const analyticsId = `${area}:${eventId || variant}`
-
   const styles = analyticsStyles({ variant, options })
 
   const forwardProps = {
