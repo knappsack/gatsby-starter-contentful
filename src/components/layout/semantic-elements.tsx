@@ -69,7 +69,14 @@ const SemanticElements = (props: SemanticElementsProps) => {
   return (
     <React.Fragment>
       {sections.header.length > 0 && (
-        <header role="banner">
+        <header
+          role="banner"
+          css={{
+            position: "sticky",
+            top: 0,
+            zIndex: 2,
+          }}
+        >
           <SkipToContent>Skip to content</SkipToContent>
           {sections.header}
         </header>

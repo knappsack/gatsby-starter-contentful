@@ -35,7 +35,7 @@ const base: CSSObject = {
 const variants: Variants<VariantStyle> = {
   ...navigationVariantContract,
   header: {
-    background: theme.colors.section,
+    background: "rgba(245, 245, 245, 0.98)",
     borderBottom: `1px solid transparent`,
   },
   sitemap: {
