@@ -11,7 +11,7 @@ type CreateJumpLinkProps = UseTypesOf["a"] & {
 
 export const createJumpLink = ({ node, children }: CreateJumpLinkProps) => {
   // @ts-ignore: value is not defined as type
-  const value: string | null | undefined = node?.content[0].value
+  const value: string | undefined = node?.content[0].value
 
   if (!value) {
     return <React.Fragment>{children}</React.Fragment>

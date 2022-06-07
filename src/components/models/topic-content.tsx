@@ -5,24 +5,23 @@ import {
   TopicSectionVariant,
 } from "../contentful/contentful-topic-section"
 import { Abstract } from "../elements/abstract"
-import { Group } from "../layout/group"
-import { topicContentStyles } from "./topic-content.styles"
-import { TopicActions } from "./topic-actions"
-import { TopicIcon } from "./topic-icon"
-import { DataProps } from "./section"
-import { useHeadingTag } from "../../lib/use-heading-tag"
-import { HeadingStylesProps } from "../elements/heading.styles"
 import { AbstractStylesProps } from "../elements/abstract.styles"
-import { marked } from "marked"
+import { DataProps } from "./section"
+import { Group } from "../layout/group"
+import { HeadingStylesProps } from "../elements/heading.styles"
+import { TopicActions } from "./topic-actions"
+import { topicContentStyles } from "./topic-content.styles"
+import { TopicIcon } from "./topic-icon"
+import { useHeadingTag } from "../../lib/use-heading-tag"
 
 export type TopicProps = {
+  data: DataProps
   model: ContentfulTopic
   options: TopicSectionOptions
   variant: TopicSectionVariant
-  data: DataProps
 }
 
-export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
+export const TopicContent = ({ data, model, options, variant }: TopicProps) => {
   const {
     sys: { id },
     abstract,
@@ -53,6 +52,10 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
     quote: "xlarge",
   }
 
+  const abstractOptions: AbstractStylesProps["options"] = {
+    parse: ["block", "card", "featured"].includes(variant),
+  }
+
   return (
     <Group
       css={topicContentStyles({ variant })}
@@ -70,8 +73,11 @@ export const TopicContent = ({ model, options, variant, data }: TopicProps) => {
           </Heading>
         )}
         {options.abstract && abstract && (
-          <Abstract variant={abstractVariants[variant]}>
-            {marked.parse(abstract)}
+          <Abstract
+            variant={abstractVariants[variant]}
+            options={abstractOptions}
+          >
+            {abstract}
           </Abstract>
         )}
       </Group>

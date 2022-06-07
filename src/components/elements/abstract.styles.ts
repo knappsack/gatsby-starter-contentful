@@ -1,16 +1,33 @@
-import { CSSObject } from "@emotion/react"
+import type { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
-import { Variants } from "../../styles/types"
+import type { Variants } from "../../styles/types"
+import * as styles from '../models/text-section.styles'
 
 type VariantStyle = "xlarge" | "large" | "medium" | "small"
 
 const base: CSSObject = {
-  color: theme.colors.text,
+  display: "grid",
   fontFamily: theme.font.family.body,
-  // @ts-ignore unsolvable type error from Vanilla Extract
-  fontWeight: theme.font.weight.default,
-  lineHeight: 1.58,
+  fontSize: theme.font.size.default,
+  gap: theme.spacing.small,
+  lineHeight: 1.5,
+  // Markdown
+  p: styles.paragraphStyles(),
+  strong: styles.boldStyles(),
+  em: styles.italicStyles(),
+  code: styles.codeStyles(),
+  ul: styles.listStyles(),
+  table: styles.paragraphStyles(),
+  del: {
+    textDecoration: "line-through",
+  },
+  a: styles.anchorStyles(),
+  blockquote: {
+    borderLeft: `4px solid ${theme.colors.border}`,
+    fontStyle: "italic",
+    paddingLeft: theme.spacing.default,
+  },
 }
 
 const variants: Variants<VariantStyle> = {
@@ -32,6 +49,9 @@ const variants: Variants<VariantStyle> = {
 
 export type AbstractStylesProps = {
   variant: VariantStyle
+  options?: Partial<{
+    parse: boolean
+  }>
 }
 
 export const abstractStyles = ({ variant }: AbstractStylesProps) => {

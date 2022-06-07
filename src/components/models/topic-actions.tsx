@@ -14,23 +14,20 @@ export type TopicProps = {
 
 export const TopicActions = ({ model, variant }: TopicProps) => {
   const groupOptions: GroupStylesProps["options"] = {
-    reverse: false,
+    reverse: undefined,
     center: ["headline", "quote"].includes(variant),
-    space: false,
+    space: undefined,
   }
 
   const actionOptions: ActionStylesProps["options"] = {
     large: ["headline"].includes(variant),
   }
 
-  let sliceNumber = ["card"].includes(variant) ? 1 : 2
+  const sliceNumber = ["card"].includes(variant) ? 1 : 2
+  const styles = topicActionsStyles({ variant })
 
   return (
-    <Group
-      variant="row"
-      options={groupOptions}
-      css={topicActionsStyles({ variant })}
-    >
+    <Group css={styles} options={groupOptions} variant="row">
       {model.slice(0, sliceNumber).map((action: ContentfulAction, index) => {
         const {
           sys: { id },
@@ -42,10 +39,10 @@ export const TopicActions = ({ model, variant }: TopicProps) => {
         return (
           <Action
             is={is}
-            model={action}
-            variant={variant}
-            options={actionOptions}
             key={createUuid(id)}
+            model={action}
+            options={actionOptions}
+            variant={variant}
           />
         )
       })}

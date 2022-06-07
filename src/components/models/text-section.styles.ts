@@ -24,21 +24,25 @@ export const anchorStyles = () => {
   return mediaQuery([base, anchor])
 }
 
-const paragraph: CSSObject = {}
+const paragraph: CSSObject = {
+  fontFamily: theme.font.family.body,
+  fontSize: theme.font.size.default,
+  lineHeight: 1.5,
+}
 
 export const paragraphStyles = () => {
   return mediaQuery([base, paragraph])
 }
 
 const blockquote: CSSObject = {
+  borderLeft: `4px solid ${theme.colors.border}`,
   display: "grid",
-  gap: 16,
   fontSize: theme.font.size.xlarge,
   fontStyle: "italic",
-  borderLeft: `4px solid ${theme.colors.border}`,
-  paddingLeft: 24,
-  marginTop: 24,
+  gap: theme.spacing.default,
   marginBottom: 24,
+  marginTop: 24,
+  paddingLeft: 24,
   "> *": {
     fontSize: "inherit",
   },
@@ -50,7 +54,7 @@ export const blockquoteStyles = () => {
 
 const list: CSSObject = {
   listStyleType: "revert",
-  padding: "revert",
+  paddingLeft: theme.spacing.large,
 }
 
 export const listStyles = () => {

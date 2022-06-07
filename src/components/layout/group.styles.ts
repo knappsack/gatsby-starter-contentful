@@ -1,4 +1,5 @@
 import { CSSObject } from "@emotion/react"
+import { theme } from '../../styles/global-css-variables.css'
 import { mediaQuery } from "../../styles/media-query"
 import type { Options, Variants } from "../../styles/types"
 
@@ -7,7 +8,7 @@ type OptionStyle = "reverse" | "space" | "center"
 
 const base: CSSObject = {
   display: "flex",
-  gap: 8,
+  gap: theme.spacing.small,
 }
 
 const variants: Variants<VariantStyle> = {

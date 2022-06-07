@@ -25,6 +25,7 @@ const variants: Variants<VariantStyle> = {
     },
   },
   block: {
+    aspectRatio: "16 / 9",
     picture: {
       display: "flex",
       img: {
