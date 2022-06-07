@@ -59,6 +59,10 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
     setNavigationVisibility(!navigationVisibility)
     /** Set focus back on Menu button */
     ref.current?.focus()
+
+    useGtag("event", "click", {
+      event_id: event.currentTarget.dataset.analyticsId,
+    })
   }
 
   React.useEffect(() => {
@@ -140,6 +144,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
           aria-controls="global-navigation"
           aria-expanded={navigationVisibility}
           aria-pressed={navigationVisibility}
+          data-analytics-id="action:open-navigation"
           role="button"
           ref={ref}
         >
@@ -197,6 +202,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
               }}
               aria-label="Close navigation"
               aria-controls="global-navigation"
+              data-analytics-id="action:close-navigation"
               role="button"
             >
               <Icon icon="x" variant="medium" aria-hidden="true" />

@@ -41,8 +41,8 @@ export const Navigation = ({
 
   return (
     <div
-      onMouseEnter={handleOnMouseEnter}
       data-analytics-id={analyticsId}
+      onMouseEnter={handleOnMouseEnter}
       {...props}
     >
       {options.heading && heading && (

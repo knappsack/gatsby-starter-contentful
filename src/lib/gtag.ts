@@ -8,7 +8,9 @@ type GtagProps = {
       event_id?: string
       event_category?: string
       event_label?: string
-      value?: string
+      value?: Partial<{
+        [key: string]: string
+      }>
     }
   ): void
 }
@@ -18,9 +20,7 @@ declare global {
     gtag: (
       event: string,
       action: string,
-      value: {
-        [key: string]: string
-      }
+      value: Partial<Record<string, string | number | symbol>>
     ) => void
   }
 }
