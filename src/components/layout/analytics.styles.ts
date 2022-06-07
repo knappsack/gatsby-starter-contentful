@@ -51,6 +51,10 @@ const variants: Variants<VariantStyle> = {
     display: "flex",
     flexDirection: "column",
   },
+  card: {
+    padding: 0,
+    overflow: "hidden",
+  },
   nav: {},
   section: {},
   unit: {},

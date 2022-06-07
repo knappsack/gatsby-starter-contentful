@@ -11,6 +11,7 @@ import { topicStyles } from "./topic.styles"
 import { useGtag } from "../../lib/gtag"
 import { TopicContent } from "./topic-content"
 import { DataProps } from "./section"
+import { ScrollerItem } from "./scroller-item"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -31,7 +32,7 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
   } = model
 
   const handleOnMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-    if(triggered) return null
+    if (triggered) return null
     setTriggered(!triggered)
 
     useGtag("event", "engagement", {
@@ -43,20 +44,22 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
   const styles = topicStyles({ variant, options })
 
   return (
-    <div
-      css={styles}
-      data-analytics-id={analyticsId}
-      onMouseEnter={handleOnMouseEnter}
-    >
-      {options.media && mediaCollection && (
-        <TopicMedia variant={variant} model={mediaCollection.items} />
-      )}
-      <TopicContent
-        model={model}
-        options={options}
-        data={data}
-        variant={variant}
-      />
-    </div>
+    <ScrollerItem variant={variant}>
+      <div
+        css={styles}
+        data-analytics-id={analyticsId}
+        onMouseEnter={handleOnMouseEnter}
+      >
+        {options.media && mediaCollection && (
+          <TopicMedia variant={variant} model={mediaCollection.items} />
+        )}
+        <TopicContent
+          model={model}
+          options={options}
+          data={data}
+          variant={variant}
+        />
+      </div>
+    </ScrollerItem>
   )
 }

@@ -8,6 +8,8 @@ type VariantStyle = "xlarge" | "large" | "medium" | "small"
 
 const base: CSSObject = {
   display: "grid",
+  whiteSpace: "normal",
+  wordWrap: "break-word",
   fontFamily: theme.font.family.body,
   fontSize: theme.font.size.default,
   gap: theme.spacing.small,

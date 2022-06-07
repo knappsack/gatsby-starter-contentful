@@ -6,6 +6,7 @@ import { GridTemplate } from "../layout/grid-template"
 import { GridTemplateStylesProps } from "../layout/grid-template.styles"
 import { DataProps } from "./section"
 import { Topic } from "./topic"
+import { ScrollerContent } from "./scroller-content"
 
 export type TopicSectionProps = {
   model: ContentfulTopicSection
@@ -48,21 +49,23 @@ export const TopicSection = ({ model, data }: TopicSectionProps) => {
   return (
     <Analytics area="section" eventId={eventId} variant={variant}>
       <GridTemplate variant={gridVariant}>
-        {topicsCollection.items.map((topic: ContentfulTopic, index) => {
-          const {
-            sys: { id },
-          } = model
+        <ScrollerContent variant={variant}>
+          {topicsCollection.items.map((topic: ContentfulTopic, index) => {
+            const {
+              sys: { id },
+            } = model
 
-          return (
-            <Topic
-              key={createUuid(id)}
-              model={topic}
-              options={options}
-              data={{ ...data, topicIndex: index }}
-              variant={variant}
-            />
-          )
-        })}
+            return (
+              <Topic
+                key={createUuid(id)}
+                model={topic}
+                options={options}
+                data={{ ...data, topicIndex: index }}
+                variant={variant}
+              />
+            )
+          })}
+        </ScrollerContent>
       </GridTemplate>
     </Analytics>
   )

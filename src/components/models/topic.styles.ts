@@ -15,6 +15,8 @@ const base: CSSObject = {
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,
   card: {
+    marginRight: theme.spacing.large,
+    transform: `translateX(24px)`,
     backgroundColor: theme.colors.light,
     border: theme.colors.border,
     borderRadius: 4,
@@ -29,7 +31,7 @@ const variants: Variants<VariantStyle> = {
     transition: "all .3s cubic-bezier(0,0,.5,1)",
     ":hover, :focus": {
       boxShadow: "2px 4px 16px rgba(0,0,0,.16)",
-      transform: "scale3d(1.01,1.01,1.01)",
+      transform: "translateX(24px) scale(1.01)",
     },
   },
   block: {
