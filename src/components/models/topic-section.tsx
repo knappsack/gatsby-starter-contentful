@@ -1,7 +1,10 @@
 import { createUuid } from "../../lib/create-uuid"
 import { Analytics } from "../layout/analytics"
 import { ContentfulTopic } from "../contentful/contentful-topic"
-import type { ContentfulTopicSection, TopicSectionVariant } from "../contentful/contentful-topic-section"
+import type {
+  ContentfulTopicSection,
+  TopicSectionVariant,
+} from "../contentful/contentful-topic-section"
 import { GridTemplate } from "../layout/grid-template"
 import { GridTemplateStylesProps } from "../layout/grid-template.styles"
 import { DataProps } from "./section"
@@ -48,9 +51,9 @@ export const TopicSection = ({ model, data }: TopicSectionProps) => {
   }
 
   const scrollerOptions = {
-    scroll: ['card'].includes(variant)
+    scroll: ["card"].includes(variant),
   }
-  
+
   return (
     <Analytics area="section" eventId={eventId} variant={variant}>
       <GridTemplate variant={gridVariants[variant]}>

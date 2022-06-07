@@ -35,7 +35,7 @@ export const TopicActions = ({ model, variant }: TopicProps) => {
         } = action
 
         const variant = index === 0 ? "primary" : "secondary"
-        
+
         return (
           <Action
             key={createUuid(id)}
