@@ -42,9 +42,9 @@ export const TopicSection = ({ model, data }: TopicSectionProps) => {
   > = {
     block: "block",
     card: "card",
-    featured: "default",
-    headline: "default",
-    quote: "default",
+    featured: "grid",
+    headline: "grid",
+    quote: "grid",
   }
 
   const scrollerOptions = {

@@ -17,6 +17,7 @@ import { useWindowWidth } from "../../lib/use-window-width"
 import { mediaQuery } from "../../styles/media-query"
 import { focusStyles } from "./text-section.styles"
 import { useGtag } from "../../lib/gtag"
+import { GridTemplate } from "../layout/grid-template"
 
 export type NavigationHeaderProps = UseTypesOf["div"] & {
   model: ContentfulNavigationSection
@@ -95,16 +96,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
         border: true,
       }}
     >
-      <div
-        css={{
-          display: "flex",
-          justifyContent: "space-between",
-          maxWidth: 1380,
-          margin: "auto",
-          paddingTop: 10,
-          paddingBottom: 10,
-        }}
-      >
+      <GridTemplate variant="header">
         {options.branding && logo && (
           <Link
             aria-label={logo.title}
@@ -250,7 +242,7 @@ export const NavigationHeader = ({ model }: NavigationHeaderProps) => {
             },
           ]}
         />
-      </div>
+      </GridTemplate>
     </Analytics>
   )
 }

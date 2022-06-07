@@ -7,18 +7,14 @@ type VariantStyle =
   | "block"
   | "branding"
   | "card"
-  | "default"
+  | "grid"
   | "header"
   | "sitemap"
   | "text"
 type OptionStyle = Options<"">
 
-const grid: CSSObject = {
-  display: "grid",
-  gap: theme.spacing.large,
-}
-
 const base: CSSObject = {
+  display: "grid",
   maxWidth: 1380,
   margin: "auto",
   paddingTop: theme.spacing.large,
@@ -27,18 +23,22 @@ const base: CSSObject = {
 
 const variants: Variants<VariantStyle> = {
   header: {
-    ...grid,
-    gridArea: "header",
+    display: "flex",
+    justifyContent: "space-between",
+    maxWidth: 1380,
+    margin: "auto",
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   sitemap: {
-    ...grid,
     gridArea: "sitemap",
+    gap: theme.spacing.large,
     width: "100%",
     padding: 0,
     gridTemplateColumns: ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"],
   },
   text: {
-    ...grid,
+    gap: theme.spacing.large,
     maxWidth: 712,
   },
   card: {
@@ -51,14 +51,16 @@ const variants: Variants<VariantStyle> = {
     WebkitOverflowScrolling: "touch",
   },
   block: {
-    ...grid,
+    gap: theme.spacing.large,
     gridTemplateColumns: ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"],
     justifyContent: "center",
     maxWidth: [380, 1380],
   },
-  default: {},
+  grid: {
+    gap: theme.spacing.large,
+  },
   branding: {
-    ...grid,
+    gap: theme.spacing.large,
     gridTemplateColumns: [undefined, undefined, "20%"],
     gridTemplateAreas: [
       `

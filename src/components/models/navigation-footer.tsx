@@ -34,7 +34,7 @@ export const NavigationFooter = ({ model }: NavigationFooterProps) => {
       options={{ border: true }}
       variant="footer"
     >
-      <GridTemplate variant="default">
+      <GridTemplate variant="grid">
         {navigationsCollection.items
           .slice(0, 1)
           .map((navigation: ContentfulNavigation) => {
