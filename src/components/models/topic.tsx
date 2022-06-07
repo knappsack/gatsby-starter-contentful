@@ -11,7 +11,6 @@ import { topicStyles } from "./topic.styles"
 import { useGtag } from "../../lib/gtag"
 import { TopicContent } from "./topic-content"
 import { DataProps } from "./section"
-import { TopicContainer } from "./topic-container"
 
 export type TopicProps = {
   model: ContentfulTopic
@@ -21,6 +20,7 @@ export type TopicProps = {
 }
 
 export const Topic = ({ model, options, variant, data }: TopicProps) => {
+  const [triggered, setTriggered] = React.useState(false)
   const {
     sys: { id },
     abstract,
@@ -30,7 +30,10 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
     mediaCollection,
   } = model
 
-  const handleOnMouseEnter = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleOnMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+    if(triggered) return null
+    setTriggered(!triggered)
+
     useGtag("event", "engagement", {
       event_id: event.currentTarget.dataset.analyticsId,
     })
@@ -40,12 +43,10 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
   const styles = topicStyles({ variant, options })
 
   return (
-    <TopicContainer
+    <div
       css={styles}
       data-analytics-id={analyticsId}
-      model={actionsCollection.items[0]}
       onMouseEnter={handleOnMouseEnter}
-      variant={variant}
     >
       {options.media && mediaCollection && (
         <TopicMedia variant={variant} model={mediaCollection.items} />
@@ -56,6 +57,6 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
         data={data}
         variant={variant}
       />
-    </TopicContainer>
+    </div>
   )
 }

@@ -4,12 +4,13 @@ import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 import type { Variants, Options } from "../../styles/types"
 import type { TopicSectionVariant } from "../contentful/contentful-topic-section"
-import { focusStyles } from "./text-section.styles"
 
 type VariantStyle = TopicSectionVariant
 type OptionStyle = Options<"reversed">
 
-const base: CSSObject = {}
+const base: CSSObject = {
+  position: "relative",
+}
 
 const variants: Variants<VariantStyle> = {
   ...topicVariantContract,

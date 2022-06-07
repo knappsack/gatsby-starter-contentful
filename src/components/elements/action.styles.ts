@@ -4,7 +4,7 @@ import { mediaQuery } from "../../styles/media-query"
 import type { Variants, Options } from "../../styles/types"
 
 type VariantStyle = "primary" | "secondary" | "link"
-type OptionStyle = Options<"large">
+type OptionStyle = Options<"large" | "expand">
 
 const base: CSSObject = {
   cursor: "pointer",
@@ -55,11 +55,29 @@ const large = {
   padding: "12px 20px",
 }
 
+const expand = {
+  ":after": {
+    borderRadius: 6,
+    bottom: 0,
+    content: `""`,
+    left: 0,
+    position: "absolute",
+    right: 0,
+    top: 0,
+    zIndex: 2,
+  },
+}
+
 export type ActionStylesProps = {
   variant: VariantStyle
   options?: OptionStyle
 }
 
 export const actionStyles = ({ variant, options }: ActionStylesProps) => {
-  return mediaQuery([base, variants[variant], options?.large && large])
+  return mediaQuery([
+    base,
+    variants[variant],
+    options?.large && large,
+    options?.expand && expand,
+  ])
 }

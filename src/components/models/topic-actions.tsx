@@ -21,6 +21,7 @@ export const TopicActions = ({ model, variant }: TopicProps) => {
 
   const actionOptions: ActionStylesProps["options"] = {
     large: ["headline"].includes(variant),
+    expand: ["card"].includes(variant),
   }
 
   const sliceNumber = ["card"].includes(variant) ? 1 : 2
@@ -34,11 +35,9 @@ export const TopicActions = ({ model, variant }: TopicProps) => {
         } = action
 
         const variant = index === 0 ? "primary" : "secondary"
-        const is = sliceNumber === 1 ? "div" : undefined
-
+        
         return (
           <Action
-            is={is}
             key={createUuid(id)}
             model={action}
             options={actionOptions}

@@ -1,22 +1,13 @@
-import * as React from "react"
-
-import type { UseTypesOf } from "./use-types-of"
-import { focusStyles } from "../components/models/text-section.styles"
-import { ContentfulAction } from "../components/contentful/contentful-action"
-
 type CreateLinkProps = {
-  model: ContentfulAction
+  page: {
+    slug: string
+  }
+  url: string
+  query: string
+  anchor: string
 }
 
-export const createLink = ({ model }: CreateLinkProps) => {
-  const {
-    sys: { id },
-    page,
-    url,
-    query,
-    anchor,
-  } = model
-
+export const createLink = ({ page, url, query, anchor }: CreateLinkProps) => {
   const path = page?.slug || url
   const queryString = query && `?` + query
   const anchorHash = anchor && `#` + anchor

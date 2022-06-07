@@ -36,7 +36,7 @@ export const Action = ({ model, variant, options, is }: ActionProps) => {
     })
   }
 
-  const to = createLink({ model })
+  const to = createLink({ page, url, query, anchor })
   const analyticsId = `action:${slugify(eventId) || slugify(heading)}`
   const styles = actionStyles({ variant, options })
 
@@ -45,15 +45,6 @@ export const Action = ({ model, variant, options, is }: ActionProps) => {
     "data-analytics-id": analyticsId,
     css: styles,
     onClick: handleOnClick,
-  }
-
-  if (is === "div") {
-    return (
-      <div css={styles}>
-        {heading}
-        {icon && <Icon variant="small" icon={icon} />}
-      </div>
-    )
   }
 
   const internal = /^\/(?!\/)/.test(to)
