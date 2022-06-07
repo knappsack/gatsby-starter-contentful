@@ -10,6 +10,7 @@ const base: CSSObject = {
   display: "grid",
   whiteSpace: "normal",
   wordWrap: "break-word",
+  wordBreak: "break-word",
   fontFamily: theme.font.family.body,
   fontSize: theme.font.size.default,
   gap: theme.spacing.small,
