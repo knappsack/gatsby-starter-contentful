@@ -2,7 +2,7 @@ import type { CSSObject } from "@emotion/react"
 import { theme } from "../../styles/global-css-variables.css"
 import { mediaQuery } from "../../styles/media-query"
 import type { Variants } from "../../styles/types"
-import * as styles from '../models/text-section.styles'
+import * as styles from "../models/text-section.styles"
 
 type VariantStyle = "xlarge" | "large" | "medium" | "small"
 

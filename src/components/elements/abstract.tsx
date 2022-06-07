@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { marked } from 'marked'
+import { marked } from "marked"
 import { abstractStyles } from "./abstract.styles"
 import type { AbstractStylesProps } from "./abstract.styles"
 import type { UseTypesOf } from "../../lib/use-types-of"
