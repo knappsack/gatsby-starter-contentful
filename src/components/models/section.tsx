@@ -24,6 +24,10 @@ type SectionProps = {
 export const Section = ({ model }: SectionProps) => (
   <SemanticElements>
     {model?.map((section: ContentfulSection, index) => {
+      if (Object.entries(section).length === 0) {
+        return null
+      }
+      
       const {
         sys: { id },
       } = section

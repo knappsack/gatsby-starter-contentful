@@ -41,7 +41,7 @@ const getSemanticTag = ({ section, count, index }: GetSemanticTag) => {
 }
 
 type SemanticElementsProps = {
-  children: JSX.Element[]
+  children: (React.ReactElement | null)[]
 }
 
 const SemanticElements = (props: SemanticElementsProps) => {
