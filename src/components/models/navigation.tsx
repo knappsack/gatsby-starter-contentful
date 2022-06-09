@@ -50,7 +50,7 @@ export const Navigation = ({
           {heading}
         </Heading>
       )}
-      {Object.entries(actionsCollection).length === 0 && (
+      {Object.entries(actionsCollection.items).length > 0 && (
         <ul css={navigationListStyles({ variant })}>
           {actionsCollection.items.map((action: ContentfulAction) => {
             const {

@@ -54,7 +54,7 @@ export const Topic = ({ model, options, variant, data }: TopicProps) => {
         data-analytics-id={analyticsId}
         onMouseEnter={handleOnMouseEnter}
       >
-        {options.media && Object.entries(mediaCollection).length === 0 && (
+        {options.media && Object.entries(mediaCollection.items).length > 0 && (
           <TopicMedia variant={variant} model={mediaCollection.items} />
         )}
         <TopicContent
