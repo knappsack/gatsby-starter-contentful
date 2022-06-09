@@ -26,7 +26,7 @@ const Page = ({
         description={
           page.seoDescription || globals.siteDescription || undefined
         }
-        image={page.seoImage.url || globals.siteImage.url || undefined}
+        image={page.seoImage?.url || globals.siteImage?.url || undefined}
         keywords={page.seoKeywords || globals.siteKeywords || undefined}
         title={page.seoTitle || globals.siteTitle || undefined}
         url={page.slug || undefined}
