@@ -81,7 +81,7 @@ export const TopicContent = ({ data, model, options, variant }: TopicProps) => {
           </Abstract>
         )}
       </Group>
-      {options.action && actionsCollection && (
+      {options.action && Object.entries(actionsCollection).length === 0 && (
         <TopicActions model={actionsCollection.items} variant={variant} />
       )}
     </Group>

@@ -50,19 +50,21 @@ export const Navigation = ({
           {heading}
         </Heading>
       )}
-      <ul css={navigationListStyles({ variant })}>
-        {actionsCollection.items.map((action: ContentfulAction) => {
-          const {
-            sys: { id },
-          } = action
+      {Object.entries(actionsCollection).length === 0 && (
+        <ul css={navigationListStyles({ variant })}>
+          {actionsCollection.items.map((action: ContentfulAction) => {
+            const {
+              sys: { id },
+            } = action
 
-          return (
-            <li css={navigationItemStyles({ variant })} key={createUuid(id)}>
-              <Action variant="link" model={action} />
-            </li>
-          )
-        })}
-      </ul>
+            return (
+              <li css={navigationItemStyles({ variant })} key={createUuid(id)}>
+                <Action variant="link" model={action} />
+              </li>
+            )
+          })}
+        </ul>
+      )}
     </div>
   )
 }
