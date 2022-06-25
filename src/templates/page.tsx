@@ -18,20 +18,20 @@ const Page = ({
     contentful: { page, globals },
   },
 }: PageProps<PageQuery, PageContext>) => {
-  const section = page.sectionsCollection?.items
+  const sections = page.sectionsCollection?.items
 
   return (
     <React.Fragment>
       <Seo
-        description={
-          page.seoDescription || globals.siteDescription || undefined
-        }
-        image={page.seoImage?.url || globals.siteImage?.url || undefined}
-        keywords={page.seoKeywords || globals.siteKeywords || undefined}
-        title={page.seoTitle || globals.siteTitle || undefined}
-        url={page.slug || undefined}
+        author={globals.siteAuthor}
+        description={page.seoDescription || globals.siteDescription}
+        image={page.seoImage?.url || globals.siteImage?.url}
+        keywords={page.seoKeywords || globals.siteKeywords}
+        templateTitle={globals.siteTitle}
+        title={page.seoTitle || globals.siteTitle}
+        siteUrl={page.slug}
       />
-      <Section model={section} />
+      <Section model={sections} />
     </React.Fragment>
   )
 }

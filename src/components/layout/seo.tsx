@@ -1,15 +1,16 @@
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-type SeoProps = Partial<{
+type SeoProps = {
   author: string
   description: string
   image: string
   keywords: string[]
-  language: string
+  language?: string
   title: string
-  url: string
-}>
+  templateTitle: string
+  siteUrl: string
+}
 
 type StaticQuery = {
   site: {
@@ -24,7 +25,8 @@ export const Seo = ({
   keywords,
   language,
   title,
-  url,
+  templateTitle,
+  siteUrl,
 }: SeoProps) => {
   const {
     site: { siteMetadata },
@@ -38,7 +40,7 @@ export const Seo = ({
           keywords
           language
           title
-          url
+          siteUrl
         }
       }
     }
@@ -49,13 +51,18 @@ export const Seo = ({
   const seoKeywords = keywords || siteMetadata.keywords
   const seoLanguage = language || siteMetadata.language
   const seoTitle = title || siteMetadata.title
-  const seoUrl = url ? `${siteMetadata.url}${url}` : siteMetadata.url
+  const seoUrl = siteUrl
+    ? `${siteMetadata.siteUrl}${siteUrl}`
+    : siteMetadata.siteUrl
   const seoImage = image
-    ? `${image}?w=1600&h=840&q=80`
-    : `${siteMetadata.url}/${image}`
+    ? `${image}?w=1600&h=840&q=90`
+    : `${siteMetadata.siteUrl}/${siteMetadata.image}`
 
   return (
-    <Helmet>
+    <Helmet
+      defaultTitle={siteMetadata.title}
+      titleTemplate={`%s | ${templateTitle}`}
+    >
       {/* Default / HTML */}
       <html lang={seoLanguage} />
       <title>{seoTitle}</title>
