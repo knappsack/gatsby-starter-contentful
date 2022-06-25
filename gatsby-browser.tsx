@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import type { GatsbyBrowser } from "gatsby"
 import RootElement from "./src/components/layout/root-element"
 
 /**
@@ -9,6 +10,8 @@ import RootElement from "./src/components/layout/root-element"
 import "./src/styles/the-new-css-reset.css"
 import "./src/styles/global-css-variables.css"
 
-export const wrapRootElement = ({ element }) => {
+export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
+  element,
+}) => {
   return <RootElement>{element}</RootElement>
 }

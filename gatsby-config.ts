@@ -1,18 +1,21 @@
-require("dotenv").config({
+import type { GatsbyConfig } from "gatsby"
+import * as dotenv from "dotenv"
+
+dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-module.exports = {
+const config: GatsbyConfig = {
   siteMetadata: {
     author: "@thijskrooswijk",
-    url: "https://www.knappsack.org",
-    title: "Gatsby Contentful starter",
-    image: "og-image.jpg",
     description:
       "Blazing fast modern site generator for React Go beyond static sites: build blogs, e-commerce sites, full-blown apps, and more with Gatsby",
-    language: "en-us",
+    image: "og-image.jpg",
     keywords: ["knappsack", "gatsby", "contentful"],
+    language: "en-us",
     repo: "https://github.com/knappsack/gatsby-contentful-starter",
+    siteUrl: "https://www.knappsack.org",
+    title: "Gatsby Contentful starter",
   },
   plugins: [
     "gatsby-plugin-emotion",
@@ -44,10 +47,10 @@ module.exports = {
     },
     "gatsby-transformer-sharp",
     {
-      resolve: `gatsby-source-graphql`,
+      resolve: "gatsby-source-graphql",
       options: {
-        typeName: `Contentful`,
-        fieldName: `contentful`,
+        typeName: "Contentful",
+        fieldName: "contentful",
         url: process.env.CONTENTFUL_GRAPHQL_ENDPOINT,
         headers: {
           Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`,
@@ -55,11 +58,13 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-gtag`,
+      resolve: "gatsby-plugin-gtag",
       options: {
-        trackingId: `G-8M97W0P504`,
+        trackingId: "G-XXXXXXXXXX",
       },
     },
-    `gatsby-plugin-offline`,
+    "gatsby-plugin-offline",
   ],
 }
+
+export default config
