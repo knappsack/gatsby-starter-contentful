@@ -1,14 +1,5 @@
 import { createGlobalTheme } from "@vanilla-extract/css"
-// bg-indigo-50	background-color: rgb(238 242 255);
-// bg-indigo-100	background-color: rgb(224 231 255);
-// bg-indigo-200	background-color: rgb(199 210 254);
-// bg-indigo-300	background-color: rgb(165 180 252);
-// bg-indigo-400	background-color: rgb(129 140 248);
-// bg-indigo-500	background-color: rgb(99 102 241);
-// bg-indigo-600	background-color: rgb(79 70 229);
-// bg-indigo-700	background-color: rgb(67 56 202);
-// bg-indigo-800	background-color: rgb(55 48 163);
-// bg-indigo-900	background-color: rgb(49 46 129);
+
 export const theme = createGlobalTheme(`:root`, {
   /** @note https://tailwindcss.com/docs/background-color  */
   colors: {
