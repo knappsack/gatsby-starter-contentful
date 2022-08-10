@@ -1,6 +1,7 @@
 import * as React from "react"
 
-import { graphql, PageProps } from "gatsby"
+import type { HeadProps, PageProps } from "gatsby"
+import { graphql } from "gatsby"
 import { Seo } from "../components/layout/seo"
 import { Section } from "../components/models/section"
 import { ContentfulPage } from "../components/contentful/contentful-page"
@@ -15,27 +16,32 @@ type PageQuery = {
 
 const Page = ({
   data: {
-    contentful: { page, globals },
+    contentful: { page },
   },
 }: PageProps<PageQuery, PageContext>) => {
   const sections = page.sectionsCollection?.items
 
-  return (
-    <React.Fragment>
-      <Seo
-        author={globals.siteAuthor}
-        description={page.seoDescription || globals.siteDescription}
-        image={page.seoImage?.url || globals.siteImage?.url}
-        keywords={page.seoKeywords || globals.siteKeywords}
-        templateTitle={globals.siteTitle}
-        title={page.seoTitle || globals.siteTitle}
-        siteUrl={page.slug}
-      />
-      <Section model={sections} />
-    </React.Fragment>
-  )
+  return <Section model={sections} />
 }
 export default Page
+
+export const Head: React.FC<HeadProps<PageQuery, PageContext>> = ({
+  data: {
+    contentful: { page, globals },
+  },
+}) => {
+  return (
+    <Seo
+      author={globals.siteAuthor}
+      description={page.seoDescription || globals.siteDescription}
+      image={page.seoImage?.url || globals.siteImage?.url}
+      keywords={page.seoKeywords || globals.siteKeywords}
+      siteTitle={globals.siteTitle}
+      siteUrl={page.slug}
+      title={page.seoTitle}
+    />
+  )
+}
 
 type PageContext = {
   pageId: string

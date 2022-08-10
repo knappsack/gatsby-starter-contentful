@@ -1,10 +1,9 @@
-import * as React from "react"
+import type { GatsbySSR } from "gatsby"
 
-import type { GatsbyBrowser } from "gatsby"
-import RootElement from "./src/components/layout/root-element"
+export { wrapRootElement } from "./gatsby-shared"
 
-export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
-  element,
+export const onRenderBody: GatsbySSR["onRenderBody"] = ({
+  setHtmlAttributes,
 }) => {
-  return <RootElement>{element}</RootElement>
+  setHtmlAttributes({ lang: "en-us" })
 }

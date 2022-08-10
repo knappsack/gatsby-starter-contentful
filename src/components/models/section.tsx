@@ -27,7 +27,7 @@ export const Section = ({ model }: SectionProps) => (
       if (Object.entries(section).length === 0) {
         return null
       }
-      
+
       const {
         sys: { id },
       } = section
